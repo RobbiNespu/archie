@@ -1,6 +1,6 @@
 /* Markdown */
 :root{
---maincolor: red;
+/* --maincolor: rgb(46, 43, 43); */
 --bordercl:rebeccapurple;
 --callouctcolor:dodgerblue;
 --hovercolor:navy;
@@ -51,6 +51,12 @@ a {
 a:hover {
     background-color: var(--hovercolor);
     color: #fff;
+}
+
+a.menu{
+  color: #dc3545;
+  text-decoration: none;
+  /* background-color: unset !important; */
 }
 
 ul {
