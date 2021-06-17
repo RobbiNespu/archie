@@ -22,7 +22,7 @@ In your Hugo website directory, create a new folder named theme and clone the re
 ```bash
 $ mkdir themes
 $ cd themes
-$ git clone https://github.com/athul/archie.git
+$ git clone -b robbinespu.gitlab.io https://github.com/RobbiNespu/archie.git
 ```
 Edit the `config.toml` file with `theme="archie"`
 For more information read the official [setup guide](https://gohugo.io/overview/installing/) of Hugo.
