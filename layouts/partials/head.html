@@ -3,9 +3,6 @@
 		<strong><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></strong>
 	</div>
 	<nav>
-		<!-- {{ range .Site.Menus.main }}
-		<a href="{{ .URL }}">{{ .Name }}</a>
-		{{ end }} -->
 		{{ with .Site.Menus.main }}
                 {{ $navbar_len := len . }}
                 {{ range $i, $nav_item := . }}
@@ -19,3 +16,6 @@
             {{ end }}
 	</nav>
 </header>
+{{- if isset .Site.Params "subtitle" -}}
+	<p>{{ .Site.Params.Subtitle | markdownify }}</p>
+{{- end -}}
