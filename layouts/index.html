@@ -4,30 +4,41 @@
 	<body>
 		<div class="content">
 			{{ partial "head.html" . }}
+			<div class="site-description">
+				{{- if isset .Site.Params "subtitle" -}}
+				<p>{{ .Site.Params.Subtitle | markdownify }}</p>
+				{{- end -}}
+			</div>
 			
-			<main class="list">
-				<div class="site-description">
-					{{- if isset .Site.Params "subtitle" -}}
-					<p>{{ .Site.Params.Subtitle | markdownify }}</p>
-					{{- end -}}
-				</div>
-				{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-				{{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
-				{{ range $paginator.Pages }}
-				<section class="list-item">
-					<h1 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h1>
-					<time>{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
-					<br><div class="description">
-						{{ if isset .Params "description" }}
-						{{ .Description }}
-						{{ else }}
-						{{ .Summary }}&hellip;
+			<main>
+				<article>
+					<div class="title">
+						<h1 class="title">{{ with .Site.GetPage "/homepage/index.md" }}{{ .Title }}{{ end }}</h1>
+					</div>
+					{{ if isset .Params "tldr" }}
+					<div class="tldr">
+						<strong>tl;dr:</strong>
+						{{ .Params.tldr }}
+					</div>{{ end }}
+	
+					<section class="body">
+						{{ with .Site.GetPage "/homepage/index.md" }}{{ .Content }}{{ end }}
+					</section>
+	
+					<div class="post-tags">
+						{{ if ne .Type "page" }}
+						{{ if gt .Params.tags 0 }}
+						<nav class="nav tags">
+							<ul class="tags">
+								{{ range .Params.tags }}
+								<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+								{{ end }}
+							</ul>
+						</nav>
+						{{ end }}
 						{{ end }}
 					</div>
-					<a href="{{ .RelPermalink }}">Read more ⟶</a>
-				</section>
-				{{ end }}
-				{{ template "partials/paginator.html" . }}
+				</article>
 			</main>
 			{{ partial "footer.html" . }}
 		</div>
