@@ -219,6 +219,13 @@ article .title {
   margin-bottom: 1em;
 }
 
+.post-tags {
+  border-top: 1px solid #eee;
+}
+.post-tags ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
 
 /* Callout */
 .callout {
@@ -255,6 +262,7 @@ justify-content: space-between;
   color:white;
   background-color: var(--hovercolor); 
 }
+
 svg{
   max-height: 15px;
 }
