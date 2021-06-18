@@ -167,12 +167,38 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2em;
 }
 
+header .main a {
+  border-bottom: 0 none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: var(--maincolor);
+  padding: 0px;
+}
+
+header .main p {
+  color: #999;
+  font-size: 16px;
+  text-indent: 10px;
+}
+
 h1::before { color: var(--maincolor); content: '# '; }
 h2::before { color: var(--maincolor); content: '## '; }
 h3::before { color: var(--maincolor); content: '### '; }
 h4::before { color: var(--maincolor); content: '#### '; }
 h5::before { color: var(--maincolor); content: '##### '; }
 h6::before { color: var(--maincolor); content: '###### '; }
+
+h1.title {
+  color: var(--maincolor);
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.meta {
+  color: #999;
+  letter-spacing: -0.5px;
+}
 
 /* Footer */
 footer {
