@@ -18,14 +18,15 @@
 					<section class="body">
 						{{ with .Site.GetPage "/homepage/index.md" }}{{ .Content }}{{ end }}
 
-						<h2 id="recent-articles">Recent articles 📰</h2>
+						<h2 id="recent-articles">Recent posts 📰</h2>
 						<ul class="posts">
-							{{ range ( where .Site.RegularPages "Type" "posts" | first 3 ) }}
+							{{ range ( where .Site.RegularPages "Type" "blog" | first 3 ) }}
 							<li class="post">
 								<a href="{{ .RelPermalink }}">{{.Title}}</a> <span class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 							</li>
 							{{end}}
 						</ul>
+						<pre><code>💡 You may check <a href="post">archive</a> for full list of articles</code></pre>
 
 						<h3 id="contact">Contact 💌</h3>
 						<p>If you want to get in touch to chat something either meaningful 
