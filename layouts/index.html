@@ -20,7 +20,7 @@
 
 						<h2 id="recent-articles">Recent posts 📰</h2>
 						<ul class="posts">
-							{{ range ( where .Site.RegularPages "Type" "blog" | first 3 ) }}
+							{{ range ( where .Site.RegularPages "Type" "blog" | first 5 ) }}
 							<li class="post">
 								<a href="{{ .RelPermalink }}">{{.Title}}</a> <span class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 							</li>
@@ -29,8 +29,8 @@
 						<pre><code>💡 You may check <a href="post">archive</a> for full list of articles</code></pre>
 
 						<h3 id="contact">Contact 💌</h3>
-						<p>If you want to get in touch to chat something either meaningful 
-							or meaningless, you can send me a message 
+						<p>If you want to get in touch to chat something meaningful 
+							<del>or meaningless</del>, you can send me a message 
 							on <a href="https://twitter.com/@robbinespu">Twitter</a> / 
 							<a href="https://mstdn.social/@robbinespu">Mastodon</a> 
 							or send me an <a href="mailto:robbinespu@gmail.com">email</a>. 
