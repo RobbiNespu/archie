@@ -13,6 +13,9 @@
 
 		<section class="body">
 			{{ .Content }}
+			<p style="text-align: right; font-size: x-small;">
+				<a href="{{ $.Site.Params.Repository }}blob/master/content/{{.File.Path}}">Edit</a>
+			</p>
 		</section>
 
 		<div class="post-tags">
