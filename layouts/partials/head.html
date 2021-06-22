@@ -14,7 +14,9 @@
                     {{ end }}
                 {{ end }}
             {{ end }}
-            | <a id="dark-mode-toggle" class="fal fa-moon-o">Toggle Dark Mode</a>
+            {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "light") -}}
+            /<a id="dark-mode-toggle"><i data-feather="sun"></i></a>
+            {{ end }}
 	</nav>
 </header>
 {{- if isset .Site.Params "subtitle" -}}
