@@ -312,7 +312,7 @@ color: white;
 }
 .highlight pre code[class*='language-shell']::before,
 .highlight pre code[class*='language-bash']::before,
-.highlight pre code[class*='language-sh']::before {
+.highlight pre code[class*='language-sh']::before{
 content: 'shell';
 background: green;
 color:white
@@ -343,6 +343,16 @@ color: royalblue ;
 content: 'Markdown';
 background: royalblue;
 color: whitesmoke ;
+}
+.highlight pre code[class*='language-c']::before{
+  content: 'C';
+  background: cyan;
+  color: royalblue ;
+}
+.highlight pre code[class*='language-cpp']::before{
+  content: 'C++';
+  background: cyan;
+  color: royalblue ;
 }
 
 /* table */
