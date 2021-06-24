@@ -364,6 +364,11 @@ color: whitesmoke ;
   background: green;
   color:white
 }
+.highlight pre code[class*='language-patch']::before{
+  content: 'patch';
+  background: cyan;
+  color: black ;
+}
 /* table */
 table {
   border-spacing: 0;
