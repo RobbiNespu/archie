@@ -354,7 +354,16 @@ color: whitesmoke ;
   background: cyan;
   color: royalblue ;
 }
-
+.highlight pre code[class*='language-csharp']::before{
+  content: 'C#';
+  background: cyan;
+  color: royalblue ;
+}
+.highlight pre code[class*='language-java']::before{
+  content: 'Java';
+  background: green;
+  color:white
+}
 /* table */
 table {
   border-spacing: 0;
