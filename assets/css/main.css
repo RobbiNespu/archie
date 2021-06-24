@@ -344,11 +344,6 @@ content: 'Markdown';
 background: royalblue;
 color: whitesmoke ;
 }
-.highlight pre code[class*='language-c']::before{
-  content: 'C';
-  background: cyan;
-  color: royalblue ;
-}
 .highlight pre code[class*='language-cpp']::before{
   content: 'C++';
   background: cyan;
@@ -369,6 +364,12 @@ color: whitesmoke ;
   background: cyan;
   color: black ;
 }
+/* conflict with CSS tag
+.highlight pre code[class*='language-c']::before{
+  content: 'C-ansi';
+  background: cyan;
+  color: royalblue ;
+} */
 /* table */
 table {
   border-spacing: 0;
@@ -383,4 +384,25 @@ table th{
 table td{
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
+}
+
+/* ToC */
+.toc {
+  border: .15rem solid #757575;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1em;
+  color: #757575;
+}
+.toc-header {
+  color: #757575;
+  font-size: 1.5rem;
+}
+#TableOfContents > ul {
+  list-style-type: none;
+  padding-left: 1em;
+}
+#TableOfContents > ul > li ul {
+  list-style-type: none;
+  padding-left: 1em;
 }
