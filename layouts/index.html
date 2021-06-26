@@ -18,7 +18,7 @@
 					<section class="body">
 						{{ with .Site.GetPage "/homepage/index.md" }}{{ .Content }}{{ end }}
 
-						<h2 id="recent-articles">Recent posts 📰</h2>
+						<h1 id="recent-articles">Recent posts 📰</h1>
 						<ul class="posts">
 							{{ range ( where .Site.RegularPages "Type" "posts" | first 5 ) }}
 							<li class="post">
@@ -28,7 +28,7 @@
 						</ul>
 						<pre><code>💡 You may check <a href="posts">archives</a> for full list of articles</code></pre>
 
-						<h3 id="contact">Contact 💌</h3>
+						<h1 id="contact">Contact 💌</h1>
 						<p>If you want to get in touch to chat something meaningful 
 							<del>or meaningless</del>, you can send me a message 
 							on <a href="https://twitter.com/@robbinespu">Twitter</a> / 
