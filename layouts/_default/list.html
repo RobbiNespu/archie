@@ -10,7 +10,7 @@
 		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
 		<li class="post">
 			<!-- {{ .Params.category }} -->
-			{{ if in .Params.category "Bahasa Melayu"}}	[🇲🇾] {{ else }} [🇬🇧] {{ end }}
+			{{ if in .Params.category "Bahasa Melayu"}}	🇲🇾 {{ else }} 🇬🇧 {{ end }}
 			<a href="{{ .RelPermalink }}">{{.Title}}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 		</li>
 		{{- end -}}
