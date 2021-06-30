@@ -94,7 +94,7 @@ figure {
 
 figcaption {
   font-size: 12px;
-  font-family: 'IBM Plex Mono', 'monospace';
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
 }
 
 figure img {
