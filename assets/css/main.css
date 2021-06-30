@@ -57,6 +57,7 @@ a.menu{
   color: #dc3545;
   text-decoration: none;
   /* background-color: unset !important; */
+  font-size: 14px;
 }
 
 ul {
