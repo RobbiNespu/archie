@@ -9,7 +9,7 @@
 html {
   color: #232333;
   font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.5em;
 }
 body{
@@ -87,14 +87,14 @@ img[src$='#center'] {
 
 figure {
   box-sizing: border-box;
-  /* display: inline-block; */
-  /* margin: 0; */
+  display: inline-block;
+  margin: 0;
   max-width: 100%;
   text-align: center;
 }
 
 figcaption {
-  font-size: 12px;
+  font-size: 11px;
   font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
 }
 
