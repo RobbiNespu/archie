@@ -32,27 +32,27 @@
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 	{{- else -}}
-	{{ $fontstyle := resources.Get "css/fonts.css" | fingerprint }}
+	{{ $fontstyle := resources.Get "css/fonts.css" | minify | fingerprint }}
         <link href="{{ $fontstyle.Permalink }}" rel="stylesheet">
 	{{ end }}
 
-	{{ $style := resources.Get "css/main.css" | fingerprint }}
+	{{ $style := resources.Get "css/main.css" | minify | fingerprint }}
 	<link rel="stylesheet" type="text/css" media="screen" href="{{ $style.Permalink }}" />
 
 	{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") -}}
-		{{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
+		{{ $darkstyle := resources.Get "css/dark.css" | minify | fingerprint }}
 		<link rel="stylesheet" type="text/css" href="{{ $darkstyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} />
 	{{ end }}
 
 	{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "light") -}}
-	{{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
+	{{ $darkstyle := resources.Get "css/dark.css" | minify | fingerprint }}
 	<link disabled id="dark-mode-theme" rel="stylesheet" href="{{ $darkstyle.Permalink }}">
 	{{ end }}
 	
 	<!-- Custom CSS style get applied last -->
 	{{- if isset .Site.Params "customcss" }}
 		{{ range .Site.Params.customCSS }}
-		{{ $customstyle := resources.Get . | fingerprint }}
+		{{ $customstyle := resources.Get . | minify | fingerprint }}
 		<link rel="stylesheet" type="text/css" href="{{ $customstyle.Permalink }}">
 		{{ end }}
 	{{- end -}}
