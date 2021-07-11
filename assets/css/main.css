@@ -596,3 +596,7 @@ body .gist .gist-meta {
 #post .gist .gist-data table td {
   border-bottom: 0px solid #ddd;
 }
+
+#comment {
+  border-top: 1px solid #eee;
+}
