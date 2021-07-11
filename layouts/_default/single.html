@@ -34,8 +34,8 @@
 		{{ if .Site.Params.enableComments }} 
 		<div id="comment">
 			<!-- https://gohugo.io/templates/internal/#use-the-disqus-template -->
-			{{ template "_internal/disqus.html" . }}
-			<!-- {{ partial "disqus.html" . }} -->
+			<!-- {{ template "_internal/disqus.html" . }} -->
+			{{ partial "disqus.html" . }}
 		</div>
 		{{ end }}
 	</article>

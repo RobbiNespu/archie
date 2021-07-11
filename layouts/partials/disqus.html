@@ -1,15 +1,36 @@
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-
-(function() {
-    // Don't ever inject Disqus on localhost--it creates unwanted
-    // discussions from 'localhost:1313' on your Disqus account...
-    if (window.location.hostname == "127.0.0.1")
-        return;
-
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    var disqus_shortname = '{{ .Site.DisqusShortname }}';
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
+<div class="post-comments">
+    <p class="comment-notice"><b>Comments</b>: To comment on this post,
+      send me an email following the template below. Your email address
+      will not be posted</p>
+    
+    <div class="post-comment {% cycle 'odd', 'even' %}">
+        <div style="border-top: 1px dashed #b3b2ae;"><h3>Discussion and feedback</h3></div>
+        <div id="disqus_thread">
+          <button id="disqus_empty" onclick="load_disqus('disqus_shortname')" style="display: block; margin: 2em 0; border: 0;padding: 1.5em; border-radius: 5px; width: 100%; text-align: center; background-color: #eee; color: inherit; font: inherit; cursor: pointer; font-weight: bold; transition: background-color .25s, color .25s ease-in-out;">Post a Comment</button>
+        </div>
+        
+        <script>
+        var disqus_url = '{{ .Permalink }}';
+        var disqus_identifier = '{{ .Permalink }}';
+        var disqus_shortname = '{{ .Site.DisqusShortname }}';
+        
+        function load_disqus( disqus_shortname ) {
+          var is_disqus_empty = document.getElementById('disqus_empty'),
+              disqus_target   = document.getElementById('disqus_thread'),
+              disqus_embed    = document.createElement('script'),
+              disqus_hook     = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+        
+          if( disqus_target && is_disqus_empty ) {
+            disqus_embed.type = 'text/javascript';
+            disqus_embed.async = true;
+            disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            disqus_embed.setAttribute('data-timestamp', +new Date());
+            disqus_hook.appendChild(disqus_embed);
+            is_disqus_empty.remove();
+          }
+        }
+        </script>        
+    </div>
+  </div>
+  
+  
