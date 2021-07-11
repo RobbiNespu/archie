@@ -7,11 +7,8 @@
                 {{ $navbar_len := len . }}
                 {{ range $i, $nav_item := . }}
                     <a class="menu" href="{{ $nav_item.URL }}" title="{{ $nav_item.Name }}">
-                        {{ $nav_item.Pre }}{{ $nav_item.Name }}{{ $nav_item.Post }}
-                    </a>
-                    {{ if ne (add $i 1) $navbar_len }}
-                        /
-                    {{ end }}
+                        {{ $nav_item.Pre }}{{ $nav_item.Name }}{{ $nav_item.Post }}</a>
+                        {{ if ne (add $i 1) $navbar_len }} &#47;{{ end }}
                 {{ end }}
             {{ end }}
             {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "light") -}}
