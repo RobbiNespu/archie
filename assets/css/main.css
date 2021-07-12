@@ -257,11 +257,11 @@ justify-content: space-between;
   content: "🏷 ";
 }
 .tags a{
-  border-bottom: 3px solid var(--maincolor); 
+  border-bottom: 3px solid var(--maincolor);
 }
 .tags a:hover{
   color:white;
-  background-color: var(--hovercolor); 
+  background-color: var(--hovercolor);
 }
 
 svg{
@@ -270,7 +270,7 @@ svg{
 .soc:hover{
   color: white;
 }
-.draft-label{ 
+.draft-label{
     color: var(--bordercl);
     text-decoration: none;
     padding: 2px 4px;
@@ -321,7 +321,7 @@ color:white
 .highlight pre code[class*='language-json']::before{
 content: 'json';
 background: dodgerblue;
- color: #000000 
+ color: #000000
 }
 .highlight pre code[class*='language-python']::before,
 .highlight pre code[class*='language-py']::before {
@@ -554,7 +554,7 @@ table td{
     background-size: 28px 28px;
     width: 28px;
     height: 28px;
-    opacity: 0.3; 
+    opacity: 0.3;
   }
 /*  Gist */
 body .gist .blob-num {
@@ -586,7 +586,7 @@ body .gist .gist-data {
 
 body .gist .gist-meta {
   display: none;
-} 
+}
 
 #post .gist table {
   width: 100%;
@@ -599,4 +599,13 @@ body .gist .gist-meta {
 
 #comment {
   border-top: 1px solid #eee;
+}
+#comment .comments-header h3::before{
+  content: none;
+}
+#comment .comments-header {
+  text-align: center;
+}
+#comment .comments-notice{
+  text-align: center;
 }

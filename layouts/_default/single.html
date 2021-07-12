@@ -31,10 +31,8 @@
 			{{ end }}
 			{{ end }}
 		</div>
-		{{ if .Site.Params.enableComments }} 
+		{{- if and ( .Params.comments | default true ) ( .Site.Params.enableComments | default false) -}}
 		<div id="comment">
-			<!-- https://gohugo.io/templates/internal/#use-the-disqus-template -->
-			<!-- {{ template "_internal/disqus.html" . }} -->
 			{{ partial "disqus.html" . }}
 		</div>
 		{{ end }}
