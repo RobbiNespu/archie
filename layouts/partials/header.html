@@ -48,7 +48,7 @@
 	{{ $darkstyle := resources.Get "css/dark.css" | minify | fingerprint }}
 	<link disabled id="dark-mode-theme" rel="stylesheet" href="{{ $darkstyle.Permalink }}">
 	{{ end }}
-	
+
 	<!-- Custom CSS style get applied last -->
 	{{- if isset .Site.Params "customcss" }}
 		{{ range .Site.Params.customCSS }}
@@ -63,4 +63,8 @@
 	<script src="{{ $.Site.BaseURL }}{{ . }}"></script>
 	{{- end }}
 	{{- end }}
+
+
+{{ partial "katex.html" . }}
+
 </head>
