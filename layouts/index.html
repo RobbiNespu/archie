@@ -22,24 +22,24 @@
 						<ul class="posts">
 							{{ range ( where .Site.RegularPages "Type" "posts" | first 5 ) }}
 							<li class="post">
-								<a href="{{ .RelPermalink }}">{{.Title}}</a> <span class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								<a href="{{ .RelPermalink }}">{{.Title | truncate 45 "..." }}</a> <span class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 							</li>
 							{{end}}
 						</ul>
 						<pre><code>💡 You may check <a href="posts">archives</a> for full list of articles</code></pre>
 
 						<h1 id="contact">Contact 💌</h1>
-						<p>If you want to get in touch to chat something meaningful 
-							<del>or meaningless</del>, you can send me a message 
-							on <a href="https://twitter.com/@robbinespu">Twitter</a>, 
+						<p>If you want to get in touch to chat something meaningful
+							<del>or meaningless</del>, you can send me a message
+							on <a href="https://twitter.com/@robbinespu">Twitter</a>,
 							<a rel="me" href="https://mstdn.social/@robbinespu">Mastodon</a>,
 							<a href="https://matrix.to/#/@mambang:matrix.org">Matrix</a>
-							or <a href="mailto:robbinespu@gmail.com">Email</a>. 
-							You also can send secret message to me using 
+							or <a href="mailto:robbinespu@gmail.com">Email</a>.
+							You also can send secret message to me using
 							<a href="https://keybase.io/robbinespu/pgp_keys.asc">Pretty Good Privacy (PGP) </a>encryption 🔐
 						</p>
 					</section>
-	
+
 					<div class="post-tags">
 						{{ if ne .Type "page" }}
 						{{ if gt .Params.tags 0 }}
@@ -57,6 +57,6 @@
 			</main>
 			{{ partial "footer.html" . }}
 		</div>
-		
+
 	</body>
 </html>
