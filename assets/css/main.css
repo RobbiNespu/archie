@@ -607,5 +607,6 @@ body .gist .gist-meta {
   text-align: center;
 }
 #comment .comments-notice{
-  text-align: center;
+  text-align: justify;
+  font-size: small;
 }
