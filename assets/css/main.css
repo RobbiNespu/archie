@@ -105,9 +105,9 @@ figcaption {
   font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
 }
 
-figure img {
+/* figure img {
   max-height: 500px;
-}
+} */
 
 @media screen and (min-width: 600px) {
   figure {
