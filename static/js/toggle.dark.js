@@ -12,12 +12,12 @@ setTheme(savedTheme);
 
 // set the appropriate theme when the user toggles the button
 toggle.addEventListener("click", () => {
-  if (toggle.className === "feather feather-moon far fa-moon") {
-    console.log(toggle)
+  if (toggle.className === "fas fa-moon") {
+    //console.log(toggle)
     setTheme("dark");
     localStorage.setItem("dark-mode-storage", "dark");
-  } else if (toggle.className === "feather feather-moon far fa-sun") {
-    console.log(toggle)
+  } else if (toggle.className === "fas fa-sun") {
+    //console.log(toggle)
     setTheme("light");
     localStorage.setItem("dark-mode-storage", "light");
   }
@@ -40,13 +40,13 @@ window
 function setTheme(mode) {
   if (mode === "dark") {
     darkTheme.disabled = false;
-    toggle.className = "feather feather-moon far fa-sun";
-    // console.log(dataFeatherIcon.className)
+    toggle.className = "fas fa-sun";
+    //console.log(toggle.className);
     toggle.title = "Enable Light Mode";
   } else if (mode === "light") {
     darkTheme.disabled = true;
-    toggle.className = "feather feather-moon far fa-moon";
-    // console.log(dataFeatherIcon.className)
+    toggle.className = "fas fa-moon";
+    //console.log(toggle.className);
     toggle.title = "Enable Dark Mode";
   }
 }
