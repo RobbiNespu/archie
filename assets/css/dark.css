@@ -68,7 +68,7 @@ h6::before {
 }
 
 a {
-  border-bottom: 3px solid var(--darkMaincolor);
+  border-bottom: 2px solid var(--darkMaincolor);
   color: inherit;
 }
 a:hover {
@@ -84,7 +84,7 @@ a:hover {
 }
 
 .tags a {
-  border-bottom: 3px solid var(--darkMaincolor);
+  border-bottom: 2px solid var(--darkMaincolor);
 }
 .tags a:hover {
   background-color: var(--darkMaincolor);
@@ -133,7 +133,7 @@ a:hover {
 .highlight pre code[class*='language-json']::before{
   content: 'json';
   background: dodgerblue;
-   color: #000000 
+   color: #000000
 }
 .highlight pre code[class*='language-python']::before,
 .highlight pre code[class*='language-py']::before {
