@@ -49,6 +49,10 @@
 	<link disabled id="dark-mode-theme" rel="stylesheet" href="{{ $darkstyle.Permalink }}">
 	{{ end }}
 
+	<!-- fontawesome -->
+	{{ $style := resources.Get "css/fontawesome/all.css" | minify | fingerprint }}
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ $style.Permalink }}" />
+
 	<!-- Custom CSS style get applied last -->
 	{{- if isset .Site.Params "customcss" }}
 		{{ range .Site.Params.customCSS }}
