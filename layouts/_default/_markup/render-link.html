@@ -1,1 +1,7 @@
-<a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank"{{ end }}>{{ .Text | markdownify }}</a>
+<a href="{{ .Destination | safeURL }}"
+  {{ with .Title}} title="{{ . }}"{{ end }}
+  {{ if strings.HasPrefix .Destination "http" }}
+      target="_blank" rel="nofollow noopener noreferrer"
+   {{ end }}>
+{{ .Text | markdownify }}
+</a>
