@@ -2,7 +2,7 @@
 <hr>
 <div class="" style="text-align: center;">
   {{- range $index, $key := .Site.Params.Social -}}
-  <a class="soc" href="{{ $key.url }}" title="{{ $key.name }}"><i class="icon" icon-name="{{ $key.icon }}"></i></a>|
+  <a class="soc" href="{{ $key.url }}" title="{{ $key.name }}" target="_blank" rel="nofollow noopener noreferrer"><i class="icon" icon-name="{{ $key.icon }}"></i></a>|
   {{- end -}}
         <!-- Copyright {{ dateFormat "2006" now }} - {{ with .Site.Copyright }} {{ . }} {{ end }} -->
         <!-- | <a href="https://github.com/athul/archie">Archie Theme</a> -->
