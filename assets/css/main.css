@@ -198,10 +198,15 @@ h4::before { color: var(--maincolor); content: '#### '; }
 h5::before { color: var(--maincolor); content: '##### '; }
 h6::before { color: var(--maincolor); content: '###### '; }
 
+h1.title::before { color: var(--maincolor); content: ''; }
+
 h1.title {
   color: var(--maincolor);
   font-size: 20px;
   line-height: 1.4;
+  background: #eee;
+  padding: 10px;
+  text-align: center;
 }
 
 .meta {

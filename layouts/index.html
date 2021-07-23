@@ -6,9 +6,11 @@
 			{{ partial "head.html" . }}
 			<main>
 				<article>
+					{{ with .Site.GetPage "/homepage/index.md" }}{{ if not (eq .Title "") }}
 					<div class="title">
-						<h1 class="title">{{ with .Site.GetPage "/homepage/index.md" }}{{ .Title }}{{ end }}</h1>
+						<h1 class="title">{{ .Title }}</h1>
 					</div>
+					{{ end }}{{ end }}
 					{{ if isset .Params "tldr" }}
 					<div class="tldr">
 						<strong>tl;dr:</strong>

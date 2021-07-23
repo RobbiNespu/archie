@@ -67,6 +67,13 @@ h6::before {
   content: "###### ";
 }
 
+h1.title::before { color: var(--darkMaincolor); content: ''; }
+
+h1.title {
+  color: var(--darkMaincolor);
+  background: #212328;
+}
+
 a {
   border-bottom: 2px solid var(--darkMaincolor);
   color: inherit;
