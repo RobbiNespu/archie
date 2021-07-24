@@ -1,15 +1,15 @@
 <footer>
 <hr>
-<div class="" style="text-align: center;">
-  {{- range $index, $key := .Site.Params.Social -}}
-  <a class="soc" href="{{ $key.url }}" title="{{ $key.name }}" target="_blank" rel="nofollow noopener noreferrer"><i class="icon" icon-name="{{ $key.icon }}"></i></a>|
-  {{- end -}}
-        <!-- Copyright {{ dateFormat "2006" now }} - {{ with .Site.Copyright }} {{ . }} {{ end }} -->
-        <!-- | <a href="https://github.com/athul/archie">Archie Theme</a> -->
-        <!-- | Built with <a href="https://gohugo.io">Hugo</a> -->
-        <!-- <a class="soc">{{ dateFormat "2006" now }}<i class="icon" icon-name="copyright"></i>{{ with .Site.Copyright }} {{ . }} </a>{{ end }} -->
-        <!-- (Last update on {{ with .Site.LastChange.Format "January 2, 2006" }} {{ . }} {{ end }}) -->
-        <a>Email: robbinespu@gmail.com</a>
+<div style="text-align: center;">
+{{- range $index, $key := .Site.Params.Social -}}
+<a class="soc" href="{{ $key.url }}" title="{{ $key.name }}" target="_blank" rel="nofollow noopener noreferrer"><i class="icon" icon-name="{{ $key.icon }}"></i></a>|
+{{- end -}}
+<a class="soc" href="mailto:robbinespu@gmail.com" title="email"><i class="icon" icon-name="mail"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}reading" title="books"><i class="icon" icon-name="book-open"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}blogroll" title="blogroll"><i class="icon" icon-name="bot"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}search" title="search"><i class="icon" icon-name="search"></i></a>
+<!-- Copyright {{ dateFormat "2006" now }} - {{ with .Site.Copyright }} {{ . }} {{ end }} -->
+<!-- | <a href="https://github.com/athul/archie">Archie Theme</a> -->
+<!-- | Built with <a href="https://gohugo.io">Hugo</a> -->
+<!-- <a class="soc">{{ dateFormat "2006" now }}<i class="icon" icon-name="copyright"></i>{{ with .Site.Copyright }} {{ . }} </a>{{ end }} -->
+<!-- (Last update on {{ with .Site.LastChange.Format "January 2, 2006" }} {{ . }} {{ end }}) -->
 </div>
 </footer>
 {{ if not .Site.IsServer }}
@@ -24,7 +24,6 @@
 <script src="{{ .Site.BaseURL }}js/lazysizes.min.js" async as="script"></script>
 
 {{ if .File }}
-  {{ .File.Dir }}
   {{ if eq .File.Dir "search/" }}{{ partial "search-index.html" . }}{{end}}
 {{ end }}
 
