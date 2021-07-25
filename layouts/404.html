@@ -5,6 +5,15 @@
       <p><br>
         <img src="{{ .Site.BaseURL }}img/404_page.jpg" alt="Kenot found!"></p>
         <p style="color:gray; font-size: 90%; text-align: center;">Page not found! :(</p>
+        <p style="color:gray; font-size: 90%; text-align: center;"></p>
+        <center>
+        <form id="search" style="margin: 0 auto;width:100%;"
+            action='{{ with .GetPage "/search" }}{{.Permalink}}{{end}}' method="get">
+            <label hidden for="search-input">Search site</label>
+            <input type="text" id="search-input" name="query" placeholder="Maybe try search here?" style="width:40%;">
+            <input type="submit" value="🔎">
+        </form>
+        </center>
     </div>
 </div>
 </main>
