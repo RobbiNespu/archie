@@ -4,7 +4,7 @@
 {{- range $index, $key := .Site.Params.Social -}}
 <a class="soc" href="{{ $key.url }}" title="{{ $key.name }}" target="_blank" rel="nofollow noopener noreferrer"><i class="icon" icon-name="{{ $key.icon }}"></i></a>|
 {{- end -}}
-<a class="soc" href="mailto:robbinespu@gmail.com" title="email"><i class="icon" icon-name="mail"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}reading" title="books"><i class="icon" icon-name="book-open"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}blogroll" title="blogroll"><i class="icon" icon-name="bot"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}search" title="search"><i class="icon" icon-name="search"></i></a>
+<a class="soc" href="mailto:robbinespu@gmail.com" title="email"><i class="icon" icon-name="mail"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}license" title="license"><i class="icon" icon-name="scale"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}reading" title="books"><i class="icon" icon-name="book-open"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}blogroll" title="blogroll"><i class="icon" icon-name="bot"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}search" title="search"><i class="icon" icon-name="search"></i></a>
 <!-- Copyright {{ dateFormat "2006" now }} - {{ with .Site.Copyright }} {{ . }} {{ end }} -->
 <!-- | <a href="https://github.com/athul/archie">Archie Theme</a> -->
 <!-- | Built with <a href="https://gohugo.io">Hugo</a> -->
