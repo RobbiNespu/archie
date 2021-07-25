@@ -169,7 +169,7 @@ header {
 
 header .main {
   font-size: 1.5rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 h1, h2, h3, h4, h5, h6 {
   font-size: 1.2rem;
@@ -183,8 +183,8 @@ header .main a {
   font-size: 25px;
   /* background-color: var(--maincolor); */
   padding: 0px;
-  /* border-top: 1px dashed rgba(37, 37, 37, 0.7); */
-  /* border-bottom: 1px dashed rgba(37, 37, 37, 0.7); */
+  border-top: 1px dashed rgba(37, 37, 37, 0.7);
+  border-bottom: 1px dashed rgba(37, 37, 37, 0.7);
 }
 
 header .main p {
