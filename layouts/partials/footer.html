@@ -12,16 +12,6 @@
 <!-- (Last update on {{ with .Site.LastChange.Format "January 2, 2006" }} {{ . }} {{ end }}) -->
 </div>
 </footer>
-{{ if not .Site.IsServer }}
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{ .Site.GoogleAnalytics }}');
-  </script>
-{{ end }}
 
 {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "light") -}}
   <script src="{{ .Site.BaseURL }}js/toggle.dark.js"></script>
