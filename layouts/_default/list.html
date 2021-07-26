@@ -15,7 +15,7 @@
 		<li class="post">
 			{{ if in .Params.category "Bahasa Melayu"}}	[MS] {{ else }} [EN] {{ end }}
 			{{ if .Params.externalLink}}
-				<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 45 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+				<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 			{{else}}
 				<a href="{{ .RelPermalink }}">{{.Title | truncate 45 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 			{{end}}
