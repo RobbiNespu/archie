@@ -397,12 +397,14 @@ color: whitesmoke ;
 table {
   border-spacing: 0;
   border-collapse: collapse;
+  width: 100%;
 }
 
 table th{
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
   text-align: left;
+  font-family: liberation mono,courier new;
 }
 
 table td{
