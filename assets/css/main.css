@@ -285,6 +285,9 @@ svg{
 .soc:hover{
   color: white;
 }
+.soc{
+  border-bottom: none;
+}
 .draft-label{
     color: var(--bordercl);
     text-decoration: none;
