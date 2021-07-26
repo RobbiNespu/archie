@@ -80,16 +80,26 @@ img {
 
 img[src$='#center'] {
 	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
-  	max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
 }
 
 img[data-src$='#center'] {
 	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
-  	max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
+
+img[src$='#left'] {
+  float: left;
+  margin: .7rem;
+}
+
+img[src$='#right'] {
+  float: right;
+  margin: .7rem;
 }
 
 figure {
