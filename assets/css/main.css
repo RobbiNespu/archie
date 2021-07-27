@@ -823,3 +823,12 @@ body .gist .gist-meta {
     position: relative;
     top: 0.25ex;
 }
+
+/* a:not([href*='robbinespu.gitlab.io']):not([href^='#']):not([href^='/']):after{ */
+.body a[target="_blank"]:after,
+.posts a[target="_blank"]:after {
+    font-family: 'FontAwesome';
+    content: " \f08e";
+    vertical-align: super;
+    font-size: small;
+}
