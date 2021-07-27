@@ -18,9 +18,9 @@
 			</p>
 		</section>
 
+		{{ if ne .Type "page" }}
+		{{ if gt .Params.tags 0 }}
 		<div class="post-tags">
-			{{ if ne .Type "page" }}
-			{{ if gt .Params.tags 0 }}
 			<nav class="nav tags">
 				<ul class="tags">
 					{{ range .Params.tags }}
@@ -28,9 +28,9 @@
 					{{ end }}
 				</ul>
 			</nav>
-			{{ end }}
-			{{ end }}
 		</div>
+		{{ end }}
+		{{ end }}
 		{{- if and ( .Params.comments | default true ) ( .Site.Params.enableComments | default false) -}}
 		<div id="comment">
 			{{ partial "disqus.html" . }}
