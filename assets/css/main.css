@@ -836,3 +836,14 @@ body .gist .gist-meta {
   /* vertical-align: super; */
   /* vertical-align: text-bottom; */
 }
+
+.archive-title{
+  font-size: 25px;
+  text-align: center;
+
+}
+
+h2.archive-title::before {
+    color: var(--maincolor);
+    content: '';
+}

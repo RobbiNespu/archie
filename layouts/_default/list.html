@@ -10,17 +10,21 @@
 	{{ .Params.tldr }}
 </div>{{ end }}
 <ul class="posts">
-	{{- range .Data.Pages -}}
-		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
-		<li class="post">
-			{{ if in .Params.category "Bahasa Melayu"}}	[MS] {{ else }} [EN] {{ end }}
-			{{ if .Params.externalLink}}
-				<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
-			{{else}}
-				<a href="{{ .RelPermalink }}">{{.Title | truncate 45 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
-			{{end}}
-		</li>
+	<!--  -->
+    {{ range (where .Data.Pages "Section" "!=" "").GroupByDate "2006" }}
+    <h2 class="archive-title">{{ .Key}}</h2>
+	    {{ range .Pages }}
+				{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
+				<li class="post">
+					{{ if in .Params.category "Bahasa Melayu"}}	[MS] {{ else }} [EN] {{ end }}
+						{{ if .Params.externalLink}}
+							<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+						{{else}}
+							<a href="{{ .RelPermalink }}">{{.Title | truncate 45 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+						{{end}}
+				</li>
+		    {{ end }}
+	    {{ end }}
 		{{- end -}}
-	{{- end -}}
 </ul>
 {{ end }}
