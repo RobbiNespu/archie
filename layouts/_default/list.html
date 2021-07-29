@@ -7,7 +7,7 @@
 {{ if isset .Params "tldr" }}
 <div class="tldr">
 	<strong>tl;dr:</strong>
-	{{ .Params.tldr }}
+	{{ .Params.tldr | markdownify }}
 </div>{{ end }}
 <ul class="posts">
 	<!--  -->
