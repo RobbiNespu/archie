@@ -1,0 +1,6 @@
+{{ $summary:= .Get 0 }}
+{{- $inner := .Inner | .Page.RenderString -}}
+<details>
+    <summary>{{$summary}}</summary>
+    {{- $inner -}}
+</details>
