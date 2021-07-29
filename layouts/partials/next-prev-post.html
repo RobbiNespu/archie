@@ -1,0 +1,39 @@
+{{ if (in (string .Permalink) "/posts/")}}
+{{ if .IsPage }}
+{{ if .NextPage | or .PrevPage }}
+<div class="post-net-prev">
+        <div class="md-footer-nav">
+            <nav class="md-footer-nav__inner md-grid">
+            <!-- Link to previous page -->
+            {{ if .NextPage }}
+              <a href="{{ .NextPage.Permalink }}"
+                  title="{{ .NextPage.Title }}"
+                  rel="prev">
+                    << Next
+              </a>
+            {{ end }}
+
+            <span style="left: 50%; margin-right: -50%; position: absolute;">
+              <a href="{{ .Site.BaseURL }}"
+                  title="Homepage"
+                  rel="home">
+                    🏠
+              </a>
+              </span>
+
+            <!-- Link to next page -->
+            {{ if .PrevPage }}
+            <span style="float:right;">
+              <a href="{{ .PrevPage.Permalink }}"
+                  title="{{ .PrevPage.Title }}"
+                  rel="next">
+                    Prev >>
+              </a>
+              </span>
+            {{ end }}
+          </nav>
+        </div>
+</div>
+{{ end }}
+{{ end }}
+{{ end }}

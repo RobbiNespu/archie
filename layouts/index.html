@@ -24,7 +24,7 @@
 						<ul class="posts">
 							{{ range ( where .Site.RegularPages "Type" "posts" | first 5 ) }}
 							<li class="post">
-								<a href="{{ .RelPermalink }}">{{.Title | truncate 45 "..." }}</a> <span class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								<a href="{{ .RelPermalink }}">{{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 							</li>
 							{{end}}
 						</ul>
@@ -34,7 +34,7 @@
 						<p>If you want to get in touch to chat something meaningful
 							<del>or meaningless</del>, you can send me a message
 							on <a target="_blank" rel="nofollow noopener noreferrer" href="https://twitter.com/@robbinespu">Twitter</a>,
-							<a target="_blank" rel="nofollow noopener noreferrer" rel="me" href="https://mstdn.social/@robbinespu">Mastodon</a>,
+							<a target="_blank" rel="nofollow noopener noreferrer" href="https://mstdn.social/@robbinespu">Mastodon</a>,
 							<a target="_blank" rel="nofollow noopener noreferrer" href="https://matrix.to/#/@mambang:matrix.org">Matrix</a>
 							or <a target="_blank" rel="nofollow noopener noreferrer" href="mailto:robbinespu@gmail.com">Email</a>.
 							You also can use send confidential message to me using
