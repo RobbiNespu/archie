@@ -283,6 +283,7 @@ justify-content: space-between;
 }
 .tags a{
   border-bottom: 3px solid var(--maincolor);
+  font-family: Roboto Mono,Courier,monospace;
 }
 .tags a:hover{
   color:white;
