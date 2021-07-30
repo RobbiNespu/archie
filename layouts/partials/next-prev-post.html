@@ -1,10 +1,11 @@
-{{ if (in (string .Permalink) "/posts/")}}
 {{ if .IsPage }}
+{{ if (in (string .Permalink) "/posts/")}}
 {{ if .NextPage | or .PrevPage }}
 <div class="post-net-prev">
         <div class="md-footer-nav">
             <!-- Link to previous page -->
-            {{ if .NextPage }}
+            {{ if (.NextPage) }}
+            {{ if (in (string .NextPage.Permalink ) "/posts/") }}
             <span style="left: 50%; margin-right: -50%; position: ;">
               <a href="{{ .NextPage.Permalink }}"
                   title="{{ .NextPage.Title }}"
@@ -12,7 +13,7 @@
                     << Next
               </a>
               </span>
-            {{ end }}
+            {{ end }}{{ end }}
 
             <span style="left: 50%; margin-right: -50%; position: sticky;">
               <a href="{{ .Site.BaseURL }}"
@@ -24,6 +25,7 @@
 
             <!-- Link to next page -->
             {{ if .PrevPage }}
+            {{ if (in (string .PrevPage.Permalink ) "/posts/") }}
             <span style="float:right;">
               <a href="{{ .PrevPage.Permalink }}"
                   title="{{ .PrevPage.Title }}"
@@ -31,7 +33,7 @@
                     Prev >>
               </a>
               </span>
-            {{ end }}
+            {{ end }}{{ end }}
         </div>
 </div>
 {{ end }}
