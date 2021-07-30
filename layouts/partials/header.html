@@ -13,8 +13,10 @@
 	{{- if isset .Site.Params "favicon" -}}
 	<link rel="icon" type="image/png" href={{ .Site.BaseURL }}{{ .Site.Params.favicon }} />
 	{{- end -}}
+	
+	{{ if (in (string .Permalink) "/homepage/")}} <meta http-equiv="refresh" content="1; URL={{ .Site.BaseURL}}" /> {{ end }}
 
-	<meta charset="utf-8">{{ if .Params.externalLink }} <meta http-equiv="refresh" content="3; URL={{ .Params.externalLink}}" /> {{ end }}
+	{{ if .Params.externalLink }} <meta http-equiv="refresh" content="3; URL={{ .Params.externalLink}}" /> {{ end }}
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
