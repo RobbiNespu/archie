@@ -12,6 +12,7 @@
 		</div>{{ end }}
 
 		<section class="body">
+			{{ if .Params.externalLink }} Within 3 secs, you will be re-direct to: <br/>- <a href="{{ .Params.externalLink }}">{{ .Params.externalLink }}</a> {{ end }}
 			{{ .Content }}
 			<p style="text-align: right; font-size: x-small;">
 				<a href="{{ $.Site.Params.Repository }}blob/master/content/{{.File.Path}}">Edit</a>
