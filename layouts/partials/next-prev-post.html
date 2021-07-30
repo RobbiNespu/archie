@@ -3,17 +3,18 @@
 {{ if .NextPage | or .PrevPage }}
 <div class="post-net-prev">
         <div class="md-footer-nav">
-            <nav class="md-footer-nav__inner md-grid">
             <!-- Link to previous page -->
             {{ if .NextPage }}
+            <span style="left: 50%; margin-right: -50%; position: ;">
               <a href="{{ .NextPage.Permalink }}"
                   title="{{ .NextPage.Title }}"
                   rel="prev">
                     << Next
               </a>
+              </span>
             {{ end }}
 
-            <span style="left: 50%; margin-right: -50%; position: absolute;">
+            <span style="left: 50%; margin-right: -50%; position: sticky;">
               <a href="{{ .Site.BaseURL }}"
                   title="Homepage"
                   rel="home">
@@ -31,7 +32,6 @@
               </a>
               </span>
             {{ end }}
-          </nav>
         </div>
 </div>
 {{ end }}
