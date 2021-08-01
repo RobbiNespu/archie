@@ -26,6 +26,11 @@
   {{ if eq .File.Dir "search/" }}{{ partial "search-index.html" . }}{{end}}
 {{ end }}
 
+{{- if and ( .Params.comments | default true ) ( .Site.Params.enableComments | default false) -}}
+{{ $webmention := resources.Get "js/webmention.js" | minify | fingerprint }}
+      <script src="{{ $webmention.Permalink }}" data-id="webmention-container" async></script>
+{{ end }}
+
 {{- if (isset .Site.Params "social") -}}
 <script>
       lucide.createIcons();
