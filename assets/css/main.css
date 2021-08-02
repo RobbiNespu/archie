@@ -76,6 +76,7 @@ ul > li::before {
 img {
   /* border: 3px solid #ececec; */
   max-width: 100%;
+  border-radius: 5px;
 }
 
 img[src$='#center'] {
@@ -847,4 +848,9 @@ body .gist .gist-meta {
 h2.archive-title::before {
     color: var(--maincolor);
     content: '';
+}
+
+details.youtube-expander > summary {
+    background-color: #eee;
+    padding: 1em;
 }
