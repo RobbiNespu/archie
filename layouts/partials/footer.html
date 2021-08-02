@@ -3,10 +3,10 @@
 <div style="text-align: center;">
 {{- range $index, $key := .Site.Params.Social -}}
 <a class="soc" title="{{ $key.name }}"
-{{if eq $key.localURL "true"}} href="/{{ $key.url }}" {{else}} href="{{ $key.url }}" target="_blank" rel="nofollow noopener noreferrer" {{end}}><i class="icon" icon-name="{{ $key.icon }}"></i></a>|
+{{if eq $key.localURL "true"}} href="/{{ $key.url }}" {{else}} href="{{ $key.url }}" target="_blank" rel="me" {{end}}><i class="icon" icon-name="{{ $key.icon }}"></i></a>|
 {{- end -}}
 
-<a class="soc" href="{{ .Site.BaseURL }}search" title="search"><i class="icon" icon-name="search"></i></a>
+<a class="soc" href="{{ .Site.BaseURL }}search" title="search"><i class="icon" icon-name="search"></i></a>|<a class="soc" href="{{ .Site.BaseURL }}index.xml" title="RSS"><i class="icon" icon-name="rss"></i></a>
 <!-- Copyright {{ dateFormat "2006" now }} - {{ with .Site.Copyright }} {{ . }} {{ end }} -->
 <!-- | <a href="https://github.com/athul/archie">Archie Theme</a> -->
 <!-- | Built with <a href="https://gohugo.io">Hugo</a> -->
