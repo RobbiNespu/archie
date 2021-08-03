@@ -3,8 +3,7 @@
         <p class="comments-notice">
           You can use <code>utterances</code> provided below to post comment on behalf using Github account.
           {{ if ne .Type "page" }}
-          Alternatively, you can just send a public comment to my <a href="mailto:~robbinespu/mailing-list@lists.sr.ht?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">mailing list</a>
-          or send a private message to my <a href="mailto:~robbinespu/mailing-list@lists.sr.ht?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">e-mail</a>.
+          Alternatively, you can just send a (<a href="https://useplaintext.email">plain text</a>) email to my private <a target="_blank" rel="nofollow noopener noreferrer" href="mailto:robbinespu@gmail.com?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">email</a> or personal public <a target="_blank" rel="nofollow noopener noreferrer" href="mailto:~robbinespu/mailing-list@lists.sr.ht?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">mailing list</a>.
           {{end}}
           In a few cases and on certain time, I just don’t have time to moderate them.
           Please read <a href="/tos">terms-of-service (ToS)</a> for details.
