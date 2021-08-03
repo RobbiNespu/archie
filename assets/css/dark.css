@@ -169,3 +169,12 @@ details.youtube-expander > summary {
   background-color: #1e1b1b;
   padding: 1em;
 }
+
+/* Images */
+img {
+  opacity: 70%;
+}
+
+img:hover{
+  opacity: 100%
+}
