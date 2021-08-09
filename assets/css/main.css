@@ -28,6 +28,7 @@ body{
 p {
   font-family: 'Fira Sans', sans-serif;
   line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 hr {
@@ -183,8 +184,9 @@ header .main {
   margin-bottom: 0.3rem;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 2em;
+  font-weight: 700;
 }
 
 header .main a {
@@ -420,6 +422,7 @@ table th{
   border: 1px solid #dfe2e5;
   text-align: left;
   font-family: liberation mono,courier new;
+  background: #9b93a4;
 }
 
 table td{
@@ -808,17 +811,17 @@ body .gist .gist-meta {
 .body .admonition.example i.icon {
     color:#651fff;
 }
-/* quote */
-.body .admonition.quote {
+/* islam */
+.body .admonition.islam {
   background-color: rgba(159,159,159,0.1);
   border-left-color: #9e9e9e;
 }
-.body .admonition.quote .admonition-title {
+.body .admonition.islam .admonition-title {
     border-bottom-color: rgba(159,159,159,0.1);
     background-color: rgba(159,159,159,0.1);
 }
-.body .admonition.quote i.icon {
-    color:#9e9e9e;
+.body .admonition.islam i.icon {
+    color:#3a9718;
 }
 /* lucide icon */
 .icon {
@@ -853,4 +856,21 @@ h2.archive-title::before {
 details.youtube-expander > summary {
     background-color: #eee;
     padding: 1em;
+}
+
+/* Footnote */
+a.footnote-ref{
+  margin-left: 3px;
+}
+
+a.footnote-ref::before {
+    content: '[';
+}
+
+a.footnote-ref::after {
+    content: ']';
+}
+
+a.footnote-backref{
+  text-decoration: none;
 }
