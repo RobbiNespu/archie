@@ -422,7 +422,7 @@ table th{
   border: 1px solid #dfe2e5;
   text-align: left;
   font-family: liberation mono,courier new;
-  background: #9b93a4;
+  /* background: #9b93a4; */
 }
 
 table td{
