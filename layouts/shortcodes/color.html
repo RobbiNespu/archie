@@ -1,8 +1,8 @@
 {{ $colour := .Get 0 | safeCSS }}
-<code>
+<code style="border-radius: 0.2rem;border: 1px solid {{ $colour }};">
 <span style="display: inline-block;
-    width: 1.5ch;
-    height: 1.5ch;
+    width: 1.4ch;
+    height: 1.4ch;
     border-radius: 0.1rem;
     background-color: {{ $colour }};
     margin-right:5px;"></span>{{ $colour }}</code>
