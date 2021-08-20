@@ -874,3 +874,36 @@ a.footnote-ref::after {
 a.footnote-backref{
   text-decoration: none;
 }
+
+.text-center {
+    text-align: center;
+    border-bottom: none;
+}
+
+/* for comment using email */
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-bottom: none;
+  border-radius: .375rem;
+}
+.emailcomments{
+    padding-bottom: 1.4rem;
+    padding-top: 1.4rem;
+}
+.emailcomments a{
+    background-color: #4CAF50; /* Green */
+    color: #fff;
+    border-bottom: none;
+}
+.emailcomments a:hover {
+  background-color: #4CAF50;
+  border-bottom: none;
+  cursor: pointer;
+}

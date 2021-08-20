@@ -1,18 +1,26 @@
 <div class="comments">
-        <div class="comments-header" style="border-top: 1px dashed #b3b2ae;"><h3>Discussion and feedback</h3></div>
-        <p class="comments-notice">
+        <!-- <div class="comments-header" style="border-top: 1px dashed #b3b2ae;"><h3>Discussion and feedback</h3></div> -->
+        <!-- <p class="comments-notice">
           You can use <code>utterances</code> provided below to post comment on behalf using Github account.
           {{ if ne .Type "page" }}
           Alternatively, you can just send a (<a href="https://useplaintext.email">plain text</a>) email to my private <a target="_blank" rel="nofollow noopener noreferrer" href="mailto:robbinespu@gmail.com?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">email</a> or personal public <a target="_blank" rel="nofollow noopener noreferrer" href="mailto:~robbinespu/mailing-list@lists.sr.ht?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">mailing list</a>.
           {{end}}
           In a few cases and on certain time, I just don’t have time to moderate them.
           Please read <a href="/tos">terms-of-service (ToS)</a> for details.
-        </p>
-          <script src="https://utteranc.es/client.js"
+        </p> -->
+          <!-- <script src="https://utteranc.es/client.js"
           repo="RobbiNespu/blog_discussions"
           issue-term="pathname"
           theme="preferred-color-scheme"
           crossorigin="anonymous"
           async>
-          </script>
+          </script> -->
+
+          <div class="text-center emailcomments">
+            <button class="button">
+            <a href="mailto:robbinespu@gmail.com?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'" >
+              <i class="icon" icon-name="mail"></i>&nbsp;&nbsp;<strong>Discussion and feedback</strong>
+            </a>
+          </button>
+        </div>
   </div>
