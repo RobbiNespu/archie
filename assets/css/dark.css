@@ -178,3 +178,8 @@ img {
 img:hover{
   opacity: 100%
 }
+
+/* premonition */
+.premonition .premonition-content {
+  color: rgb(4, 4, 4);
+}
