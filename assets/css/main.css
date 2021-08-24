@@ -879,6 +879,9 @@ a.footnote-backref{
     text-align: center;
     border-bottom: none;
 }
+.padding-top-14rem{
+  padding-top: 1.4rem;
+}
 
 /* for comment using email */
 .button {
@@ -907,3 +910,4 @@ a.footnote-backref{
   border-bottom: none;
   cursor: pointer;
 }
+
