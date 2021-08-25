@@ -109,12 +109,12 @@ figure {
   display: inline-block;
   margin: 0;
   max-width: 100%;
-  text-align: center;
 }
 
 figcaption {
   font-size: 11px;
   font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+  text-align: center;
 }
 
 /* figure img {
