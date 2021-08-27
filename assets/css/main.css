@@ -916,22 +916,83 @@ a.footnote-backref{
 }
 
 /* webmention */
-#webmentions .comments li img {
-  display: inline-block;
-  height: 22px;
-  margin: 0;
-      margin-right: 0px;
-  margin-right: 5px;
-  width: 22px;
-  /* border-radius: 25%; */
+#webmentions {
+	/* margin-top: 50px; */
+	/* padding-top: 20px; */
+	width: 100%;
+	/* max-width: 500px; */
+	margin: 0 auto;
+  position: relative;
+  z-index: 100;
+  line-height: 1.2em;
+}
+
+#webmentions .comments {
+    overflow-x: hidden;
+    font-size: 85%;
+}
+
+#webmentions h2 {
+	font-size: 1.1em;
+	margin: 0 0 5px 0;
+    padding: 0 0 3px 0;
+	border-bottom: 1px solid #e5e9f0;
+}
+
+#webmentions .reacts img {
+    margin: 3px -1ex 1px 0;
+}
+
+#webmentions ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 4px;
+}
+
+#webmentions li {
+    text-indent: -1em;
+    padding-left: 1em;
+}
+
+#webmentions a.reaction {
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0px 0px 3px white;
+    margin-right: 0;
+    letter-spacing: -1ex;
+    margin-right: 1ex;
 }
 
 #webmentions a.reaction img {
-  display: inline-block;
-  height: 32px;
-  margin: 0;
-      margin-right: 0px;
-  width: 32px;
-  /* border-radius: 25%; */
-  margin-right: -1ex;
+    max-height: 1.3em;
+    margin-right: -1ex;
+    border-radius: 25%;
 }
+
+#webmentions a.reaction sub {
+    font-size: 50%;
+}
+
+#webmentions .comments li {
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #d8dee9;
+}
+
+#webmentions .comments li:last-of-type {
+    border-bottom: 0;
+}
+
+#webmentions .comments li .text {
+    color: #4c566a;
+    text-decoration: none;
+}
+
+#webmentions .comments li .name {
+    color: #5e81ac;
+}
+
+#webmentions:empty {
+    display: none;
+}
+
