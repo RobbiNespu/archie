@@ -883,6 +883,10 @@ a.footnote-backref{
   padding-top: 1.4rem;
 }
 
+.padding-bottom-14rem{
+  padding-bottom: 1.4rem;
+}
+
 /* for comment using email */
 .button {
   background-color: #4CAF50; /* Green */
