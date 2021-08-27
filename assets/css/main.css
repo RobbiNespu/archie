@@ -879,12 +879,20 @@ a.footnote-backref{
     text-align: center;
     border-bottom: none;
 }
+.text-justify {
+  text-align: justify;
+  border-bottom: none;
+}
 .padding-top-14rem{
   padding-top: 1.4rem;
 }
 
 .padding-bottom-14rem{
   padding-bottom: 1.4rem;
+}
+
+.padding-bottom-04rem{
+  padding-bottom: 0.4rem;
 }
 
 /* for comment using email */
@@ -940,7 +948,8 @@ a.footnote-backref{
 }
 
 #webmentions .reacts img {
-    margin: 3px -1ex 1px 0;
+    margin: 3px -1ex 1px 1px;
+    max-height: 3em !important;
 }
 
 #webmentions ul {
@@ -953,6 +962,9 @@ a.footnote-backref{
     text-indent: -1em;
     padding-left: 1em;
 }
+#webmentions a.source {
+  font-weight: bold;
+}
 
 #webmentions a.reaction {
     position: relative;
@@ -961,12 +973,14 @@ a.footnote-backref{
     margin-right: 0;
     letter-spacing: -1ex;
     margin-right: 1ex;
+    border-bottom: none;
 }
 
 #webmentions a.reaction img {
-    max-height: 1.3em;
+    /* max-height: 1.3em;
     margin-right: -1ex;
-    border-radius: 25%;
+    border-radius: 25%; */
+    max-height: 0em;
 }
 
 #webmentions a.reaction sub {
@@ -984,7 +998,7 @@ a.footnote-backref{
 }
 
 #webmentions .comments li .text {
-    color: #4c566a;
+    /* color: #4c566a; */
     text-decoration: none;
 }
 

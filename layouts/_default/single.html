@@ -35,7 +35,6 @@
 		{{- if and ( .Params.comments | default true ) ( .Site.Params.enableComments | default false) -}}
 		<div id="comment">
 			{{ partial "disqus.html" . }}
-			{{ partial "webmention.html" . }}
 		</div>
 		{{ end }}
 		{{ partial "next-prev-post.html" . }}
