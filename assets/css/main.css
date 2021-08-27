@@ -915,3 +915,23 @@ a.footnote-backref{
   cursor: pointer;
 }
 
+/* webmention */
+#webmentions .comments li img {
+  display: inline-block;
+  height: 22px;
+  margin: 0;
+      margin-right: 0px;
+  margin-right: 5px;
+  width: 22px;
+  /* border-radius: 25%; */
+}
+
+#webmentions a.reaction img {
+  display: inline-block;
+  height: 32px;
+  margin: 0;
+      margin-right: 0px;
+  width: 32px;
+  /* border-radius: 25%; */
+  margin-right: -1ex;
+}
