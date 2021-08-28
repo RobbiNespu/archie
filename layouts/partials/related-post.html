@@ -1,0 +1,12 @@
+{{ $related := where (.Site.RegularPages.Related .) "Section" "eq" "posts" | first 5 }}
+{{ with $related }}
+<details>
+	<summary class="text-center padding-bottom-04rem">Related Posts</summary>
+	<p class="text-center">Other posts you may be interested in:</p>
+	<ul class="text-center">
+		{{ range . }}
+		<li><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
+		{{ end }}
+	</ul>
+</details>
+{{ end }}
