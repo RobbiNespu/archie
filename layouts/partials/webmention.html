@@ -1,0 +1,25 @@
+{{ $url := printf "%s" .Permalink }}
+<div class="webmentions">
+	<details>
+		<summary class="text-center padding-bottom-04rem">(Webmentions)</summary>
+		<!-- <h2>Interactions with this post</h2> -->
+		<p class="text-center">Below you can find the interactions that this page has had using Indieweb. Which means, you can mentioned this URL on any website that support <a href="http://indieweb.org/webmention">WebMention</a>. Have you written a <a href="https://indieweb.org/responses">response</a> to this post? Let me know the URL:</p>
+
+		<div class="manual-webmention text-center">
+			<p></p>
+			<form id="manual-webmention" action="https://webmention.io/robbinespu.gitlab.io/webmention" method="post">
+				<input type="url" name="source" value="" />
+				<input type="hidden" name="target" value="{{ $url }}" />
+				<input type="submit" name="submit" value="Send" />
+			</form>
+
+			<p><small>Do you not have a website set up with WebMention capabilities? You can use <a href="https://commentpara.de/">Comment Parade</a>.</small></p>
+		</div>
+
+		<div id="webmentions">
+			<noscript>
+				Due to laziness, this site uses client-side JavaScript to render the webmentions, rather than them being rendered server-side. If you do not wish to enable JavaScript, that's fair enough, but you won't be able to automagically see what Webmentions I've received - sorry!
+			</noscript>
+		</div>
+	</details>
+</div>
