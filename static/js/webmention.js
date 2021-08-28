@@ -111,7 +111,7 @@ A more detailed example:
 
     var reactEmoji = {
         'in-reply-to': '💬',
-        'like-of': '❤️',
+        'like-of': '😍',
         'repost-of': '🔄',
         'bookmark-of': '⭐️',
         'mention-of': '💬',
