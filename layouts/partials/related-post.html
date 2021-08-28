@@ -1,4 +1,4 @@
-{{ $related := where (.Site.RegularPages.Related .) "Section" "eq" "posts" | first 5 }}
+{{ $related := where (where (.Site.RegularPages.Related .) "Section" "eq" "posts") "Params.draft" false | first 5 }}
 {{ with $related }}
 <details>
 	<summary class="text-center padding-bottom-04rem">Related Posts</summary>
