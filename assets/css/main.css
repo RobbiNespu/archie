@@ -109,6 +109,10 @@ figure {
   display: inline-block;
   margin: 0;
   max-width: 100%;
+  /* box-shadow: 0 1px 3px rgba(0,0,0,.4);
+  border: 1.5px solid #37353f;
+  background: #fff;
+  padding: 8px; */
 }
 
 figcaption {
@@ -163,7 +167,7 @@ pre code {
 
 /* Containers */
 .content {
-  margin-bottom: 4em;
+  /* margin-bottom: 4em; */
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
@@ -1011,3 +1015,12 @@ a.footnote-backref{
     display: none;
 }
 
+/* support-me */
+.support-me{
+  padding: 0.9rem 2rem;
+  background: #b0acac;
+  color: rgba(0, 0, 0);
+  border-radius: 5px !important;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}

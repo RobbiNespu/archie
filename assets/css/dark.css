@@ -183,3 +183,9 @@ img:hover{
 .premonition .premonition-content {
   color: rgb(4, 4, 4);
 }
+
+/* support-me */
+.support-me{
+  background: #272822;
+  color: #b0acac;
+}
