@@ -1,9 +1,11 @@
 <script>
 window.store = {
-    // You can specify your blog section only:
-    {{ range where .Site.Pages "Section" "posts" }}
+    // You can specify your blog section only: range where .Site.Pages "Section" "posts"
     // For all pages in your site, use "range .Site.Pages"
+    {{ range .Site.Pages }}
     // You can use any unique identifier here
+    // Dont include tags and content inside "homepage" directory
+    {{ if and (ne .Type "tags") (ne .Dir "homepage/") }}
     "{{ .Permalink }}": {
         // You can customize your searchable fields using any .Page parameters
         "title": "{{ .Title  }}",
@@ -11,6 +13,7 @@ window.store = {
         "content": {{ .Content | plainify }}, // Strip out HTML tags
         "url": "{{ .Permalink }}"
     },
+    {{ end }}
     {{ end }}
 }
 </script>
