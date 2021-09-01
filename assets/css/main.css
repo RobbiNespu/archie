@@ -1023,4 +1023,6 @@ a.footnote-backref{
   border-radius: 5px !important;
   margin-top: 1em;
   margin-bottom: 2em;
+  /* box-shadow: 1px 1px .5em black inset;*/
+  border: .1em solid hsl(0, 0%, 33%); 
 }
