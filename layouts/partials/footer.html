@@ -1,5 +1,10 @@
 <footer>
 <hr>
+{{ if or (in (string .Permalink) "/posts/") (in (string .Permalink) "/resepi/") }}
+<div class="text-center support-me">
+  <small>Has this content solve difficulty that you are facing, helped you or has it taught you something? Please consider <mark><a href="/support">supporting</a></mark> me so I can continue to create content like this!</small>
+</div>
+{{ end }}
 <div style="text-align: center;">
 {{- range $index, $key := .Site.Params.Social -}}
 <a class="soc" title="{{ $key.name }}"
@@ -13,13 +18,6 @@
  <br><a class="soc"><i class="icon" icon-name="copyright"></i>2019-{{ dateFormat "2006" now }}{{ with .Site.Copyright }} {{ . }} </a>{{ end }}
 <!-- (Last update on {{ with .Site.LastChange.Format "January 2, 2006" }} {{ . }} {{ end }}) -->
 </div>
-
-{{ if or (in (string .Permalink) "/posts/") (in (string .Permalink) "/resepi/") }}
-<div class="text-center support-me">
-  <small>Has this content solve difficulty that you are facing, helped you or has it taught you something? Please consider <mark><a href="/support">supporting</a></mark> me so I can continue to create content like this!</small>
-</div>
-{{ end }}
-
 </footer>
 
 {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "light") -}}
