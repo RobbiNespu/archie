@@ -1,0 +1,14 @@
+{{- $inner := .Inner | .Page.RenderString -}}
+{{- $img := .Get 1 | default "/images/upload/tuzki-hand-high.png" -}}
+{{- $get0 := .Get 0 | default "" -}}
+{{- $countGet0 :=  .Get 0 | countwords  -}}
+<div style="display: flex;margin-bottom: 0.5em;">
+    <div style="min-width: 6rem; max-width: 6rem; padding: 1em;">
+        <picture>
+            <img src="{{ $img }}" style="opacity:100%">
+        </picture>
+    </div>
+    <div style="align-self: center;">&lt;<b>{{ if ne $get0 ""}}{{ $get0 }}{{else}}Anonymous{{end}}</b>&gt;&nbsp;
+        {{- $inner -}}  | get0  = {{ .Get 0 }} | get1  = {{ .Get 1 }}
+    </div>
+</div>
