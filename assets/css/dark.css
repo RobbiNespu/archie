@@ -189,3 +189,11 @@ img:hover{
   background: #272822;
   color: #b0acac;
 }
+
+/* toc - TableOfContent */
+.toc{
+  background-color: #212328;
+}
+.toc-header{
+  color: var(--darkMaincolor);
+}
