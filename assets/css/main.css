@@ -1042,3 +1042,38 @@ a.footnote-backref{
   /* box-shadow: 1px 1px .5em black inset;*/
   border: .1em solid hsl(0, 0%, 33%); 
 }
+
+/* shortcode - activity_cycling */
+.body ul.activity-stats {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  padding-left: 0px;
+}
+.body ul.activity-stats li::before {
+  content: none;
+}
+.body ul.activity-stats li {
+  display: inline-block;
+  text-align: center;
+  width: 50%
+}
+@media (min-width:640px) {
+  .body ul.activity-stats li {
+    width: 25%;
+  }
+}
+.body ul.activity-stats .label {
+  color: #617073;
+  display: block;
+  font-size: .875rem
+}
+.body ul.activity-stats .value {
+  display: block;
+  font-size: 1.125rem
+}
+@media (min-width:640px) {
+  .body ul.activity-stats .value {
+    font-size: 1.5rem
+  }
+}
