@@ -1077,3 +1077,15 @@ a.footnote-backref{
     font-size: 1.5rem
   }
 }
+
+/* tag cloud */
+#tag-cloud .tag-cloud-tags {
+  text-align: center;
+}
+
+#tag-cloud .tag-cloud-tags a {
+  display: inline-block;
+  margin: 5px;
+  border-bottom: none;
+}
+
