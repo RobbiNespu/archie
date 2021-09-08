@@ -1,6 +1,7 @@
 body {
   color: white;
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  background-color: #0e141b;
 }
 
 ::-moz-selection {
