@@ -121,6 +121,14 @@ figcaption {
   text-align: center;
 }
 
+.figcaption-left{
+  float:left; padding-right: 10px !important;
+}
+
+.figcaption-right{
+  float:right; padding-left: 10px !important;
+}
+
 /* figure img {
   max-height: 500px;
 } */

@@ -1,6 +1,9 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
+{{- $figureStyle :=  default "none" -}}
 {{ if .Title }}
-  <figure>
+  {{ if (in (string (.Destination | safeURL)) "#left")}} {{ $figureStyle = "figcaption-left" }} {{ end }}
+  {{ if (in (string (.Destination | safeURL)) "#right")}} {{ $figureStyle = "figcaption-right" }} {{ end }}
+  <figure class="{{ $figureStyle }}">
     <img class="lazyload" src="/img/placeholder.svg" data-src="{{ .Destination | safeURL }}" alt="{{ .Text }}">
     <figcaption>{{ .Title | markdownify }}</figcaption>
   </figure>
