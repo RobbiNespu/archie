@@ -119,6 +119,7 @@ figcaption {
   font-size: 11px;
   font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
   text-align: center;
+  mix-blend-mode: soft-light;
 }
 
 .figcaption-left{
