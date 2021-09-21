@@ -4,20 +4,22 @@
         <div class="md-footer-nav">
             <!-- Link to previous page -->
             {{ if (.NextInSection) }}
-            <span style="left: 50%; margin-right: -50%; position: ;">
+            <span style="left: 50%; margin-right: -50%;">
               <a href="{{ .NextInSection.Permalink }}"
                   title="{{ .NextInSection.Title }}"
-                  rel="prev">
-                    << Next
+                  rel="prev"
+                  style="border-bottom: none;">
+                  ⬅️ Next
               </a>
               </span>
             {{ end }}
 
             <span style="left: 50%; margin-right: -50%; position: sticky;">
-              <a href="{{ .Site.BaseURL }}"
-                  title="Homepage"
-                  rel="home">
-                    🏠
+              <a href="#top"
+                  title="Back to the top"
+                  rel="top"
+                  style="border-bottom: none;">
+                  ⬆️
               </a>
               </span>
 
@@ -26,8 +28,9 @@
             <span style="float:right;">
               <a href="{{ .PrevInSection.Permalink }}"
                   title="{{ .PrevInSection.Title }}"
-                  rel="next">
-                    Prev >>
+                  rel="next"
+                  style="border-bottom: none;">
+                    Prev ➡️
               </a>
               </span>
             {{ end }}
