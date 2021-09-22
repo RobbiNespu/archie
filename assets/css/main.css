@@ -295,7 +295,7 @@ display: flex;
 justify-content: space-between;
 }
 .tags li::before{
-  content: "🏷 ";
+  content: "🏷️ ";
 }
 .tags a{
   border-bottom: 3px solid var(--maincolor);
