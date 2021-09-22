@@ -141,10 +141,6 @@ figcaption {
   float:right; padding-left: 10px !important;
 }
 
-/* figure img {
-  max-height: 500px;
-} */
-
 @media screen and (min-width: 600px) {
   figure {
     padding: 0 40px;
