@@ -752,7 +752,7 @@ body .gist .gist-meta {
 /* abstract */
 .body .admonition.abstract {
   background-color: rgba(0,176,255,0.1);
-  border-left-color: #00b0ff;;
+  border-left-color: #00b0ff;
 }
 .body .admonition.abstract .admonition-title {
     border-bottom-color: rgba(0,176,255,0.1);
@@ -764,7 +764,7 @@ body .gist .gist-meta {
 /* info */
 .body .admonition.info {
   background-color: rgba(0,184,212,0.1);
-  border-left-color: #00b0ff;;
+  border-left-color: #00b0ff;
 }
 .body .admonition.info .admonition-title {
     border-bottom-color: rgba(0,184,212,0.1);

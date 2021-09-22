@@ -17,7 +17,7 @@ body {
 }
 
 hr {
-  border-top: 3px dotted var(--darkMaincolor);;
+  border-top: 3px dotted var(--darkMaincolor);
 }
 code {
   background-color: lightblue;
