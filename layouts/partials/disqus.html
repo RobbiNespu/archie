@@ -19,11 +19,9 @@
             Have some thoughts, discussion or feedback on this post?<br>
           </div>
           <div class="text-center emailcomments">
-            <button class="button">
-            <a href="mailto:{{ .Site.Params.email }}?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'" >
-              <i class="icon" icon-name="mail"></i>&nbsp;&nbsp;<strong>Send me an email</strong>
-            </a>
-          </button>
+          
+          <a class="btn" href="mailto:{{ .Site.Params.email }}?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">💬&nbsp;<strong>Send me an email</strong></a>
+
         </div>
         <div> {{ partial "related-post.html" . }}</div>
         <div> {{ partial "webmention.html" . }}</div>

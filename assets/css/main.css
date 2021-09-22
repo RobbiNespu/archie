@@ -61,6 +61,17 @@ a.menu{
   font-size: 14px;
 }
 
+a.btn {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: .375rem;
+  background: #4CAF50; /* #5586c9; */
+  padding: 15px 32px;
+  margin: 0;
+  color: white;
+  font-size: 16px;
+}
+
 ul {
   list-style: none;
   padding-left: 2ch;
@@ -925,18 +936,6 @@ a.footnote-backref{
 }
 
 /* for comment using email */
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-bottom: none;
-  border-radius: .375rem;
-}
 .emailcomments{
     padding-bottom: 1.4rem;
     padding-top: 1.4rem;
