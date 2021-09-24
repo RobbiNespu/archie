@@ -8,7 +8,7 @@
 			<div style="display:none;">
 			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
 			<a class="u-url" href="{{ .Permalink }}" ></a>
-			<a class="p-category" href="{{ .Permalink }}" >{{ .Params.webmentionType }}</a>
+			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
 			<!-- {{ partial "h-card.html" . }} -->
 			<a class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
 			</div>
