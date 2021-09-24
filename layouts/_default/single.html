@@ -7,7 +7,7 @@
 			<a class="u-url" href="{{ .Permalink }}" style="display: none;"></a>
 			<a class="p-category" href="{{ .Permalink }}" style="display: none;">{{ .Params.webmentionType }}</a>
 			{{ partial "h-card.html" . }}
-			<a class="p-author" style="display: none;">{{ .Params.author | default .Site.Author.name }}</a>
+			<a class="p-author h-card" style="display: none;">{{ .Params.author | default .Site.Author.name }}</a>
 		</div>
 		{{ if isset .Params "tldr" }}
 		<div class="tldr">
