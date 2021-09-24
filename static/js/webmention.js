@@ -110,7 +110,7 @@ A more detailed example:
     };
 
     var reactEmoji = {
-        'in-reply-to': '💬',
+        'in-reply-to': '',
         'like-of': '😍',
         'repost-of': '🔄',
         'bookmark-of': '⭐️',
