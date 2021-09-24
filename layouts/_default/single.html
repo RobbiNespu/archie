@@ -20,10 +20,10 @@
 		<section class="body e-content">
 			{{ if .Params.externalLink }} Within 3 secs, you will be re-direct to: <br/>- <a href="{{ .Params.externalLink }}">{{ .Params.externalLink }}</a> {{ end }}
 			{{ .Content }}
-			<p style="text-align: right; font-size: x-small;">
-				<a href="{{ $.Site.Params.Repository }}blob/master/content/{{.File.Path}}">Edit</a>
-			</p>
 		</section>
+		<p style="text-align: right; font-size: x-small;">
+			<a href="{{ $.Site.Params.Repository }}blob/master/content/{{.File.Path}}">Edit</a>
+		</p>
 
 		{{ if ne .Type "page" }}
 		{{ if gt .Params.tags 0 }}
