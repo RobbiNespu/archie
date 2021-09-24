@@ -138,7 +138,7 @@ A more detailed example:
                            : r.url.split('/')[2]);
         var response = reactTitle[r['wm-property']] || 'reacted';
         var html = '<a class="reaction" rel="nofollow ugc" title="' + who + ' ' +
-            response + '" href="' + r[mentionSource] + '">';
+            response + '">';
         if (r.author && r.author.photo) {
             html += '<img src="' + entities(r.author.photo) + '">';
         }
