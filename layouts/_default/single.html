@@ -1,9 +1,19 @@
 {{ define "main" }}
 <main>
-	<article>
+	<article class="h-entry">
 		<div class="title">
-			<h1 class="title">{{ .Title }}</h1>
+			<h1 class="title p-name">{{ .Title }}</h1>
 			<div class="meta">Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min</div>
+
+			<div style="display:none;">
+			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+			<a class="u-url" href="{{ .Permalink }}" ></a>
+			<a class="p-category" href="{{ .Permalink }}" >{{ .Params.webmentionType }}</a>
+			<!-- {{ partial "h-card.html" . }} -->
+			<a class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
+			<img class="u-photo" src="https://robbinespu.gitlab.io/images/upload/Screenshot_20210816_124946.png"/>
+			</div>
+
 		</div>
 		{{ if isset .Params "tldr" }}
 		<div class="tldr">
@@ -11,13 +21,13 @@
 			{{ .Params.tldr }}
 		</div>{{ end }}
 
-		<section class="body">
+		<section class="body e-content">
 			{{ if .Params.externalLink }} Within 3 secs, you will be re-direct to: <br/>- <a href="{{ .Params.externalLink }}">{{ .Params.externalLink }}</a> {{ end }}
 			{{ .Content }}
-			<p style="text-align: right; font-size: x-small;">
-				<a href="{{ $.Site.Params.Repository }}blob/master/content/{{.File.Path}}">Edit</a>
-			</p>
 		</section>
+		<p style="text-align: right; font-size: x-small;">
+			<a href="{{ $.Site.Params.Repository }}blob/master/content/{{.File.Path}}">Edit</a>
+		</p>
 
 		{{ if ne .Type "page" }}
 		{{ if gt .Params.tags 0 }}
