@@ -423,7 +423,7 @@ color: whitesmoke ;
   background: cyan;
   color: royalblue ;
 } */
-}
+
 .highlight pre code[class*='language-latex']::before,
 .highlight pre code[class*='language-tex']::before{
   content: 'tex';
