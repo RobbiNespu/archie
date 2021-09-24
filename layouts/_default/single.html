@@ -4,12 +4,16 @@
 		<div class="title">
 			<h1 class="title p-name">{{ .Title }}</h1>
 			<div class="meta">Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min</div>
-			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" style="display: none;"></time>
-			<a class="u-url" href="{{ .Permalink }}" style="display: none;"></a>
-			<a class="p-category" href="{{ .Permalink }}" style="display: none;">{{ .Params.webmentionType }}</a>
+			
+			<div style="display:none;">
+			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+			<a class="u-url" href="{{ .Permalink }}" ></a>
+			<a class="p-category" href="{{ .Permalink }}" >{{ .Params.webmentionType }}</a>
 			<!-- {{ partial "h-card.html" . }} -->
-			<a class="p-author h-card" style="display: none;">{{ .Params.author | default .Site.Author.name }}</a>
-			<img class="u-photo" style="display: none;" src="/images/upload/Screenshot_20210816_124946.png" alt="" />
+			<a class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
+			<img class="u-photo" src="/images/upload/Screenshot_20210816_124946.png" alt="" />
+			</div>
+			
 		</div>
 		{{ if isset .Params "tldr" }}
 		<div class="tldr">
