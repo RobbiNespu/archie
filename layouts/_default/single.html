@@ -7,8 +7,9 @@
 			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" style="display: none;"></time>
 			<a class="u-url" href="{{ .Permalink }}" style="display: none;"></a>
 			<a class="p-category" href="{{ .Permalink }}" style="display: none;">{{ .Params.webmentionType }}</a>
-			{{ partial "h-card.html" . }}
+			<!-- {{ partial "h-card.html" . }} -->
 			<a class="p-author h-card" style="display: none;">{{ .Params.author | default .Site.Author.name }}</a>
+			<img class="u-photo" style="display: none;" src="/images/upload/Screenshot_20210816_124946.png" alt="" />
 		</div>
 		{{ if isset .Params "tldr" }}
 		<div class="tldr">
