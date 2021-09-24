@@ -4,7 +4,7 @@
 		<div class="title">
 			<h1 class="title p-name">{{ .Title }}</h1>
 			<div class="meta">Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min</div>
-			
+
 			<div style="display:none;">
 			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
 			<a class="u-url" href="{{ .Permalink }}" ></a>
