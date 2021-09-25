@@ -1041,7 +1041,7 @@ a.footnote-backref{
   margin-top: 1em;
   margin-bottom: 1em;
   /* box-shadow: 1px 1px .5em black inset;*/
-  border: .1em solid hsl(0, 0%, 33%); 
+  border: .1em solid hsl(0, 0%, 33%);
 }
 
 /* shortcode - activity_cycling */
@@ -1089,4 +1089,3 @@ a.footnote-backref{
   margin: 5px;
   border-bottom: none;
 }
-
