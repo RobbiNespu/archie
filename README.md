@@ -1,15 +1,18 @@
 # Archie - Hugo theme
+
 Archie is a minimal and clean theme for hugo with a markdown-ish UI.
 
 Forked from [Ezhil Theme](https://github.com/vividvilla/ezhil)
 
 ## Demo
 
-[Check the Demo](https://athul.github.io/archie/) hosted on GitHub Pages :smile: . You can find the source code to that in the `site` branch of this repository
+[Check the Demo](https://athul.github.io/archie/) hosted on GitHub Pages :smile:
+. You can find the source code to that in the `site` branch of this repository
 
-![](/images/theme.png)
-![](/images/archie-dark.png)
+![](/images/theme.png) ![](/images/archie-dark.png)
+
 ## Feature
+
 - Google Analytics Script
 - Callouts
 - Tags
@@ -19,17 +22,23 @@ Forked from [Ezhil Theme](https://github.com/vividvilla/ezhil)
 - Cache busting for CSS files
 
 ## Installation
-In your Hugo website directory, create a new folder named theme and clone the repo
+
+In your Hugo website directory, create a new folder named theme and clone the
+repo
+
 ```bash
 $ mkdir themes
 $ cd themes
 $ git clone https://github.com/athul/archie.git
 ```
-Edit the `config.toml` file with `theme="archie"`
-For more information read the official [setup guide](https://gohugo.io/overview/installing/) of Hugo.
+
+Edit the `config.toml` file with `theme="archie"` For more information read the
+official [setup guide](https://gohugo.io/overview/installing/) of Hugo.
 
 ## Writing Posts
-Create a new `.md` file in the *content/posts* folder
+
+Create a new `.md` file in the _content/posts_ folder
+
 ```yml
 ---
 title: Title of the post
@@ -42,23 +51,25 @@ tags: [tag names] (optional)
 ```
 
 ## Credits
-Forked from [Ezhil Theme](https://github.com/vividvilla/ezhil) and Licensed under MIT License
-Inspired by design of blog.jse.li
 
-----
+Forked from [Ezhil Theme](https://github.com/vividvilla/ezhil) and Licensed
+under MIT License Inspired by design of blog.jse.li
+
+---
 
 ## Config Options
 
 ### Custom CSS
+
 Custom CSS files can be included though the `customcss` config parameter.
 
-Note: CSS files should be placed under the `assets` directory e.g. `assets/css/first.css`.
+Note: CSS files should be placed under the `assets` directory e.g.
+`assets/css/first.css`.
 
 ```toml
 [params]
 	customcss = ["css/first.css", "css/second.css"]
 ```
-
 
 ## Config of the Demo Site
 
@@ -119,8 +130,10 @@ name = "Tags"
 url = "/tags"
 weight = 4
 ```
+
 ---
 
-If you liked my work please consider supporting me on [BuymeACoffee](https://www.buymeacoffee.com/athulca)
+If you liked my work please consider supporting me on
+[BuymeACoffee](https://www.buymeacoffee.com/athulca)
 
 <a href="https://www.buymeacoffee.com/athulca" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" height="41" width="174" ></a>
