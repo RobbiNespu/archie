@@ -22,7 +22,7 @@
 		   <h1 class="title p-name">LOLL {{ .Title }}</h1>
 		   {{- end -}}
 		   <!-- indieweb: title OFF -->
-			
+
 			<div class="meta">Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min</div>
 
 			<div style="display:none;">
@@ -41,10 +41,10 @@
 
 		{{ if .Params.mfreplyto }}
 		{{- $source := .Params.mfSource | lower -}}
-			{{- with .Params.mfreplyto -}}		
+			{{- with .Params.mfreplyto -}}
 				<h2>Origin:</h2>
 				{{- if eq $source "twitter" -}}
-					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}		
+					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
 					{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark"  $tweetId  "true" -}}
 					{{- $json := getJSON $url -}}
 					{{ $json.html | safeHTML }}
