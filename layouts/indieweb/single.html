@@ -50,6 +50,11 @@
 					{{ $json.html | safeHTML }}
 				{{- else if eq $source "mastodon" -}}
 				{{- else if eq $source "github" -}}
+					{{- $ghType := "issue" -}}
+					{{- if in . "issuecomment" -}}
+						{{- $ghType = "comment" -}}
+					{{- end -}}
+					New {{ $ghType }} on project <a class="u-in-reply-to" rel="in-reply-to" href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a>
 				{{- else -}}
 				{{ end }}
 				<h2>My reply:</h2>
