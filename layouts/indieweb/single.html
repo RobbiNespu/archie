@@ -2,7 +2,7 @@
 <main>
 	<article class="h-entry">
 		<div class="title">
-			<!-- indieweb: title ON --> LOL {{ .Params.mfbookmarkof }}
+			<!-- indieweb: title ON --> LOL {{ .Params.mfreplyto }}
 			{{- if .Params.mfbookmark -}}
 				<h1 class="title p-name">Bookmarked:<br> {{ .Params.mfbookmark }}</h1>
 				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
@@ -16,16 +16,8 @@
 					<blockquote class="e-content" cite="{{ .Params.mflikeof }}"><p>{{ .Params.cite }}</p></blockquote>
 				{{ end }}
 			{{- else if .Params.mfreplyto -}}
-				{{- $source := .Params.mfSource | lower -}}
-				{{- with .Params.mfreplyto -}}
-					{{- if eq $source "twitter" -}}
-					{{- else if eq $source "mastodon" -}}
-					{{- else if eq $source "github" -}}
-					{{- else -}}
-					<h1 class="title p-name">Reply to:<br> {{ . }}</h1>
-					<a class="u-in-reply-to" rel="in-reply-to" href="{{ . }}" style="display:none;">{{ . }}</a>
-					{{ end }}
-				{{ end }}
+				<h1 class="title p-name">Reply to:<br> {{ .Params.mfreplyto }}</h1>
+				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ . }}</a>
 		   {{- else -}}
 		   <h1 class="title p-name">LOLL {{ .Title }}</h1>
 		   {{- end -}}
@@ -46,6 +38,23 @@
 			<strong>tl;dr:</strong>
 			{{ .Params.tldr }}
 		</div>{{ end }}
+
+		{{ if .Params.mfreplyto }}
+		{{- $source := .Params.mfSource | lower -}}
+			{{- with .Params.mfreplyto -}}		
+				<h2>Origin:</h2>
+				{{- if eq $source "twitter" -}}
+					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}		
+					{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark"  $tweetId  "true" -}}
+					{{- $json := getJSON $url -}}
+					{{ $json.html | safeHTML }}
+				{{- else if eq $source "mastodon" -}}
+				{{- else if eq $source "github" -}}
+				{{- else -}}
+				{{ end }}
+				<h2>My reply:</h2>
+			{{ end }}
+		{{ end }}
 
 		<section class="body e-content">
 			{{ .Content }}
