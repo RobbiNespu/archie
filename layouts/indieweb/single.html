@@ -72,11 +72,11 @@
 			{{ if ne . "" }}
 				{{ $domain := replaceRE "^https?://([^/]+).*" "$1" . }}
 					{{- if in $domain "twitter.com" -}}
-						<i class="icon" icon-name="twitter"></i><a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer">{{ $domain }}</a>
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer" title="{{ $domain }}"><i class="icon" icon-name="twitter"></i></a>
 					{{- else if in $domain "github.com" -}}
-						<i class="icon" icon-name="github"></i><a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer">{{ $domain }}</a>
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer" title="{{ $domain }}"><i class="icon" icon-name="github"></i></a>
 					{{ else }}
-						<i class="icon" icon-name="network"></i><a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer">{{ $domain }}</a>
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer" title="{{ $domain }}"><i class="icon" icon-name="network"></i></a>
 					{{ end }}
 					{{ if ne (add $i 1) $syndication_len }}<span>/</span>{{ end }}
 			{{ end}}
