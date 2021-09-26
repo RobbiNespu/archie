@@ -1000,10 +1000,9 @@ a.footnote-backref{
 }
 
 #webmentions a.reaction img {
-    /* max-height: 1.3em;
+    max-height: 1.5em;
     margin-right: -1ex;
-    border-radius: 25%; */
-    max-height: 0em;
+    border-radius: 25%;
 }
 
 #webmentions a.reaction sub {
