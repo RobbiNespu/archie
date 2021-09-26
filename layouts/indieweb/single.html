@@ -7,7 +7,7 @@
 				<h1 class="title p-name">📑 Bookmarked:<br> {{ .Params.mfbookmark }}</h1>
 				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
 			{{- else if .Params.mfrepostof -}}
-				<h1 class="title p-name">📗 Repost:<br> {{ .Title }}</h1>
+				<h1 class="title p-name">🔄 Repost:<br> {{ .Title }}</h1>
 				<a class="u-repost-of" href="{{ .Params.mfrepostof }}" style="display:none;">reposted {{ .Params.mfrepostof }}</a>
 			{{- else if .Params.mflikeof -}}
 				<h1 class="title p-name">👍 Liked:<br> {{ .Title }}</h1>
@@ -72,7 +72,7 @@
 		</section>
 
 		{{ with .Params.syndication }}
-		<br><small class="text-center">Syndicated to:</small>
+		<br><small class="text-center">🔀 Syndicated to:</small>
 		{{ $syndication_len := len . }}
 		{{ range $i, $syndication_item := . }}
 			{{ if ne . "" }}
