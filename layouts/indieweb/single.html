@@ -4,22 +4,24 @@
 		<div class="title">
 			<!-- indieweb: title ON -->
 			{{- if .Params.mfbookmark -}}
-				<h1 class="title p-name">Bookmarked:<br> {{ .Params.mfbookmark }}</h1>
+				<h1 class="title p-name">📑 Bookmarked:<br> {{ .Params.mfbookmark }}</h1>
 				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
 			{{- else if .Params.mfrepostof -}}
-				<h1 class="title p-name">Repost:<br> {{ .Title }}</h1>
+				<h1 class="title p-name">📗 Repost:<br> {{ .Title }}</h1>
 				<a class="u-repost-of" href="{{ .Params.mfrepostof }}" style="display:none;">reposted {{ .Params.mfrepostof }}</a>
 			{{- else if .Params.mflikeof -}}
-				<h1 class="title p-name">Liked:<br> {{ .Title }}</h1>
+				<h1 class="title p-name">👍 Liked:<br> {{ .Title }}</h1>
 				<a class="u-url u-like-of" href="{{ .Params.mflikeof }}" style="display:none;">{{ .Params.mflikeof | truncate 45 }}</a>
 				{{ if .Params.cite }}
 					<blockquote class="e-content" cite="{{ .Params.mflikeof }}"><p>{{ .Params.cite }}</p></blockquote>
 				{{ end }}
 			{{- else if .Params.mfreplyto -}}
-				<h1 class="title p-name">Reply to:<br> {{ .Params.mfreplyto }}</h1>
+				<h1 class="title p-name">↩️ Reply to:<br> {{ .Params.mfreplyto }}</h1>
 				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ . }}</a>
-		   {{- else -}}
-		   <h1 class="title p-name">LOLL {{ .Title }}</h1>
+			{{- else if .Params.rsvpValue -}}
+			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
+			{{- else -}}
+		   <h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! {{ .Title }}</h1>
 		   {{- end -}}
 		   <!-- indieweb: title OFF -->
 
@@ -30,6 +32,7 @@
 			<a class="u-url" href="{{ .Permalink }}" ></a>
 			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
 			<a class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
+			<img class="u-photo" src="/images/upload/Screenshot_20210816_124946.png" alt="Robbi Nespu" />
 			</div>
 
 		</div>
@@ -61,8 +64,11 @@
 			{{ end }}
 		{{ end }}
 
-		<section class="body e-content">
-			{{ .Content }}
+		<section class="body">
+			{{ if .Params.rsvpEventName }}
+				RSVP <code><span class="p-rsvp">{{ .Params.rsvpValue }}</span></code> to <a href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
+			{{ end }}
+			<div class="e-content">{{ .Content }}</div>
 		</section>
 
 		{{ with .Params.syndication }}
