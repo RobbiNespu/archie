@@ -1,0 +1,68 @@
+{{ $url := printf "https://robbinespu.gitlab.io%v"  .RelPermalink }} 
+{{ $urlized := $url | md5 }}
+{{ if index .Site.Data.webmentions $urlized }}
+  {{ $likes := index (index .Site.Data.webmentions $urlized) "like-of" }}
+  {{ $replys := index (index .Site.Data.webmentions $urlized) "in-reply-to" }}
+  {{ $reposts := index (index .Site.Data.webmentions $urlized) "repost-of"}}
+  {{ $mentions := index (index .Site.Data.webmentions $urlized) "mention-of"}}
+  <div class="webmentions">
+	<details>
+		<summary class="text-center padding-bottom-04rem">Webmentions IndieWeb Interactions</summary>
+		<!-- <h2>Interactions with this post</h2> -->
+		<p class="text-center">Below you can find the interactions that this page has had using Indieweb. Which means, you can mentioned this URL on any website that support <a href="http://indieweb.org/webmention">WebMention</a>. Have you written a <a href="https://indieweb.org/responses">response</a> to this post? Let me know the URL:</p>
+
+		<div class="manual-webmention text-center">
+			<p></p>
+			<form id="manual-webmention" action="https://webmention.io/robbinespu.gitlab.io/webmention" method="post">
+				<input type="url" name="source" value="" placeholder="https://example.com/my-post"/>
+				<input type="hidden" name="target" value="{{ $url }}" />
+				<input type="submit" name="submit" value="Send" />
+			</form>
+
+			<p><small>(Do you not have a website set up with WebMention capabilities? You can use <a href="https://commentpara.de/">Comment Parade</a>.)</small></p>
+		</div>
+        <div id="webmentions">
+<!-- HACK HERE -->
+<h2>Mentions and replies</h2>
+
+<ul class="comments">
+    {{ with $mentions }}
+    {{ range $i, $mention := $mentions }}
+    <li>
+        <a class="reaction" rel="nofollow ugc" title="{{ $mention.author.name }} mentioned">
+            <img src="{{ $mention.author.photo}}">💥</a> 
+            <a class="source" rel="nofollow ugc" href="{{$mention.url}}">{{ $mention.author.name }}</a>: <span class="text">{{ $mention.content.text}}</span>
+    </li>
+    {{end}}
+    {{end}}
+
+    {{ with $replys }}
+    {{ range $i, $reply := $replys }}
+    <li>
+        <a class="reaction" rel="nofollow ugc" title="{{ $reply.author.name }} replied">
+            <img src="{{ $reply.author.photo}}">💬</a> 
+            <a class="source" rel="nofollow ugc" href="{{$reply.url}}">{{ $reply.author.name }}</a>: <span class="text">{{ $reply.content.text}}</span>
+    </li>
+    {{end}}
+    {{ end }}
+</ul>
+<h2>Likes and repost</h2>
+<ul class="reacts">
+    {{ with $likes }}
+    {{ range $i, $like := $likes }}
+    <a class="reaction" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img src="{{ $like.author.photo}}">😍</a>
+    {{ end }}
+    {{ end }}
+
+    {{ with $reposts }}
+    {{ range $i, $repost := $reposts }}
+    <a class="reaction" rel="nofollow ugc" href="{{$repost.url}}" title="{{ $repost.author.name }} reposted"><img src="{{ $repost.author.photo}}">🔄</a>
+    {{ end }}
+    {{ end }}
+</ul>
+<!-- HACK HERE -->
+		</div>
+	</details>
+</div>
+<br>
+{{end}}

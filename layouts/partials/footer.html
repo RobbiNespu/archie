@@ -31,8 +31,8 @@
 <!-- <script src="{{ .Site.BaseURL }}js/lazysizes.min.js"></script> -->
 <script src="{{ .Site.BaseURL }}js/lazysizes.min.js" async as="script"></script>
 
-{{ $wmJs := resources.Get "js/webmention.js" | resources.Minify | resources.Fingerprint }}
-<script src="{{ $wmJs.Permalink }}" data-id="webmentions" data-page-url="https://robbinespu.gitlab.io{{ .RelPermalink }}" data-max-webmentions="100" data-sort-dir="down" async></script>
+<!-- {{ $wmJs := resources.Get "js/webmention.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $wmJs.Permalink }}" data-id="webmentions" data-page-url="https://robbinespu.gitlab.io{{ .RelPermalink }}" data-max-webmentions="100" data-sort-dir="down" async></script> -->
 
 {{ if .File }}
   {{ if eq .File.Dir "search/" }}{{ partial "search-index.html" . }}{{end}}
