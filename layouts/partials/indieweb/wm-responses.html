@@ -1,4 +1,4 @@
-{{ $url := printf "https://robbinespu.gitlab.io%v"  .RelPermalink }} 
+{{ $url := printf "https://robbinespu.gitlab.io%v"  .RelPermalink }}
 {{ $urlized := $url | md5 }}
 <div class="webmentions">
 	<details>
@@ -33,16 +33,16 @@
         {{ range $i, $mention := $mentions }}
         <li>
             <a class="reaction" rel="nofollow ugc" title="{{ $mention.author.name }} mentioned">
-                <img src="{{ $mention.author.photo}}">💥</a> 
+                <img src="{{ $mention.author.photo}}">💥</a>
                 <a class="source" rel="nofollow ugc" href="{{$mention.url}}">{{ $mention.author.name }}</a>: <span class="text">{{ $mention.content.text}}</span>
         </li>
         {{end}}
         {{end}}
-   
+
         {{ range $i, $reply := $replys }}
         <li>
             <a class="reaction" rel="nofollow ugc" title="{{ $reply.author.name }} replied">
-                <img src="{{ $reply.author.photo}}">💬</a> 
+                <img src="{{ $reply.author.photo}}">💬</a>
                 <a class="source" rel="nofollow ugc" href="{{$reply.url}}">{{ $reply.author.name }}</a>: <span class="text">{{ $reply.content.text}}</span>
         </li>
         {{end}}
@@ -53,7 +53,7 @@
     {{ with $reposts }}
     <h2>Likes and repost</h2>
     <ul class="reacts">
-       
+
         {{ range $i, $like := $likes }}
         <a class="reaction" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img src="{{ $like.author.photo}}">😍</a>
         {{ end }}
