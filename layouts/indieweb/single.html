@@ -21,7 +21,7 @@
 			{{- else if .Params.rsvpValue -}}
 			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
 			{{- else if .Params.mfquotationof -}}
-			<h1 class="title p-name">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
+			<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
 			{{- else -}}
 		   <h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! {{ .Title }}</h1>
 		   {{- end -}}
@@ -34,7 +34,6 @@
 			<a class="u-url" href="{{ .Permalink }}" ></a>
 			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
 			<a class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
-			<img class="u-photo" src="/images/upload/Screenshot_20210816_124946.png" alt="Robbi Nespu" />
 			</div>
 
 		</div>
