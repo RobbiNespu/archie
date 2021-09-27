@@ -4,7 +4,7 @@
 		<div class="title">
 			<!-- indieweb: title ON -->
 			{{- if .Params.mfbookmark -}}
-				<h1 class="title p-name">📑 Bookmarked:<br> {{ .Params.mfbookmark }}</h1>
+				<h1 class="title p-name">⭐️ Bookmarked:<br> {{ .Params.mfbookmark }}</h1>
 				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
 			{{- else if .Params.mfrepostof -}}
 				<h1 class="title p-name">🔄 Repost:<br> {{ .Title }}</h1>
@@ -20,6 +20,8 @@
 				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ . }}</a>
 			{{- else if .Params.rsvpValue -}}
 			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
+			{{- else if .Params.mfquotationof -}}
+			<h1 class="title p-name">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
 			{{- else -}}
 		   <h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! {{ .Title }}</h1>
 		   {{- end -}}
@@ -48,7 +50,7 @@
 				<h2>Origin:</h2>
 				{{- if eq $source "twitter" -}}
 					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
-					{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark"  $tweetId  "true" -}}
+					{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark&omit_script=true"  $tweetId  "true" -}}
 					{{- $json := getJSON $url -}}
 					{{ $json.html | safeHTML }}
 				{{- else if eq $source "mastodon" -}}
@@ -68,7 +70,26 @@
 			{{ if .Params.rsvpEventName }}
 				RSVP <code><span class="p-rsvp">{{ .Params.rsvpValue }}</span></code> to <a href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
 			{{ end }}
-			<div class="e-content">{{ .Content }}</div>
+			
+			<div class="e-content">
+				{{ .Content }}
+				{{ if .Params.mfquotationof }}
+				<cite class="u-quotation-of h-cite" style="display:none;">
+					Quoted <a href="{{ .Params.mfquotationof }}">this</a>:
+				</cite>
+					{{- $source := .Params.mfSource | lower -}}
+					{{- if eq $source "twitter" -}}
+						{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` .Params.mfquotationof -}}
+						{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark&omit_script=true"  $tweetId  "true" -}}
+						{{- $json := getJSON $url -}}
+						{{ $json.html | safeHTML }}
+					{{- else -}}
+					<blockquote>
+					TEXT TEXT
+					</blockquote>
+					{{ end }}
+				{{ end }}
+			</div>
 		</section>
 
 		{{ with .Params.syndication }}
