@@ -26,17 +26,16 @@
   {{ $mentions := index (index .Site.Data.webmentions $urlized) "mention-of"}}
 <div id="webmentions">
     <!-- HACK HERE -->
-    {{ with $mentions }}
-    {{ with $replys }}
+    {{ if or ($mentions) ($replys) }}
     <h2>Mentions and replies</h2>
     <ul class="comments">
+
         {{ range $i, $mention := $mentions }}
         <li>
             <a class="reaction" rel="nofollow ugc" title="{{ $mention.author.name }} mentioned">
                 <img src="{{ $mention.author.photo}}">💥</a>
                 <a class="source" rel="nofollow ugc" href="{{$mention.url}}">{{ $mention.author.name }}</a>: <span class="text">{{ $mention.content.text}}</span>
         </li>
-        {{end}}
         {{end}}
 
         {{ range $i, $reply := $replys }}
@@ -46,24 +45,22 @@
                 <a class="source" rel="nofollow ugc" href="{{$reply.url}}">{{ $reply.author.name }}</a>: <span class="text">{{ $reply.content.text}}</span>
         </li>
         {{end}}
-        {{ end }}
     </ul>
+    {{end}}
 
-    {{ with $likes }}
-    {{ with $reposts }}
+    {{ if or ($likes) ($reposts) }}
     <h2>Likes and repost</h2>
     <ul class="reacts">
 
         {{ range $i, $like := $likes }}
         <a class="reaction" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img src="{{ $like.author.photo}}">😍</a>
         {{ end }}
-        {{ end }}
 
         {{ range $i, $repost := $reposts }}
         <a class="reaction" rel="nofollow ugc" href="{{$repost.url}}" title="{{ $repost.author.name }} reposted"><img src="{{ $repost.author.photo}}">🔄</a>
         {{ end }}
-        {{ end }}
     </ul>
+    {{ end }}
     <br>
     <!-- HACK HERE -->
 </div>
