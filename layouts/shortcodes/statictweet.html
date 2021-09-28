@@ -1,0 +1,42 @@
+{{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
+{{ $id := .Get 0 }}
+{{ $json := getJSON $urlPre $id }}
+{{ $text := $json.text | safeHTML }}
+{{ if isset $json "entities" }}
+  {{ if isset $json.entities "user_mentions"  }}
+    {{ range $user := $json.entities.user_mentions}}
+      {{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
+    {{ end }}
+  {{ end }}
+
+  {{ if isset $json.entities "media"  }}
+    {{ range $media := $json.entities.media }}
+      {{ $text = replace $text $media.url "" }}
+    {{ end }}
+  {{ end }}
+
+  {{ if isset $json.entities "urls"  }}
+    {{ range $url := $json.entities.urls}}
+        {{ with $url.url }}
+      {{ $text = replace $text $url.url (printf "<a href='%s'>%s</a>" $url.url $url.display_url) }}
+        {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<blockquote class="static-tweet">
+  <p>{{  $text | safeHTML }}</p>
+  {{ if isset $json "photos" }}
+    {{ range $item := $json.photos }}
+        <img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;">
+    {{ end }}
+  {{ end }}
+  {{ if isset $json "video" }}
+        <div class="videoContainer" >
+        <img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
+        <a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+        </div>
+  {{ end }}
+  <br />
+  <p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+</blockquote>

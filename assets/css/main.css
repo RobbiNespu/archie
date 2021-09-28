@@ -1088,3 +1088,22 @@ a.footnote-backref{
   margin: 5px;
   border-bottom: none;
 }
+
+/* static tweet */
+.twitter-tweet,
+.static-tweet{
+  border-color:#1DA1F2;
+  background:rgba(29, 161, 242, 0.1);
+}
+.videoContainer {
+  position: relative;
+}
+.thumb {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  left: 50%;
+  top: 50%;
+  margin-left: -48px; /*half of the width */
+  margin-top: -48px; /*half of the height */
+}
