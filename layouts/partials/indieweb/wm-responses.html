@@ -24,6 +24,7 @@
   {{ $replys := index (index .Site.Data.webmentions $urlized) "in-reply-to" }}
   {{ $reposts := index (index .Site.Data.webmentions $urlized) "repost-of"}}
   {{ $mentions := index (index .Site.Data.webmentions $urlized) "mention-of"}}
+  {{ $bookmarks := index (index .Site.Data.webmentions $urlized) "bookmark-of"}}
 <div id="webmentions">
     <!-- HACK HERE -->
     {{ if or ($mentions) ($replys) }}
@@ -48,9 +49,14 @@
     </ul>
     {{end}}
 
-    {{ if or ($likes) ($reposts) }}
-    <h2>Likes and repost</h2>
+    {{ if or ($bookmarks) ($likes) ($reposts) }}
+    <h2>Bookmarks, likes and repost</h2>
     <ul class="reacts">
+
+        {{ range $i, $bookmark := $bookmarks }}
+        <a class="reaction" rel="nofollow ugc" href="{{$bookmark.url}}" title="{{ $bookmark.author.name }} bookmarked"><img src="{{ $bookmark.author.photo}}">⭐️</a>
+        {{ end }}
+
 
         {{ range $i, $like := $likes }}
         <a class="reaction" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img src="{{ $like.author.photo}}">😍</a>
@@ -59,6 +65,7 @@
         {{ range $i, $repost := $reposts }}
         <a class="reaction" rel="nofollow ugc" href="{{$repost.url}}" title="{{ $repost.author.name }} reposted"><img src="{{ $repost.author.photo}}">🔄</a>
         {{ end }}
+
     </ul>
     {{ end }}
     <br>
