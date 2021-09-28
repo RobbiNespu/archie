@@ -18,9 +18,9 @@
 				<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 45 "..." }}</a>
 			<!-- hack -->
 			{{  else if .Params.mfbookmark }}
-					<a href="{{ .RelPermalink }}">⭐️ Bookmarked: {{ .Params.mfbookmark | truncate 45}}</a> 
+					<a href="{{ .RelPermalink }}">⭐️ Bookmarked: {{ .Params.mfbookmark | truncate 45}}</a>
 			{{ else if .Params.mfrepostof }}
-					<a href="{{ .RelPermalink }}">♻️ Repost: {{ .Params.mfrepostof | truncate 45}}</a> 
+					<a href="{{ .RelPermalink }}">♻️ Repost: {{ .Params.mfrepostof | truncate 45}}</a>
 			{{ else if .Params.mflikeof }}
 					<a href="{{ .RelPermalink }}">👍 Liked: {{ .Params.mflikeof | truncate 45}}</a>
 			{{ else if .Params.mfreplyto }}
