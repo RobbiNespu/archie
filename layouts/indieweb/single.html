@@ -73,22 +73,26 @@
 			<div class="e-content">
 				{{ .Content }}
 				{{ if .Params.mfquotationof }}
+				{{- $source := .Params.mfSource | lower -}}
 				<cite class="u-quotation-of h-cite" style="display:none;">
 					Quoted <a href="{{ .Params.mfquotationof }}">this</a>:
 				</cite>
-					{{- $source := .Params.mfSource | lower -}}
-					{{- if eq $source "twitter" -}}
-						{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` .Params.mfquotationof -}}
-						{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark&omit_script=true"  $tweetId  "true" -}}
-						{{- $json := getJSON $url -}}
-						{{ $json.html | safeHTML }}
-					{{- else -}}
+					{{- if ne $source "twitter" -}}
 					<blockquote>
 					TEXT TEXT
 					</blockquote>
 					{{ end }}
 				{{ end }}
 			</div>
+			{{ if .Params.mfquotationof }}
+			{{- $source := .Params.mfSource | lower -}}
+			{{- if eq $source "twitter" -}}
+				{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` .Params.mfquotationof -}}
+				{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark&omit_script=true"  $tweetId  "true" -}}
+				{{- $json := getJSON $url -}}
+				{{ $json.html | safeHTML }}
+			{{ end }}
+			{{ end }}
 		</section>
 
 		{{ with .Params.syndication }}
