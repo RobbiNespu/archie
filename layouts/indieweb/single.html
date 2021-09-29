@@ -4,7 +4,7 @@
 		<div class="title">
 			<!-- indieweb: title ON -->
 			{{- if .Params.mfbookmark -}}
-				<h1 class="title p-name">⭐️ Bookmarked:<br> {{ .Params.mfbookmark }}</h1>
+				<h1 class="title p-name">⭐️ Bookmarked:<br> <a href="{{ .Params.mfbookmark }}" target="_blank" rel="nofollow noopener noreferrer">{{ .Params.mfbookmark }}</a></h1>
 				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
 			{{- else if .Params.mfrepostof -}}
 				<h1 class="title p-name">♻️ Repost:<br> {{ .Params.mfrepostof }}</h1>
