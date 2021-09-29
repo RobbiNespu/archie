@@ -17,7 +17,7 @@
 				{{ end }}
 			{{- else if .Params.mfreplyto -}}
 				<h1 class="title p-name">↩️ Reply to:<br> {{ .Params.mfreplyto }}</h1>
-				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ . }}</a>
+				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ .Params.mfreplyto }}</a>
 			{{- else if .Params.rsvpValue -}}
 			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
 			{{- else if .Params.mfquotationof -}}
@@ -58,7 +58,7 @@
 					{{- if in . "issuecomment" -}}
 						{{- $ghType = "comment" -}}
 					{{- end -}}
-					New {{ $ghType }} on project <a class="u-in-reply-to" rel="in-reply-to" href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a>
+					New {{ $ghType }} on project <a href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a>
 				{{- else -}}
 				{{ end }}
 				<h2>My reply:</h2>
