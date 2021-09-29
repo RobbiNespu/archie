@@ -9,7 +9,25 @@
 	{{- range .Data.Pages -}}
 		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
 		<li class="post">
-			<a href="{{ .RelPermalink }}">{{.Title }}</a> <span class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+			{{ if .Params.externalLink}}
+				<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 45 "..." }}</a>
+			<!-- hack -->
+			{{  else if .Params.mfbookmark }}
+					<a href="{{ .RelPermalink }}">⭐️ Bookmarked: {{ .Params.mfbookmark | truncate 45}}</a>
+			{{ else if .Params.mfrepostof }}
+					<a href="{{ .RelPermalink }}">♻️ Repost: {{ .Params.mfrepostof | truncate 45}}</a>
+			{{ else if .Params.mflikeof }}
+					<a href="{{ .RelPermalink }}">👍 Liked: {{ .Params.mflikeof | truncate 45}}</a>
+			{{ else if .Params.mfreplyto }}
+					<a href="{{ .RelPermalink }}">↩️ Reply to: {{ .Params.mfreplyto | truncate 45}}</a>
+			{{ else if .Params.rsvpValue }}
+					<a href="{{ .RelPermalink }}">📅 RSVP: {{ .Params.rsvpEventName | truncate 45}}</a>
+			{{ else if .Params.mfquotationof }}
+					<a href="{{ .RelPermalink }}">💬 Quote of: {{ .Params.mfquotationof | truncate 45}}</a>
+			{{ else }}
+					<a href="{{ .RelPermalink }}">{{.Title }}</a>
+			{{ end }}
+			<span class="meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 		</li>
 		{{- end -}}
 	{{- end -}}
