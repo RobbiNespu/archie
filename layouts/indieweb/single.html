@@ -70,8 +70,16 @@
 					{{- $ghType := "issue" -}}
 					{{- if in . "issuecomment" -}}
 						{{- $ghType = "comment" -}}
+						<p>New {{ $ghType }} on project <a href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a></p>
+						{{ $json_issuecommentId := replaceRE `^https?:\/\/github.com\/[a-zA-Z0-9_]{1,20}\/[a-zA-Z0-9_]{1,20}\/pull\/[0-9]*#issuecomment-` `$1` . -}}
+						{{ $json_issuecommentUrl := printf "https://api.github.com/repos/athul/archie/issues/comments/%s"  $json_issuecommentId  }}
+						{{ $json_issuecommentResponse := getJSON $json_issuecommentUrl }}
+						<blockquote>{{ $json_issuecommentResponse.body | safeHTML }}
+							<br /><p>&mdash; {{ $json_issuecommentResponse.user.login }} (<a href="{{ $json_issuecommentResponse.url }}">{{ dateFormat "January 2, 2006" $json_issuecommentResponse.updated_at }})</a></p>
+						</blockquote>
+					{{- else -}}
+					<p>New {{ $ghType }} on project <a href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a></p>
 					{{- end -}}
-					New {{ $ghType }} on project <a href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a>
 				{{- else -}}
 				{{ end }}
 				<h2>My reply:</h2>
