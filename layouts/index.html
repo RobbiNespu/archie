@@ -5,14 +5,20 @@
 		<div class="content">
 			{{ partial "head.html" . }}
 			<main>
-				<article>
+				<article class="h-entry">
+
+					<a style="display:none;" class="p-category p-name">homepage</a>
+					<time style="display:none;" class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+					<a style="display:none;" class="u-url" href="{{ .Permalink }}" ></a>
+					<a style="display:none;" class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
+
 					{{ with .Site.GetPage "/homepage/index.md" }}{{ if not (eq .Title "") }}
 					<div class="title">
 						<h1 class="title">{{ .Title }}</h1>
 					</div>
 					{{ end }}{{ end }}
 					{{ if isset .Params "tldr" }}
-					<div class="tldr">
+					<div class="tldr p-summary">
 						<strong>tl;dr:</strong>
 						{{ .Params.tldr }}
 					</div>{{ end }}
@@ -31,7 +37,7 @@
 						<pre><code>💡 You may check <a href="posts">archives</a> for full list of articles</code></pre>
 
 						<h1 id="contact">Contact 💌</h1>
-						<p>You can reach me by sending a message
+						<p class="e-content">You can reach me by sending a message
 							on <a target="_blank" rel="me" href="https://twitter.com/robbinespu">Twitter</a>,
 							<a target="_blank" rel="me" href="https://mstdn.social/@robbinespu">Mastodon</a>,
 							<a target="_blank" rel="me" href="https://matrix.to/#/@mambang:matrix.org">Matrix</a>
