@@ -102,11 +102,11 @@
 			{{ if ne . "" }}
 				{{ $domain := replaceRE "^https?://([^/]+).*" "$1" . }}
 					{{- if in $domain "twitter.com" -}}
-						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer" title="{{ $domain }}"><i class="icon" icon-name="twitter"></i></a>
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer syndication" class="u-syndication" title="{{ $domain }}"><i class="icon" icon-name="twitter"></i></a>
 					{{- else if in $domain "github.com" -}}
-						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer" title="{{ $domain }}"><i class="icon" icon-name="github"></i></a>
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer syndication" class="u-syndication" title="{{ $domain }}"><i class="icon" icon-name="github"></i></a>
 					{{ else }}
-						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer" title="{{ $domain }}"><i class="icon" icon-name="network"></i></a>
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer syndication" class="u-syndication" title="{{ $domain }}"><i class="icon" icon-name="network"></i></a>
 					{{ end }}
 					{{ if ne (add $i 1) $syndication_len }}<span>/</span>{{ end }}
 			{{ end}}
