@@ -73,7 +73,7 @@
 	{{- end }}
 	{{- end }}
 
-	{{ if ( .Params.math | default false )}}
+	{{ if .Params.math }}
 	  {{ partial "katex.html" . }}
 	{{ end }}
 
