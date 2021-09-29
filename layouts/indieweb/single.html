@@ -34,6 +34,19 @@
 			<a class="u-url" href="{{ .Permalink }}" ></a>
 			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
 			<a class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
+			<!-- webmention endpoint (auto publish) -->
+			{{ if .Params.mfreplyto }}
+			{{- $source := .Params.mfSource | lower -}}
+				{{- if eq $source "twitter" -}}
+				<a href="https://brid.gy/publish/twitter"></a>
+				{{- else if eq $source "mastodon" -}}
+				<a href="https://brid.gy/publish/mastodon"></a>
+				{{- else if eq $source "github" -}}
+				<a href="https://brid.gy/publish/github"></a>
+				{{- else -}}
+				<!-- nothing, pls check https://brid.gy/about#webmentions -->
+				{{- end -}}
+			{{- end -}}
 			</div>
 
 		</div>
