@@ -84,6 +84,11 @@ a:hover {
   color: black;
 }
 
+a.btn {
+  color: black;
+  border: 1px solid white !important;
+}
+
 .site-description a {
   color: #ddd;
 }
