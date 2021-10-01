@@ -443,6 +443,7 @@ table th{
   text-align: left;
   font-family: liberation mono,courier new;
   /* background: #9b93a4; */
+  background: #ededed;
 }
 
 table td{

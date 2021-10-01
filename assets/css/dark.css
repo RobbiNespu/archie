@@ -196,6 +196,17 @@ img:hover{
   color: #b0acac;
 }
 
+/*  table */
+table {
+  background: #272c34;
+}
+table th{
+  background-color: #1c2025;
+}
+table th,
+table td {
+  border-color: #1c2025;
+}
 /* toc - TableOfContent */
 .toc{
   background-color: #212328;
