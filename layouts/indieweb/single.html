@@ -61,7 +61,7 @@
 			{{- with .Params.mfreplyto -}}
 				<h2>Origin:</h2>
 				{{- if eq $source "twitter" -}}
-					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}		
+					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
 					{{- $urlPre := "https://publish.twitter.com/oembed" -}}
 					{{- $embedParams := "?cards=none&conversation=none&link_color=%23d40d0a&url=" -}}
 					{{- $tweetReply := . -}}
