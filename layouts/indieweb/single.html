@@ -61,10 +61,14 @@
 			{{- with .Params.mfreplyto -}}
 				<h2>Origin:</h2>
 				{{- if eq $source "twitter" -}}
-					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
-					{{- $url := printf "https://publish.twitter.com/oembed?lang=en&omit_script=true&dnt=true&align=center&url=%s" ( . | safeURL) -}}
-					{{- $json := getJSON $url -}}
-					{{ $json.html | safeHTML }}
+					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}		
+					{{- $urlPre := "https://publish.twitter.com/oembed" -}}
+					{{- $embedParams := "?cards=none&conversation=none&link_color=%23d40d0a&url=" -}}
+					{{- $tweetReply := . -}}
+					{{- $tweetJ := getJSON $urlPre $embedParams $tweetReply -}}
+						{{- if $tweetJ.html -}}
+								{{- $tweetJ.html | safeHTML -}}
+						{{- end -}}
 				{{- else if eq $source "mastodon" -}}
 				{{- else if eq $source "github" -}}
 					{{- $ghType := "issue" -}}
