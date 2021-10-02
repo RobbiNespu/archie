@@ -62,7 +62,7 @@
 				<h2>Origin:</h2>
 				{{- if eq $source "twitter" -}}
 					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
-					{{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v&dnt=%v&theme=dark&omit_script=true"  $tweetId  "true" -}}
+					{{- $url := printf "https://publish.twitter.com/oembed?lang=en&omit_script=true&dnt=true&align=center&url=%s" ( . | safeURL) -}}
 					{{- $json := getJSON $url -}}
 					{{ $json.html | safeHTML }}
 				{{- else if eq $source "mastodon" -}}
