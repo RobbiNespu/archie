@@ -28,17 +28,8 @@
 <div id="webmentions">
     <!-- HACK HERE -->
     {{ if or ($mentions) ($replys) }}
-    <h2>Mentions and replies</h2>
+    <h2>Comments and replies</h2>
     <ul class="comments">
-
-        {{ range $i, $mention := $mentions }}
-        <li>
-            <a class="reaction" rel="nofollow ugc" title="{{ $mention.author.name }} mentioned">
-                <img src="{{ $mention.author.photo}}">💥</a>
-                <a class="source" rel="nofollow ugc" href="{{$mention.url}}">{{ $mention.author.name }}</a>: <span class="text">{{ $mention.content.text}}</span>
-        </li>
-        {{end}}
-
         {{ range $i, $reply := $replys }}
         <li>
             <a class="reaction" rel="nofollow ugc" title="{{ $reply.author.name }} replied">
@@ -50,8 +41,12 @@
     {{end}}
 
     {{ if or ($bookmarks) ($likes) ($reposts) }}
-    <h2>Bookmarks, likes and repost</h2>
+    <h2>Mentions, bookmarks, likes and repost</h2>
     <ul class="reacts">
+
+        {{ range $i, $mention := $mentions }}
+            <a class="reaction" rel="nofollow ugc" href="{{$mention.url}}" title="{{ $mention.author.name }} mentioned"><img src="{{ $mention.author.photo}}">💥</a>
+        {{end}}
 
         {{ range $i, $bookmark := $bookmarks }}
         <a class="reaction" rel="nofollow ugc" href="{{$bookmark.url}}" title="{{ $bookmark.author.name }} bookmarked"><img src="{{ $bookmark.author.photo}}">⭐️</a>
