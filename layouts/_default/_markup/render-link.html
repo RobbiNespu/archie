@@ -1,7 +1,19 @@
+{{ if eq .Text .Destination}}
+<a href="{{ .Destination | safeURL }}"
+  {{ with .Title}} title="{{ . }}"{{ end }}
+  {{ if and (strings.HasPrefix .Destination "http") (eq (in (string .Destination) "robbinespu.gitlab.io") "false") }}
+      target="_blank" rel="nofollow noopener noreferrer"
+   {{ end }}>
+   {{ .Destination }}
+</a>
+{{ else}}
 <a href="{{ .Destination | safeURL }}"
   {{ with .Title}} title="{{ . }}"{{ end }}
   {{ if strings.HasPrefix .Destination "http" }}
       target="_blank" rel="nofollow noopener noreferrer"
    {{ end }}>
-{{ .Text | markdownify }}
+   {{ if .Text }}
+      {{ .Text | markdownify }}
+   {{ end }}
 </a>
+{{ end }}
