@@ -33,8 +33,18 @@
   {{ end }}
   {{ if isset $json "video" }}
         <div class="videoContainer" >
-        <img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
-        <a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+          {{ if eq (index $json.video.variants 1 "type") "video/mp4" }}
+          <video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+            <source src="{{ index $json.video.variants 1 "src" | safeURL }}" type="video/mp4"></source>
+          </video>
+          {{ else if eq (index $json.video.variants 2 "type") "video/mp4" }}
+          <video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+            <source src="{{ index $json.video.variants 2 "src" | safeURL }}" type="video/mp4"></source>
+          </video>
+          {{else}}
+          <img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
+              <a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+          {{ end }}
         </div>
   {{ end }}
   <br />
