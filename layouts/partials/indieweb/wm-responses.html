@@ -33,7 +33,7 @@
         {{ range $i, $reply := $replys }}
         <li>
             <a class="reaction" rel="nofollow ugc" title="{{ $reply.author.name }} replied">
-                <img src="{{ $reply.author.photo}}">💬</a>
+                <img src="{{ $reply.author.photo | default "/images/upload/cat.jpg" }}">💬</a>
                 <a class="source" rel="nofollow ugc" href="{{$reply.url}}">{{ $reply.author.name }}</a>: <span class="text">{{ $reply.content.text}}</span>
         </li>
         {{end}}
