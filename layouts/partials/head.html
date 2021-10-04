@@ -21,5 +21,4 @@
 </header>
 {{- if isset .Site.Params "subtitle" -}}
 	<p>{{ .Site.Params.Subtitle | markdownify }}</p>
-    <!-- {{ $ageDays := div (sub now.Unix .Date.Unix) 86400 }}{{ if gt $ageDays 365 }}<strong>Warning:</strong> This post is over a year old. The information may be out of date{{ end }} -->
 {{- end -}}

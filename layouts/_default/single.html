@@ -3,7 +3,11 @@
 	<article class="h-entry">
 		<div class="title">
 			<h1 class="title p-name">{{ .Title }}</h1>
-			<div class="meta">Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min</div>
+			<div class="meta text-center">
+				Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min
+				<br>
+				{{ $ageDays := div (sub now.Unix .Date.Unix) 86400 }}{{ if gt $ageDays 365 }}<strong>Warning:</strong> This post is over a year old. The information may be out of date{{ end }}
+			</div>
 
 			<div style="display:none;">
 			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
