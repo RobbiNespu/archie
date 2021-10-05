@@ -22,6 +22,15 @@
 			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
 			{{- else if .Params.mfquotationof -}}
 			<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
+			{{- else if .Params.webmentionType -}}  <!-- self interaction such as note (status), post, sport etc -->
+				{{ if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
+				<h1 class="title p-name">☂️ Status:<br> {{ .Title }}</h1>
+				{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
+				<h1 class="title p-name">🙋‍♂️ Question:<br> {{ .Title }}</h1>
+				{{ else }}
+				<h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! <br> {{ .Params.webmentionType }} + {{ .Title }}</h1>
+				{{ end }}
+
 			{{- else -}}
 		   <h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! {{ .Title }}</h1>
 		   {{- end -}}
@@ -98,7 +107,18 @@
 			</div>
 			<!-- webmention endpoint (auto publish) -->
 			{{ if .Params.mfreplyto }}
-			{{- $source := .Params.mfSource | lower -}}
+				{{- $source := .Params.mfSource | lower -}}
+				{{- if eq $source "twitter" -}}
+				<a href="https://brid.gy/publish/twitter"></a>
+				{{- else if eq $source "mastodon" -}}
+				<a href="https://brid.gy/publish/mastodon"></a>
+				{{- else if eq $source "github" -}}
+				<a href="https://brid.gy/publish/github"></a>
+				{{- else -}}
+				<!-- nothing, pls check https://brid.gy/about#webmentions -->
+				{{- end -}}
+			{{- else if and (eq .Params.webmentionType "note") (or (eq .Params.webmentionTypeNoteType "status") (eq .Params.webmentionTypeNoteType "question")) -}}
+				{{- $source := .Params.mfSource | lower -}}
 				{{- if eq $source "twitter" -}}
 				<a href="https://brid.gy/publish/twitter"></a>
 				{{- else if eq $source "mastodon" -}}
