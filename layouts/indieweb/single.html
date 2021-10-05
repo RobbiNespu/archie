@@ -24,9 +24,9 @@
 			<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
 			{{- else if .Params.webmentionType -}}  <!-- self interaction such as note (status), post, sport etc -->
 				{{ if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
-				<h1 class="title p-name">☂️ Status:<br> {{ .Title }}</h1>
+				<h1 class="title">☂️ Status:<br> {{ .Title }}</h1>
 				{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
-				<h1 class="title p-name">🙋‍♂️ Question:<br> {{ .Title }}</h1>
+				<h1 class="title">🙋‍♂️ Question:<br> {{ .Title }}</h1>
 				{{ else }}
 				<h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! <br> {{ .Params.webmentionType }} + {{ .Title }}</h1>
 				{{ end }}
