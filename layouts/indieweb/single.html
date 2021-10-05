@@ -140,7 +140,7 @@
 				{{ if isset $json "entities" }}
 				{{ if isset $json.entities "user_mentions"  }}
 					{{ range $user := $json.entities.user_mentions}}
-					{{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
+					{{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
 					{{ end }}
 				{{ end }}
 
@@ -153,7 +153,7 @@
 				{{ if isset $json.entities "urls"  }}
 					{{ range $url := $json.entities.urls}}
 						{{ with $url.url }}
-					{{ $text = replace $text $url.url (printf "<a href='%s'>%s</a>" $url.url $url.display_url) }}
+					{{ $text = replace $text $url.url (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='%s'>%s</a>" $url.url $url.display_url) }}
 						{{ end }}
 					{{ end }}
 				{{ end }}
@@ -183,7 +183,7 @@
 						</div>
 						
 				{{ end }}
-				<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+				<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 				</blockquote>
 			{{ end }}
 			{{ end }}
