@@ -181,7 +181,7 @@
 							<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
 						{{ end }}
 						</div>
-						
+
 				{{ end }}
 				<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 				</blockquote>
