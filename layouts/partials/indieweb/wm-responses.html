@@ -54,11 +54,11 @@
 
 
         {{ range $i, $like := $likes }}
-        <a class="reaction" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img src="{{ $like.author.photo}}">😍</a>
+        <a class="reaction p-like h-cite u-url" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img class="u-photo" src="{{ $like.author.photo}}">😍</a>
         {{ end }}
 
         {{ range $i, $repost := $reposts }}
-        <a class="reaction" rel="nofollow ugc" href="{{$repost.url}}" title="{{ $repost.author.name }} reposted"><img src="{{ $repost.author.photo}}">🔄</a>
+        <a class="reaction p-repost h-cite u-url" rel="nofollow ugc" href="{{$repost.url}}" title="{{ $repost.author.name }} reposted"><img class="u-photo" src="{{ $repost.author.photo}}">🔄</a>
         {{ end }}
 
     </ul>
