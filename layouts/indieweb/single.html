@@ -27,6 +27,10 @@
 				<h1 class="title">☂️ Status:<br> {{ .Title }}</h1>
 				{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
 				<h1 class="title">🙋‍♂️ Question:<br> {{ .Title }}</h1>
+				{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+				<h1 class="title p-name">🚩 Checked :<br> {{ .Title }}</h1>
+				<data class="p-latitude" value="{{.Params.checkinlat}}"></data>
+    			<data class="p-longitude" value="{{.Params.checkinlon}}"></data>
 				{{ else }}
 				<h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! <br> {{ .Params.webmentionType }} + {{ .Title }}</h1>
 				{{ end }}
@@ -90,6 +94,32 @@
 			{{ if .Params.rsvpEventName }}
 				RSVP <code><span class="p-rsvp">{{ .Params.rsvpValue }}</span></code> to <a href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
 			{{ end }}
+
+			{{if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+				{{- $options := dict "lng" .Params.checkinlon "lat" .Params.checkinlat "checkin" .Title -}}
+				{{- $id := dict "Content" $options "Scratch" .Page.Scratch | partial "function/random-id.html" -}}
+				<div id='{{ $id }}' style="width: 100%; overflow:hidden; position:relative; height:300px;"></div>
+				<script>
+				mapboxgl.accessToken = 'pk.eyJ1IjoibHVrYXNtYXJ0aW5lbGxpIiwiYSI6ImNpem85dmhwazAyajIyd284dGxhN2VxYnYifQ.HQCmyhEXZUTz3S98FMrVAQ';
+				var map = new mapboxgl.Map({
+					container: '{{ $id }}',
+					style: 'mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true',
+					center: [{{ .Params.checkinlat }}, {{ .Params.checkinlon }}], // 103.42188, 4.77832
+					minZoom: 2,
+					zoom: 17, // starting zoom  1-22
+					pitch: 60, // pitch in degrees
+					bearing: -60 // bearing in degrees
+				});
+
+				var control = new mapboxgl.NavigationControl();
+				map.addControl(control, "top-left");
+
+				new mapboxgl.Marker({ color: "#b40219" })
+					.setLngLat([{{ .Params.checkinlat }}, {{ .Params.checkinlon }}])
+					.addTo(map)
+					.setPopup(new mapboxgl.Popup({ offset: 20 }).setHTML('<a style="color:red">{{ .Title }}</a>'));
+				</script>
+			{{end}}
 
 			<div class="e-content">
 				{{ .Content }}
@@ -181,7 +211,7 @@
 							<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
 						{{ end }}
 						</div>
-						
+
 				{{ end }}
 				<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 				</blockquote>

@@ -38,6 +38,9 @@
   {{ if eq .File.Dir "search/" }}{{ partial "search-index.html" . }}{{end}}
 {{ end }}
 
+
+<script src='{{ .Site.BaseURL }}js/mapbox-gl-language/v1.0.0/mapbox-gl-language.js'></script>
+
 {{- if (isset .Site.Params "social") -}}
 <script>
       lucide.createIcons();
