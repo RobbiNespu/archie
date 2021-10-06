@@ -1108,3 +1108,36 @@ a.footnote-backref{
   margin-left: -48px; /*half of the width */
   margin-top: -48px; /*half of the height */
 }
+
+/* mapbox */
+#map {
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:100%;
+}
+.mapboxgl-marker.mapboxgl-marker-anchor-center svg {
+	display: none;
+}
+.mapboxgl-marker {
+  background-image: url('/images/upload/icons8-marker.gif');
+  /* background-size: cover; */
+  background-size: auto 100%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+.mapboxgl-ctrl-attrib-inner,
+.mapboxgl-ctrl-bottom-left {
+  display: none !important;
+}

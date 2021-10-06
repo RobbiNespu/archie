@@ -1,0 +1,42 @@
+{{/*
+    example;
+    {{<mapbox 103.42188 4.77832 "Beli ikang ayer hitam nok buat singgang!" >}}
+    {{<mapbox lng="103.42188" lat="4.77832" checkin="Beli ikang ayer hitam nok buat singgang!" >}}
+
+*/}}
+
+{{- $lng := cond .IsNamedParams (.Get "lng") (.Get 0) -}}
+{{- $lat := cond .IsNamedParams (.Get "lat") (.Get 1) -}}
+
+{{- $checkin := cond .IsNamedParams (.Get "checkin") (.Get 2) | default "Hello everyone, I was here!" -}}
+
+{{- $zoom := .Get "zoom" | default 17 -}}
+{{- $pitch := .Get "pitch" | default 50 -}}
+{{- $bearing := .Get "bearing" | default -60 -}}
+
+{{- $options := dict "lng" $lng "lat" $lat "checkin" $checkin "zoom" $zoom "pitch" $pitch "bearing" $bearing -}}
+
+{{- $id := dict "Content" $options "Scratch" .Page.Scratch | partial "function/random-id.html" -}}
+
+<div id='{{ $id }}' style="width: 100%; overflow:hidden; position:relative; height:300px;"></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibHVrYXNtYXJ0aW5lbGxpIiwiYSI6ImNpem85dmhwazAyajIyd284dGxhN2VxYnYifQ.HQCmyhEXZUTz3S98FMrVAQ';
+var map = new mapboxgl.Map({
+    container: '{{ $id }}',
+    style: 'mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true',
+    center: [{{ $lng }}, {{ $lat }}], // 103.42188, 4.77832
+    minZoom: 2,
+    zoom: {{ $zoom }}, // starting zoom  1-22
+    pitch: {{ $pitch }}, // pitch in degrees
+    bearing: {{ $bearing }} // bearing in degrees
+});
+//mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js');
+
+var control = new mapboxgl.NavigationControl();
+map.addControl(control, "top-left");
+
+new mapboxgl.Marker({ color: "#b40219" })
+    .setLngLat([{{ $lng }}, {{ $lat }}])
+    .addTo(map)
+    .setPopup(new mapboxgl.Popup({ offset: 20 }).setHTML('<a style="color:red">{{ $checkin }}</a>'));
+</script>
