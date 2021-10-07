@@ -1,6 +1,8 @@
+{{- with .Get 0 -}}
+{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
+
 {{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
-{{ $id := .Get 0 }}
-{{ $json := getJSON $urlPre $id }}
+{{ $json := getJSON $urlPre $tweetId }}
 {{ $text := $json.text | safeHTML }}
 {{ if isset $json "entities" }}
   {{ if isset $json.entities "user_mentions"  }}
@@ -50,3 +52,5 @@
   <br />
   <p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 </blockquote>
+
+{{- end -}}
