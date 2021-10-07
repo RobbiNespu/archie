@@ -28,7 +28,7 @@
   <p>{{  $text | safeHTML }}</p>
   {{ if isset $json "photos" }}
     {{ range $item := $json.photos }}
-        <img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;">
+    <a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
     {{ end }}
   {{ end }}
   {{ if isset $json "video" }}
