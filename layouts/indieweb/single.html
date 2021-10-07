@@ -119,6 +119,7 @@
 					.addTo(map)
 					.setPopup(new mapboxgl.Popup({ offset: 20 }).setHTML('<a style="color:red">{{ .Title }}</a>'));
 				</script>
+				<p class="text-center">GPS: {{ .Params.checkinlat }}, {{ .Params.checkinlon }} | <a target="_blank" rel="nofollow noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query={{ .Params.checkinlat }},{{ .Params.checkinlon }}">Google map</a></p>
 			{{end}}
 
 			<div class="e-content">
