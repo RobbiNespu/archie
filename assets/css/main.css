@@ -1093,11 +1093,18 @@ a.footnote-backref{
 /* static tweet */
 .twitter-tweet,
 .static-tweet{
-  border-color:#1DA1F2;
   background:rgba(29, 161, 242, 0.1);
+  border: 1px dashed #87cefa;
+  border-left-color: #1DA1F2;
+  border-left-style: solid;
+  border-left-width: 7px;
 }
 blockquote.static-tweet{
   color: #535151;
+}
+blockquote.twitter-tweet a,
+blockquote.static-tweet a{
+  font-size: .95rem;
 }
 .videoContainer {
   position: relative;

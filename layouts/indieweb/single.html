@@ -67,7 +67,7 @@
 					{{- $tweetReply := . -}}
 					{{- $tweetJ := getJSON $urlPre $embedParams $tweetReply -}}
 						{{- if $tweetJ.html -}}
-								{{- $tweetJ.html | safeHTML -}}
+							{{- $tweetJ.html | safeHTML -}}
 						{{- end -}}
 				{{- else if eq $source "mastodon" -}}
 				{{- else if eq $source "github" -}}
