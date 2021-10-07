@@ -183,7 +183,7 @@
 				{{ if isset $json.entities "urls"  }}
 					{{ range $url := $json.entities.urls}}
 						{{ with $url.url }}
-					{{ $text = replace $text $url.url (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='%s'>%s</a>" $url.url $url.display_url) }}
+					{{ $text = replace $text $url.url (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='%s'>%s</a>" $url.expanded_url $url.display_url) }}
 						{{ end }}
 					{{ end }}
 				{{ end }}
