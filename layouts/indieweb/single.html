@@ -104,7 +104,7 @@
 				var map = new mapboxgl.Map({
 					container: '{{ $id }}',
 					style: 'mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true',
-					center: [{{ .Params.checkinlat }}, {{ .Params.checkinlon }}], // 103.42188, 4.77832
+					center: [{{ .Params.checkinlon }}, {{ .Params.checkinlat }}],
 					minZoom: 2,
 					zoom: 17, // starting zoom  1-22
 					pitch: 60, // pitch in degrees
@@ -115,10 +115,11 @@
 				map.addControl(control, "top-left");
 
 				new mapboxgl.Marker({ color: "#b40219" })
-					.setLngLat([{{ .Params.checkinlat }}, {{ .Params.checkinlon }}])
+					.setLngLat([{{ .Params.checkinlon }}, {{ .Params.checkinlat }}])
 					.addTo(map)
 					.setPopup(new mapboxgl.Popup({ offset: 20 }).setHTML('<a style="color:red">{{ .Title }}</a>'));
 				</script>
+				<p class="text-center">GPS: {{ .Params.checkinlat }}, {{ .Params.checkinlon }} | <a target="_blank" rel="nofollow noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query={{ .Params.checkinlat }},{{ .Params.checkinlon }}">Google map</a></p>
 			{{end}}
 
 			<div class="e-content">
