@@ -214,3 +214,8 @@ table td {
 .toc-header{
   color: var(--darkMaincolor);
 }
+
+/* static tweet */
+blockquote.static-tweet{
+  color: #bbb1b1;
+}

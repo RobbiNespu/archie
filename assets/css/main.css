@@ -1096,6 +1096,9 @@ a.footnote-backref{
   border-color:#1DA1F2;
   background:rgba(29, 161, 242, 0.1);
 }
+blockquote.static-tweet{
+  color: #535151;
+}
 .videoContainer {
   position: relative;
 }

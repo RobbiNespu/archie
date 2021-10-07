@@ -6,6 +6,7 @@
         <img src="{{ .Site.BaseURL }}img/404_page.jpg" alt="Kenot found!"></p>
         <p style="color:gray; font-size: 90%; text-align: center;">Page not found! :(</p>
         <p style="color:gray; font-size: 90%; text-align: center;"></p>
+        <p style="border-bottom:0px;color:rgb(250, 4, 197); font-size: 90%; text-align: center;">Oops. It looks like I’ve broken something somewhere! Apologies, sometimes I inadvertently move something and forget to update a link. Please try use search box below, it might be somewhere</p>
         <center>
         <form id="search" style="margin: 0 auto;width:100%;"
             action='{{ with .GetPage "/search" }}{{.Permalink}}{{end}}' method="get">
