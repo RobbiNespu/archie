@@ -43,6 +43,12 @@
 					<title>📅 RSVP: {{ .Params.rsvpEventName }}</title>
 			{{ else if .Params.mfquotationof }}
 					<title>💬 Quote of: {{ .Params.mfquotationof }}</title>
+			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
+					<title>☂️ Status: {{ .Title | truncate 45}}</title>
+			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
+					<title>🙋‍♂️ Question: {{ .Title | truncate 45}}</title>
+			{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+					<title>🚩 Checked: {{ .Title | truncate 45}}</title>
 			{{ else }}
 				<<title>something wrong!</title>
 			{{ end }}
