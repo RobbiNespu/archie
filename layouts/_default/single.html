@@ -6,7 +6,9 @@
 			<div class="meta text-center">
 				Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min
 				<br>
-				{{ $ageDays := div (sub now.Unix .Date.Unix) 86400 }}{{ if gt $ageDays 365 }}<strong>⚠️ Warning:</strong> This post is over a year old, the information may be out of date.{{ end }}
+				{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
+					{{ $ageDays := div (sub now.Unix .Date.Unix) 86400 }}{{ if gt $ageDays 365 }}<strong>⚠️ Warning:</strong> This post is over a year old, the information may be out of date.{{ end }}
+				{{- end -}}
 			</div>
 
 			<div style="display:none;">
