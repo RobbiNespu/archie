@@ -1,10 +1,14 @@
 {{ $url := printf "https://robbinespu.gitlab.io%v"  .RelPermalink }}
 {{ $urlized := $url | md5 }}
 
-{{- range .Params.aliases -}}
+{{ $dummyAlias := slice "dummy" }}
+{{ range $.Page.Params.aliases}}
+    {{ $dummyAlias = $dummyAlias | append . }}
+{{ end }}
+
+{{- range $dummyAlias -}}
     {{ $aliases := printf "https://robbinespu.gitlab.io%v"  . }}
     {{ $aliasesMD5 := $aliases | md5 }}
-
     <div class="webmentions">
         <details>
             <summary class="text-center padding-bottom-04rem">IndieWeb Interactions</summary>
