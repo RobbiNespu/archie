@@ -27,7 +27,7 @@
   {{ $bookmarks := index (index .Site.Data.webmentions $urlized) "bookmark-of"}}
 <div id="webmentions">
     <!-- HACK HERE -->
-    {{ if or ($mentions) ($replys) }}
+    {{ if $replys }}
     <h2>Comments and replies</h2>
     <ul class="comments">
         {{ range $i, $reply := $replys }}
@@ -40,7 +40,7 @@
     </ul>
     {{end}}
 
-    {{ if or ($bookmarks) ($likes) ($reposts) }}
+    {{ if or ($mentions) ($bookmarks) ($likes) ($reposts) }}
     <h2>Mentions, bookmarks, likes and repost</h2>
     <ul class="reacts">
 
