@@ -15,8 +15,11 @@
 			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
 			<a class="u-url" href="{{ .Permalink }}" ></a>
 			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
-			<!-- {{ partial "h-card.html" . }} -->
-			<a class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
+			</div>
+
+			<div style="display: none;" class="p-author h-card">
+				<a class="p-name u-url" href="{{ .Site.BaseURL }}" >{{ .Params.author | default .Site.Author.name }}</a>
+				<img class="u-photo" src="{{ .Site.BaseURL }}images/upload/Screenshot_20210816_124946.png" alt="Robbi Nespu" />
 			</div>
 
 		</div>
