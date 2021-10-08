@@ -1,69 +1,77 @@
 {{ $url := printf "https://robbinespu.gitlab.io%v"  .RelPermalink }}
 {{ $urlized := $url | md5 }}
-<div class="webmentions">
-	<details>
-		<summary class="text-center padding-bottom-04rem">IndieWeb Interactions</summary>
-		<!-- <h2>Interactions with this post</h2> -->
-		<p class="text-center">Below you can find the interactions that this page has had using Indieweb. Which means, you can mentioned this URL on any website that support <a href="http://indieweb.org/webmention">WebMention</a>. Have you written a <a href="https://indieweb.org/responses">response</a> to this post? Let me know the URL:</p>
 
-		<div class="manual-webmention text-center">
-			<p></p>
-			<form id="manual-webmention" action="https://webmention.io/robbinespu.gitlab.io/webmention" method="post">
-				<input type="url" name="source" value="" placeholder="https://example.com/my-post" style="width:30%;"/>
-				<input type="hidden" name="target" value="{{ $url }}" />
-				<input type="submit" name="submit" value="Send" />
-			</form>
+{{- range .Params.aliases -}}
+    {{ $aliases := printf "https://robbinespu.gitlab.io%v"  . }}
+    {{ $aliasesMD5 := $aliases | md5 }}
 
-			<p><small>(Do you not have a website set up with WebMention capabilities? You can use <a href="https://commentpara.de/">Comment Parade</a>.)</small></p>
-		</div>
-	</details>
-</div>
-<br>
-{{ if index .Site.Data.webmentions $urlized }}
-  {{ $likes := index (index .Site.Data.webmentions $urlized) "like-of" }}
-  {{ $replys := index (index .Site.Data.webmentions $urlized) "in-reply-to" }}
-  {{ $reposts := index (index .Site.Data.webmentions $urlized) "repost-of"}}
-  {{ $mentions := index (index .Site.Data.webmentions $urlized) "mention-of"}}
-  {{ $bookmarks := index (index .Site.Data.webmentions $urlized) "bookmark-of"}}
-<div id="webmentions">
-    <!-- HACK HERE -->
-    {{ if $replys }}
-    <h2>Comments and replies</h2>
-    <ul class="comments">
-        {{ range $i, $reply := $replys }}
-        <li>
-            <a class="reaction" rel="nofollow ugc" title="{{ $reply.author.name }} replied">
-                <img src="{{ $reply.author.photo | default "/images/upload/cat.jpg" }}">💬</a>
-                <a class="source" rel="nofollow ugc" href="{{$reply.url}}">{{ $reply.author.name }}</a>: <span class="text">{{ $reply.content.text}}</span>
-        </li>
-        {{end}}
-    </ul>
-    {{end}}
+    <div class="webmentions">
+        <details>
+            <summary class="text-center padding-bottom-04rem">IndieWeb Interactions</summary>
+            <!-- <h2>Interactions with this post</h2> -->
+            <p class="text-center">Below you can find the interactions that this page has had using Indieweb. Which means, you can mentioned this URL on any website that support <a href="http://indieweb.org/webmention">WebMention</a>. Have you written a <a href="https://indieweb.org/responses">response</a> to this post? Let me know the URL:</p>
 
-    {{ if or ($mentions) ($bookmarks) ($likes) ($reposts) }}
-    <h2>Mentions, bookmarks, likes and repost</h2>
-    <ul class="reacts">
+            <div class="manual-webmention text-center">
+                <p></p>
+                <form id="manual-webmention" action="https://webmention.io/robbinespu.gitlab.io/webmention" method="post">
+                    <input type="url" name="source" value="" placeholder="https://example.com/my-post" style="width:30%;"/>
+                    <input type="hidden" name="target" value="{{ $url }}" />
+                    <input type="submit" name="submit" value="Send" />
+                </form>
 
-        {{ range $i, $mention := $mentions }}
-            <a class="reaction" rel="nofollow ugc" href="{{$mention.url}}" title="{{ $mention.author.name }} mentioned"><img src="{{ $mention.author.photo}}">💥</a>
-        {{end}}
-
-        {{ range $i, $bookmark := $bookmarks }}
-        <a class="reaction" rel="nofollow ugc" href="{{$bookmark.url}}" title="{{ $bookmark.author.name }} bookmarked"><img src="{{ $bookmark.author.photo}}">⭐️</a>
-        {{ end }}
-
-
-        {{ range $i, $like := $likes }}
-        <a class="reaction p-like h-cite u-url" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img class="u-photo" src="{{ $like.author.photo}}">😍</a>
-        {{ end }}
-
-        {{ range $i, $repost := $reposts }}
-        <a class="reaction p-repost h-cite u-url" rel="nofollow ugc" href="{{$repost.url}}" title="{{ $repost.author.name }} reposted"><img class="u-photo" src="{{ $repost.author.photo}}">🔄</a>
-        {{ end }}
-
-    </ul>
-    {{ end }}
+                <p><small>(Do you not have a website set up with WebMention capabilities? You can use <a href="https://commentpara.de/">Comment Parade</a>.)</small></p>
+            </div>
+        </details>
+    </div>
     <br>
-    <!-- HACK HERE -->
-</div>
-{{end}}
+    
+    {{ if or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5) }}
+        {{ $likes := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "like-of" }}
+        {{ $replys := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "in-reply-to" }}
+        {{ $reposts := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "repost-of"}}
+        {{ $mentions := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "mention-of"}}
+        {{ $bookmarks := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "bookmark-of"}}
+
+        <div id="webmentions">
+            <!-- HACK HERE -->
+            {{ if $replys }}
+            <h2>Comments and replies</h2>
+            <ul class="comments">
+                {{ range $i, $reply := $replys }}
+                <li>
+                    <a class="reaction" rel="nofollow ugc" title="{{ $reply.author.name }} replied">
+                        <img src="{{ $reply.author.photo | default "/images/upload/cat.jpg" }}">💬</a>
+                        <a class="source" rel="nofollow ugc" href="{{$reply.url}}">{{ $reply.author.name }}</a>: <span class="text">{{ $reply.content.text}}</span>
+                </li>
+                {{end}}
+            </ul>
+            {{end}}
+
+            {{ if or ($mentions) ($bookmarks) ($likes) ($reposts) }}
+            <h2>Mentions, bookmarks, likes and repost</h2>
+            <ul class="reacts">
+
+                {{ range $i, $mention := $mentions }}
+                    <a class="reaction" rel="nofollow ugc" href="{{$mention.url}}" title="{{ $mention.author.name }} mentioned"><img src="{{ $mention.author.photo}}">💥</a>
+                {{end}}
+
+                {{ range $i, $bookmark := $bookmarks }}
+                <a class="reaction" rel="nofollow ugc" href="{{$bookmark.url}}" title="{{ $bookmark.author.name }} bookmarked"><img src="{{ $bookmark.author.photo}}">⭐️</a>
+                {{ end }}
+
+
+                {{ range $i, $like := $likes }}
+                <a class="reaction p-like h-cite u-url" rel="nofollow ugc" href="{{$like.url}}" title="{{ $like.author.name }} liked"><img class="u-photo" src="{{ $like.author.photo}}">😍</a>
+                {{ end }}
+
+                {{ range $i, $repost := $reposts }}
+                <a class="reaction p-repost h-cite u-url" rel="nofollow ugc" href="{{$repost.url}}" title="{{ $repost.author.name }} reposted"><img class="u-photo" src="{{ $repost.author.photo}}">🔄</a>
+                {{ end }}
+
+            </ul>
+            {{ end }}
+            <br>
+            <!-- HACK HERE -->
+        </div>
+    {{end}}
+{{- end -}}  
