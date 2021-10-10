@@ -66,8 +66,8 @@
 		{{ if .Params.mfreplyto }}
 		{{- $source := .Params.mfSource | lower -}}
 			{{- with .Params.mfreplyto -}}
-				<h2>Origin:</h2>
 				{{- if eq $source "twitter" -}}
+					<h2>Origin:</h2>
 					{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
 					{{- $urlPre := "https://publish.twitter.com/oembed" -}}
 					{{- $embedParams := "?&omit_script=true&cards=none&conversation=none&link_color=%23d40d0a&url=" -}}
@@ -78,6 +78,7 @@
 						{{- end -}}
 				{{- else if eq $source "mastodon" -}}
 				{{- else if eq $source "github" -}}
+					<h2>Origin:</h2>
 					{{- $ghType := "issue" -}}
 					{{- if in . "issuecomment" -}}
 						{{- $ghType = "comment" -}}
