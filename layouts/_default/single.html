@@ -17,10 +17,8 @@
 			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
 			</div>
 
-			<div style="display: none;" class="p-author h-card">
-				<a class="p-name u-url" href="{{ .Site.BaseURL }}" >{{ .Params.author | default .Site.Author.name }}</a>
-				<img class="u-photo" src="{{ .Site.BaseURL }}images/upload/Screenshot_20210816_124946.png" alt="Robbi Nespu" />
-			</div>
+			<!-- indieweb webmention -->
+			{{ partial "h-card.html" . }}
 
 		</div>
 		{{ if isset .Params "tldr" }}
