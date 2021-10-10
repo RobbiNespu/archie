@@ -5,7 +5,6 @@
 <div class="webmentions">
     <details>
         <summary class="text-center padding-bottom-04rem">IndieWeb Interactions</summary>
-        <!-- <h2>Interactions with this post</h2> -->
         <p class="text-center">Below you can find the interactions that this page has had using Indieweb. Which means, you can mentioned this URL on any website that support <a href="http://indieweb.org/webmention">WebMention</a>. Have you written a <a href="https://indieweb.org/responses">response</a> to this post? Let me know the URL:</p>
 
         <div class="manual-webmention text-center">
@@ -22,22 +21,21 @@
 </div>
 <br>
 
-{{ $dummyAlias := slice "dummy" }}
+{{ $dummyAlias := slice .RelPermalink }} <!-- add current URL -->
 {{ range $.Page.Params.aliases}}
-    {{ $dummyAlias = $dummyAlias | append . }}
+    {{ $dummyAlias = $dummyAlias | append . }}  <!-- add alias URL if exist -->
 {{ end }}
 
 {{- range $dummyAlias -}}
-    {{ if ne . "dummy"}}
         {{ $aliases := printf "https://robbinespu.gitlab.io%v"  . }}
         {{ $aliasesMD5 := $aliases | md5 }}
 
-        {{ if or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5) }}
-            {{ $likes := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "like-of" }}
-            {{ $replys := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "in-reply-to" }}
-            {{ $reposts := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "repost-of"}}
-            {{ $mentions := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "mention-of"}}
-            {{ $bookmarks := index (or (index $.Site.Data.webmentions $urlized) (index $.Site.Data.webmentions $aliasesMD5)) "bookmark-of"}}
+        {{ if index $.Site.Data.webmentions $aliasesMD5 }}
+            {{ $likes := index (index $.Site.Data.webmentions $aliasesMD5) "like-of" }}
+            {{ $replys := index (index $.Site.Data.webmentions $aliasesMD5) "in-reply-to" }}
+            {{ $reposts := index (index $.Site.Data.webmentions $aliasesMD5) "repost-of"}}
+            {{ $mentions := index (index $.Site.Data.webmentions $aliasesMD5) "mention-of"}}
+            {{ $bookmarks := index (index $.Site.Data.webmentions $aliasesMD5) "bookmark-of"}}
 
             <div id="webmentions">
                 <!-- HACK HERE -->
@@ -93,5 +91,5 @@
                 <!-- HACK HERE -->
             </div>
         {{end}}
-    {{ end }}
+
 {{- end -}}  
