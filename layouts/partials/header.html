@@ -20,6 +20,9 @@
 
 	{{ if .Params.externalLink }} <meta http-equiv="refresh" content="3; URL={{ .Params.externalLink}}" /> {{ end }}
 
+	<!-- Google site verification -->
+	<meta name="google-site-verification" content="u9CwcUbM9F4U7K44ozKAlXm6hp2nuBhIWZF3vFfBoEY" />
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
 	<meta property="og:image" content="{{ .Site.BaseURL }}{{ .Site.Params.og_image }}"/>
