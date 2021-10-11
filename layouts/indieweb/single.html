@@ -22,6 +22,9 @@
 			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
 			{{- else if .Params.mfquotationof -}}
 			<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
+			{{- else if .Params.mffollowof -}}
+				<h1 class="title p-name">🐜 Following:<br> {{ .Params.mffollowof }}</h1>
+				<a class="u-follow-of" href="{{ .Params.mffollowto }}" style="display:none;">{{ .Params.mffollowof }}</a>
 			{{- else if .Params.webmentionType -}}  <!-- self interaction such as note (status), post, sport etc -->
 				{{ if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
 				<h1 class="title">☂️ Status:<br> {{ .Title }}</h1>
@@ -32,7 +35,6 @@
 				{{ else }}
 				<h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! <br> {{ .Params.webmentionType }} + {{ .Title }}</h1>
 				{{ end }}
-
 			{{- else -}}
 		   <h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! {{ .Title }}</h1>
 		   {{- end -}}

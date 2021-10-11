@@ -49,6 +49,8 @@
 					<title>🙋‍♂️ Question: {{ .Title | truncate 45}}</title>
 			{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
 					<title>🚩 Checked: {{ .Title | truncate 45}}</title>
+			{{ else if .Params.mffollowof }}
+					<title>🐜 Following: {{ .Title | truncate 45}}</title>
 			{{ else }}
 				<<title>something wrong!</title>
 			{{ end }}

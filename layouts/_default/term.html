@@ -30,6 +30,8 @@
 					<a href="{{ .RelPermalink }}">🙋‍♂️ Question: {{ .Title | truncate 45}}</a>
 			{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
 					<a href="{{ .RelPermalink }}">🚩 Checked: {{ .Title | truncate 45}}</a>
+			{{ else if .Params.mffollowof }}
+					<a href="{{ .RelPermalink }}">🐜 Following: {{ .Title | truncate 45}}</a>
 			{{ else }}
 					<a href="{{ .RelPermalink }}">{{.Title }}</a>
 			{{ end }}

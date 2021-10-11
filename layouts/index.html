@@ -58,6 +58,8 @@
 									<a class="u-url p-name" href="{{ .RelPermalink }}">🙋‍♂️ Question: {{ .Title | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 								{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
 									<a class="u-url p-name" href="{{ .RelPermalink }}">🚩 Checked: {{ .Title | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if .Params.mffollowof }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">🐜 Following: {{ .Title | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 								{{ else }}
 									<a class="u-url p-name" href="{{ .RelPermalink }}">OPSSS.. PLZ CHECK {{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 								{{ end }}
