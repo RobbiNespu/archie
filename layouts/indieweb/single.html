@@ -10,7 +10,7 @@
 				<h1 class="title p-name">♻️ Repost:<br> {{ .Params.mfrepostof }}</h1>
 				<a class="u-repost-of" href="{{ .Params.mfrepostof }}" style="display:none;">reposted {{ .Params.mfrepostof }}</a>
 			{{- else if .Params.mflikeof -}}
-				<h1 class="title p-name">👍 Liked:<br> {{ .Params.mflikeof }}</h1>
+				<h1 class="title p-name">👍 Liked:<br> <a href="{{ .Params.mflikeof }}" target="_blank" rel="nofollow noopener noreferrer">{{ .Params.mflikeof }}</a></h1>
 				<a class="u-url u-like-of" href="{{ .Params.mflikeof }}" style="display:none;">{{ .Params.mflikeof }}</a>
 				{{ if .Params.cite }}
 					<blockquote class="e-content" cite="{{ .Params.mflikeof }}"><p>{{ .Params.cite }}</p></blockquote>
