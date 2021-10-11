@@ -5,11 +5,11 @@
 	{{- $title := ( .Title ) -}}
 	{{- $siteTitle := ( .Site.Title ) -}}
 	{{- if .IsHome -}}
-	<title>{{ $siteTitle }} | Home </title>
-	{{- else if .Params.mfSource -}}
-	<title>Indieweb - {{ .Params.author | default .Site.Author.name }}</title>
+		<title>{{ $siteTitle }} | Home </title>
+	{{- else if .Params.webmentionType -}}
+		<title>Indieweb - {{ .Params.author | default .Site.Author.name }}</title>
 	{{- else -}}
-	<title>{{ $title }} - {{ $siteTitle }}</title>
+		<title>{{ $title }} - {{ $siteTitle }}</title>
 	{{- end -}}
 
 	{{- if isset .Site.Params "favicon" -}}
