@@ -16,6 +16,13 @@
 	<link rel="icon" type="image/png" href={{ .Site.BaseURL }}{{ .Site.Params.favicon }} />
 	{{- end -}}
 
+	<!-- RSS -->
+	{{ if (in (string .Permalink) "/indieweb/")}}
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="/indieweb/index.xml"/>
+	{{ else }}
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="/index.xml"/>
+	{{ end }}
+
 	{{ if (in (string .Permalink) "/homepage/")}} <meta http-equiv="refresh" content="1; URL={{ .Site.BaseURL}}" /> {{ end }}
 
 	{{ if .Params.externalLink }} <meta http-equiv="refresh" content="3; URL={{ .Params.externalLink}}" /> {{ end }}
