@@ -178,14 +178,14 @@
 				RSVP 
 					{{- if .Params.rsvpValue -}}
 						{{ if eq .Params.rsvpValue "yes"}}
-						✔️ <code><span class="p-rsvp">{{- .Params.rsvpValue -}}
+						✔️ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
 						{{ else if eq .Params.rsvpValue "no"}}
-						❌ <code><span class="p-rsvp">{{- .Params.rsvpValue -}}
+						❌ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
 						{{ else }}
-						👀 <code><span class="p-rsvp">{{- .Params.rsvpValue -}}
+						👀 <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
 						{{ end }}
 					{{- end -}}
-				</span></code> to <a href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
+				</span></mark> to <a href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
 			{{ end }}
 
 			{{if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
