@@ -4,26 +4,26 @@
 		<div class="title">
 			<!-- indieweb: title ON -->
 			{{- if .Params.mfbookmark -}}
-				<h1 class="title p-name">⭐️ Bookmarked:<br> <a href="{{ .Params.mfbookmark }}" target="_blank" rel="nofollow noopener noreferrer">{{ .Params.mfbookmark }}</a></h1>
+				<h1 class="title p-name">⭐️ Bookmarked:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfbookmark }}">{{ .Params.mfbookmark }}</a></h1>
 				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
 			{{- else if .Params.mfrepostof -}}
-				<h1 class="title p-name">♻️ Repost:<br> {{ .Params.mfrepostof }}</h1>
+				<h1 class="title p-name">♻️ Repost:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfrepostof }}">{{ .Params.mfrepostof }}</a></h1>
 				<a class="u-repost-of" href="{{ .Params.mfrepostof }}" style="display:none;">reposted {{ .Params.mfrepostof }}</a>
 			{{- else if .Params.mflikeof -}}
-				<h1 class="title p-name">👍 Liked:<br> <a href="{{ .Params.mflikeof }}" target="_blank" rel="nofollow noopener noreferrer">{{ .Params.mflikeof }}</a></h1>
+				<h1 class="title p-name">👍 Liked:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mflikeof }}" >{{ .Params.mflikeof }}</a></h1>
 				<a class="u-url u-like-of" href="{{ .Params.mflikeof }}" style="display:none;">{{ .Params.mflikeof }}</a>
 				{{ if .Params.cite }}
 					<blockquote class="e-content" cite="{{ .Params.mflikeof }}"><p>{{ .Params.cite }}</p></blockquote>
 				{{ end }}
 			{{- else if .Params.mfreplyto -}}
-				<h1 class="title p-name">↩️ Reply to:<br> {{ .Params.mfreplyto }}</h1>
+				<h1 class="title p-name">↩️ Reply to:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfreplyto }}">{{ .Params.mfreplyto }}</a></h1>
 				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ .Params.mfreplyto }}</a>
 			{{- else if .Params.rsvpValue -}}
 			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
 			{{- else if .Params.mfquotationof -}}
 			<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
 			{{- else if .Params.mffollowof -}}
-				<h1 class="title p-name">🐜 Following:<br> {{ .Params.mffollowof }}</h1>
+				<h1 class="title p-name">🐜 Following:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mffollowof }}">{{ .Params.mffollowof }}</a></h1>
 				<a class="u-follow-of" href="{{ .Params.mffollowof }}" style="display:none;">{{ .Params.mffollowof }}</a>
 			{{- else if .Params.webmentionType -}}  <!-- self interaction such as note (status), post, sport etc -->
 				{{ if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
@@ -171,10 +171,10 @@
 			{{- else if and (eq .Params.webmentionType "note") (or (eq .Params.webmentionTypeNoteType "status") (eq .Params.webmentionTypeNoteType "question")) -}}
 				<!-- nothing, let RSS published to twitter, mstdn etc -->
 			{{- end -}}
-			{{ if or (.Params.mfquotationof) (.Params.mfrepostof) }}
+			{{ if or (.Params.mfquotationof) (.Params.mfrepostof) (.Params.mfbookmark) (.Params.mflikeof)}}
 			{{- $source := .Params.mfSource | lower -}}
 			{{- if eq $source "twitter" -}}
-				{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` (or (.Params.mfquotationof) (.Params.mfrepostof)) -}}
+				{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` (or (.Params.mfquotationof) (.Params.mfrepostof) (.Params.mfbookmark) (.Params.mflikeof)) -}}
 				{{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
 				{{ $id := $tweetId }}
 				{{ $json := getJSON $urlPre $id }}
