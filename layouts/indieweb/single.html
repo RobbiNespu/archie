@@ -63,7 +63,6 @@
 		<!-- webmention endpoint (auto publish via brid.gy) -->
 		{{ if or (.Params.mfSource) (.Params.mfreplyto) }}
 		{{- $source := .Params.mfSource | lower -}}
-			<link rel=webmention href=https://brid.gy/publish/webmention>
 			{{- if eq $source "twitter" -}}
 			<a href="https://brid.gy/publish/twitter"></a>
 			{{- else if eq $source "mastodon" -}}
@@ -206,7 +205,10 @@
 				{{ end }}
 
 				<blockquote class="static-tweet">
-				<p>{{  $text | safeHTML }}</p>
+				<div style="display:flex;margin-bottom:.5em">
+					<img style="min-width:6rem;max-width:6rem;padding:1em;border-radius: 40%;" src="{{ $json.user.profile_image_url_https | replaceRE "normal" "400x400" }}" style="opacity:100%">
+					<div style="align-self:center"><p>{{  $text | safeHTML }}</p></div>
+				</div>
 				{{ if isset $json "photos" }}
 					{{ range $item := $json.photos }}
 					<a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
