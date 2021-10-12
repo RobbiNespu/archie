@@ -52,7 +52,7 @@
 				<a class="p-name u-url" href="{{ .Site.BaseURL }}" >{{ .Params.author | default .Site.Author.name }}</a>
 				<img class="u-photo" src="{{ .Site.BaseURL }}images/upload/Screenshot_20210816_124946.png" alt="Robbi Nespu" />
 				{{ if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
-				<a href="https://www.google.com/maps/search/?api=1&query={{ .Params.checkinlat }},{{ .Params.checkinlon }}" class="u-checkin h-card">{{ .Title }}</a>
+				<a href="https://www.google.com/maps/search/?api=1&query={{ .Params.checkinlat }},{{ .Params.checkinlon }}" class="u-checkin p-location h-card">{{ .Title }}</a>
 				<data class="p-latitude" value="{{.Params.checkinlat}}"></data>
 				<data class="p-longitude" value="{{.Params.checkinlon}}"></data>
 				{{ end }}
