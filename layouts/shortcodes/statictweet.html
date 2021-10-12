@@ -32,9 +32,13 @@
     <div style="align-self:center"><p>{{  $text | safeHTML }}</p></div>
   </div>
   {{ if isset $json "photos" }}
-    {{ range $item := $json.photos }}
-    <a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
-    {{ end }}
+    {{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
+      <a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
+    {{ else }}
+      {{ range $item := $json.photos }}
+      <a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
+      {{ end }}
+    {{end}}
   {{ end }}
   {{ if isset $json "video" }}
         <div class="videoContainer" >
