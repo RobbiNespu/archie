@@ -178,10 +178,10 @@
 
 		<section class="body">
 			{{ if and (.Params.rsvpEventName) (ne .Params.webmentionDelete401 "true") }}
-				RSVP 
+				<p class="text-center">RSVP 
 					{{- if .Params.rsvpValue -}}
 						{{ if eq .Params.rsvpValue "yes"}}
-						✔️ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
+						✅ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
 						{{ else if eq .Params.rsvpValue "no"}}
 						❌ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
 						{{ else }}
@@ -189,6 +189,7 @@
 						{{ end }}
 					{{- end -}}
 				</span></mark> to <a target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
+				</p>
 			{{ end }}
 
 			{{if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
