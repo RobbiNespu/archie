@@ -188,7 +188,7 @@
 						👀 <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
 						{{ end }}
 					{{- end -}}
-				</span></mark> to <a href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
+				</span></mark> to <a target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
 			{{ end }}
 
 			{{if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
