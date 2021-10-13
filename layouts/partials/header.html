@@ -24,6 +24,7 @@
 	{{ end }}
 
 	{{ if (in (string .Permalink) "/homepage/")}} <meta http-equiv="refresh" content="1; URL={{ .Site.BaseURL}}" /> {{ end }}
+	{{ if and (in (string .Permalink) "/indieweb/") (eq .Params.webmentionDelete401 "true") }} <meta http-equiv="Status" content="410 Gone" />{{ end }}
 
 	{{ if .Params.externalLink }} <meta http-equiv="refresh" content="3; URL={{ .Params.externalLink}}" /> {{ end }}
 

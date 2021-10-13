@@ -38,6 +38,7 @@
 						<h1 id="recent-articles" ><a style="border-bottom:0px" href="/indieweb">Recent indieweb 🍄</a></h1>
 						<ul class="posts">
 							{{ range ( where .Site.RegularPages "Type" "indieweb" | first 7 ) }}
+							{{ if ne .Params.webmentionDelete401 "true" }}
 							<li class="post" style="text-align: left;">
 								<!-- WOOOOOOOO -->
 								{{ if .Params.mfbookmark }}
@@ -65,6 +66,7 @@
 								{{ end }}
 								<!-- WOOOOOOOO -->
 							</li>
+							{{end}}
 							{{end}}
 						</ul>
 						<hr>

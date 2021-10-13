@@ -3,7 +3,9 @@
 	<article class="h-entry">
 		<div class="title">
 			<!-- indieweb: title ON -->
-			{{- if .Params.mfbookmark -}}
+			{{- if eq .Params.webmentionDelete401 "true" -}}
+				<h1 class="title p-name">🔥 Post deleted</h1>
+			{{- else if .Params.mfbookmark -}}
 				<h1 class="title p-name">⭐️ Bookmarked:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfbookmark }}">{{ .Params.mfbookmark }}</a></h1>
 				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
 			{{- else if .Params.mfrepostof -}}
@@ -19,9 +21,9 @@
 				<h1 class="title p-name">↩️ Reply to:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfreplyto }}">{{ .Params.mfreplyto }}</a></h1>
 				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ .Params.mfreplyto }}</a>
 			{{- else if .Params.rsvpValue -}}
-			<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
+				<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
 			{{- else if .Params.mfquotationof -}}
-			<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
+				<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
 			{{- else if .Params.mffollowof -}}
 				<h1 class="title p-name">🐜 Following:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mffollowof }}">{{ .Params.mffollowof }}</a></h1>
 				<a class="u-follow-of" href="{{ .Params.mffollowof }}" style="display:none;">{{ .Params.mffollowof }}</a>
@@ -175,7 +177,7 @@
 		{{ end }}
 
 		<section class="body">
-			{{ if .Params.rsvpEventName }}
+			{{ if and (.Params.rsvpEventName) (ne .Params.webmentionDelete401 "true") }}
 				RSVP 
 					{{- if .Params.rsvpValue -}}
 						{{ if eq .Params.rsvpValue "yes"}}
@@ -217,18 +219,22 @@
 			{{end}}
 
 			<div class="e-content">
-				{{ .Content }}
-				{{ if .Params.mfquotationof }}
-				{{- $source := .Params.mfSource | lower -}}
-				<cite class="u-quotation-of h-cite" style="display:none;">
-					Quoted <a href="{{ .Params.mfquotationof }}">this</a>:
-				</cite>
-					{{- if ne $source "twitter" -}}
-					<blockquote>
-					TEXT TEXT
-					</blockquote>
+				{{ if eq .Params.webmentionDelete401 "true" }}
+					<p class="text-center">Sorry. This entry has been deleted.</p>
+				{{ else }}
+					{{ .Content }}
+					{{ if .Params.mfquotationof }}
+						{{- $source := .Params.mfSource | lower -}}
+						<cite class="u-quotation-of h-cite" style="display:none;">
+							Quoted <a href="{{ .Params.mfquotationof }}">this</a>:
+						</cite>
+							{{- if ne $source "twitter" -}}
+							<blockquote>
+							TEXT TEXT
+							</blockquote>
+							{{ end }}
+						{{ end }}
 					{{ end }}
-				{{ end }}
 			</div>
 			
 			{{ if or (.Params.mfquotationof) (.Params.mfrepostof) (.Params.mfbookmark) (.Params.mflikeof)}}

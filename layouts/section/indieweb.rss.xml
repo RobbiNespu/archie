@@ -14,7 +14,7 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>XoX 4{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
     <link>{{ .Permalink }}</link>
     <description>Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}</description>
 
@@ -28,10 +28,12 @@
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}
     {{ range $pages }}
-    {{ if (in (string .Permalink) "/indieweb/")}}
+    {{ if in (string .Permalink) "/indieweb/" }}
     <item>
       <!--  -->
-      {{ if .Params.mfbookmark }}
+      {{- if eq .Params.webmentionDelete401 "true" -}}
+				  <title>🔥 Post deleted</title>
+      {{ else if .Params.mfbookmark }}
 					<title>⭐️ Bookmarked: {{ .Params.mfbookmark }}</title>
 			{{ else if .Params.mfrepostof }}
 					<title>♻️ Repost: {{ .Params.mfrepostof }}</title>

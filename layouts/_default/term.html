@@ -7,7 +7,7 @@
 
 <ul class="posts">
 	{{- range .Data.Pages -}}
-		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
+		{{- if and (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) (ne .Params.webmentionDelete401 "true") -}}
 		<li class="post">
 			{{ if .Params.externalLink}}
 				<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 45 "..." }}</a>
