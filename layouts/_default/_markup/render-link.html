@@ -18,7 +18,7 @@
       target="_blank" rel="nofollow noopener noreferrer"
    {{ end }}>
    {{ if .Text }}
-      {{ .Text | replaceRE `http(s)?(:)?(\/\/)?|(\/\/)?` "$1" | markdownify }}
+      {{ .Text | replaceRE `^https?://` "$1" | markdownify }}
    {{ end }}
 </a>
 {{ end }}
