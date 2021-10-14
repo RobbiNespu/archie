@@ -42,10 +42,13 @@
                 {{ if $replys }}
                 <h2>Comments and replies</h2>
                 <ul class="comments">
+                    {{ $seed := "foo" }}
                     {{ range $i, $reply := $replys }}
+                    {{ $randomHash := delimit (shuffle (split (md5 $seed) "" )) "" }}
+                    {{ $randomImgAvatar := delimit ( shuffle (shuffle (slice "avataaars" "big-ears" "big-ears-neutral" "big-smile" "bottts" "croodles" "gridy" "human" "identicon" "jdenticon" "open-peeps" "pixel-art-neutral")) | first 1) ""}}
                     <li>
                         <a class="reaction" rel="nofollow ugc" title="{{ $reply.author.name }} replied">
-                            <img src="{{ $reply.author.photo | default "/images/upload/cat.jpg" }}">💬</a>
+                            <img src="{{ if $reply.author.photo }}{{ $reply.author.photo }}{{ else }}https://avatars.dicebear.com/api/{{  $randomImgAvatar }}/{{ $randomHash }}.svg{{end}}">💬</a>
                             <a class="source" rel="nofollow ugc" href="{{$reply.url}}">{{ $reply.author.name }}</a>: <span class="text">{{ $reply.content.text}}</span>
                     </li>
                     {{end}}
