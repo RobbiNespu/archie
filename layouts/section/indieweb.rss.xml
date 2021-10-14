@@ -36,7 +36,7 @@
       {{ else if .Params.mfbookmark }}
 					<title>⭐️ Bookmarked: {{ .Params.mfbookmark }}</title>
 			{{ else if .Params.mfrepostof }}
-					<title>♻️ Repost: {{ .Params.mfrepostof }}</title>
+					<title>🔄 Repost: {{ .Params.mfrepostof }}</title>
 			{{ else if .Params.mflikeof }}
 					<title>👍 Liked: {{ .Params.mflikeof }}</title>
 			{{ else if .Params.mfreplyto }}

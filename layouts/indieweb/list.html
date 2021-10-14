@@ -26,7 +26,7 @@
 			{{  else if .Params.mfbookmark }}
 					<a class="u-url p-name" href="{{ .RelPermalink }}">⭐️ Bookmarked: {{ .Params.mfbookmark | truncate 45}}</a>
 			{{ else if .Params.mfrepostof }}
-					<a class="u-url p-name" href="{{ .RelPermalink }}">♻️ Repost: {{ .Params.mfrepostof | truncate 45}}</a>
+					<a class="u-url p-name" href="{{ .RelPermalink }}">🔄 Repost: {{ .Params.mfrepostof | truncate 45}}</a>
 			{{ else if .Params.mflikeof }}
 					<a class="u-url p-name" href="{{ .RelPermalink }}">👍 Liked: {{ .Params.mflikeof | truncate 45}}</a>
 			{{ else if .Params.mfreplyto }}
