@@ -897,6 +897,10 @@ section details summary::after {
     font-weight: normal;
 }
 
+section details[open] summary::after {
+  content: "";
+}
+
 details.youtube-expander > summary {
     background-color: #eee;
     padding: 1em;
