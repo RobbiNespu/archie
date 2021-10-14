@@ -25,7 +25,7 @@
 			{{ else if .Params.mfquotationof }}
 					<a href="{{ .RelPermalink }}">💬 Quote of: {{ .Params.mfquotationof | truncate 45}}</a>
 			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
-					<a href="{{ .RelPermalink }}">☂️ Status: {{ .Title | truncate 45}}</a>
+					<a href="{{ .RelPermalink }}">💼 Status: {{ .Title | truncate 45}}</a>
 			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
 					<a href="{{ .RelPermalink }}">🙋‍♂️ Question: {{ .Title | truncate 45}}</a>
 			{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}

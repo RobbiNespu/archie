@@ -29,7 +29,7 @@
 				<a class="u-follow-of" href="{{ .Params.mffollowof }}" style="display:none;">{{ .Params.mffollowof }}</a>
 			{{- else if .Params.webmentionType -}}  <!-- self interaction such as note (status), post, sport etc -->
 				{{ if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
-				<h1 class="title">☂️ Status:<br> {{ .Title }}</h1>
+				<h1 class="title">💼 Status:<br> {{ .Title }}</h1>
 				{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
 				<h1 class="title">🙋‍♂️ Question:<br> {{ .Title }}</h1>
 				{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
