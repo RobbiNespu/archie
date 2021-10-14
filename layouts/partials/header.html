@@ -6,7 +6,7 @@
 	{{- $siteTitle := ( .Site.Title ) -}}
 	{{- if .IsHome -}}
 		<title>{{ $siteTitle }} | Home </title>
-	{{- else if .Params.webmentionType -}}
+	{{- else if in (string .Permalink) "/indieweb/" -}}
 		<title>Indieweb - {{ .Params.author | default .Site.Author.name }}</title>
 	{{- else -}}
 		<title>{{ $title }} - {{ $siteTitle }}</title>
