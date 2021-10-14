@@ -4,9 +4,9 @@
   {{ if (in (string (.Destination | safeURL)) "#left")}} {{ $figureStyle = "figcaption-left" }} {{ end }}
   {{ if (in (string (.Destination | safeURL)) "#right")}} {{ $figureStyle = "figcaption-right" }} {{ end }}
   <figure class="{{ $figureStyle }}">
-    <img loading="lazy" src="{{ .Destination | safeURL }}" alt="{{ .Text }}" class="u-photo">
+    <img loading="lazy" src="{{ .Destination | safeURL }}" alt="{{ .Text }}" class="u-photo medium-zoom-image">
     <figcaption>{{ .Title | markdownify }}</figcaption>
   </figure>
 {{ else }}
-  <img loading="lazy" src="{{ .Destination | safeURL }}" alt="{{ .Text }}" class="u-photo">
+  <img loading="lazy" src="{{ .Destination | safeURL }}" alt="{{ .Text }}" class="u-photo medium-zoom-image">
 {{ end }}

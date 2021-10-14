@@ -48,3 +48,12 @@
       lucide.createIcons();
 </script>
 {{- end -}}
+
+{{- if ne .Type "gallery" -}}
+<script>
+  mediumZoom(document.querySelectorAll('img.u-photo.medium-zoom-image'), {
+    margin: 20,
+    background: '#0a0a0a',
+  })
+</script>
+{{- end -}}

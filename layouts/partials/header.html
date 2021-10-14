@@ -103,6 +103,8 @@
 		{{ end }}
 	{{ end }}
 
+	{{- if ne .Type "gallery" -}}<script src="{{ $.Site.BaseURL }}/js/medium-zoom.min.js"></script>{{- end -}}
+
 	<!-- mapbox -->
 	<script src='{{ .Site.BaseURL }}js/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
 	{{ $mapbox := resources.Get "css/mapbox-gl-js/v2.4.0/mapbox-gl.css" | fingerprint }}
