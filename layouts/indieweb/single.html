@@ -86,13 +86,13 @@
 							{{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
 							{{ end }}
 						{{ end }}
-		
+
 						{{ if isset $json.entities "media"  }}
 							{{ range $media := $json.entities.media }}
 							{{ $text = replace $text $media.url "" }}
 							{{ end }}
 						{{ end }}
-		
+
 						{{ if isset $json.entities "urls"  }}
 							{{ range $url := $json.entities.urls}}
 								{{ with $url.url }}
@@ -101,14 +101,14 @@
 							{{ end }}
 						{{ end }}
 						{{ end }}
-		
+
 						<blockquote class="static-tweet">
 						<div style="display:flex;margin-bottom:.5em">
 							<img style="min-width:6rem;max-width:6rem;min-height:6rem;max-height:6rem;padding:1em;border-radius: 40%;" src="{{ $json.user.profile_image_url_https | replaceRE "normal" "400x400" }}" style="opacity:100%">
 							<div style="align-self:center"><p>{{  $text | safeHTML }}</p></div>
 						</div>
 						{{ if isset $json "photos" }}
-						
+
 						{{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
 							<a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
 						{{ else }}
@@ -116,7 +116,7 @@
 							<a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
 						{{ end }}
 						{{end}}
-		
+
 						{{ end }}
 						{{ if isset $json "video" }}
 								<div class="videoContainer" >
@@ -133,7 +133,7 @@
 									<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
 								{{ end }}
 								</div>
-		
+
 						{{ end }}
 						<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 						</blockquote>
@@ -162,7 +162,7 @@
 
 		<section class="body">
 			{{ if and (.Params.rsvpEventName) (ne .Params.webmentionDelete401 "true") }}
-				<p class="text-center">RSVP 
+				<p class="text-center">RSVP
 					{{- if .Params.rsvpValue -}}
 						{{ if eq .Params.rsvpValue "yes"}}
 						✅ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
@@ -238,7 +238,7 @@
 				{{- end -}}
 				<!-- webmention endpoint (auto publish via brid.gy) -->
 			</div>
-			
+
 			{{ if or (.Params.mfquotationof) (.Params.mfrepostof) (.Params.mfbookmark) (.Params.mflikeof)}}
 			{{- $source := .Params.mfSource | lower -}}
 			{{- if eq $source "twitter" -}}
@@ -275,7 +275,7 @@
 					<div style="align-self:center"><p>{{  $text | safeHTML }}</p></div>
 				</div>
 				{{ if isset $json "photos" }}
-				
+
 				{{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
 					<a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
 				{{ else }}
