@@ -1,0 +1,51 @@
+{{ define "main" }}
+<main>
+	<article class="h-entry">
+		<div class="title">
+			<h1 class="title p-name">{{ .Title }}XXXXXXXX</h1> {{ .Type }}
+			<div class="meta text-center">
+				Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min
+				<br>
+				{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
+					{{ $ageDays := div (sub now.Unix .Date.Unix) 86400 }}{{ if gt $ageDays 365 }}<strong>⚠️ Warning:</strong> This post is over a year old, the information may be out of date.{{ end }}
+				{{- end -}}
+			</div>
+
+			<div style="display:none;">
+			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+			<a class="u-url" href="{{ .Permalink }}" ></a>
+			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
+			</div>
+
+			<!-- indieweb webmention -->
+			{{ partial "h-card.html" . }}
+
+		</div>
+		{{ if isset .Params "tldr" }}<div class="tldr p-summary"><strong>tl;dr:</strong>{{ .Params.tldr }}</div>{{ end }}
+
+		<section class="body e-content">
+			{{ .Content }}
+          <!--  -->
+          
+          {{ $.Scratch.Add "index" slice }}
+           {{ range (where .Data.Pages "Section" "!=" "").GroupByDate "2006" }}
+                <h3 id="{{ .Key}}">{{ .Key}}</h3>
+                    {{ $year := .Key }}
+                    {{ range .Pages }}
+                    {{ $title:=  print .Params.readTitle }}
+                    {{ $tags :=  dict "status" .Params.readStatus "title" $title "type" .Params.readType "permalink" .RelPermalink }}
+                    {{ $.Scratch.Add "index" $tags }}
+
+                    <!-- {{ $tags | jsonify }}<br><br> -->
+                    
+                    {{ end }}
+                    <br>2 {{ $.Scratch.Get "index"   }}
+                    <br><br><br>
+                    {{ $diz := dict $year ($.Scratch.Get "index")}}
+                    {{  $diz | jsonify}}
+           {{ end }}
+           <!--  -->
+		</section>
+	</article>
+</main>
+{{ end }}
