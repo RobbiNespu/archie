@@ -32,7 +32,7 @@
 	<meta name="google-site-verification" content="u9CwcUbM9F4U7K44ozKAlXm6hp2nuBhIWZF3vFfBoEY" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
+	<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if isset .Params "tldr" }}{{ .Params.tldr }}{{else if .IsPage}}{{ .Summary | htmlEscape }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
 	<meta property="og:image" content="{{ .Site.BaseURL }}{{ .Site.Params.og_image }}"/>
 	{{ with .OutputFormats.Get "rss" -}}
 	{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
@@ -93,12 +93,12 @@
     {{ if .Site.Params.enableGoogleAnalytics | default false }}
 		{{ if not .Site.IsServer }}
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.GoogleAnalytics }}"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
-			gtag('config', '{{ .Site.GoogleAnalytics }}');
+			gtag('config', '{{ .Site.Params.GoogleAnalytics }}');
 		</script>
 		{{ end }}
 	{{ end }}
