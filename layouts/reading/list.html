@@ -24,7 +24,48 @@
 		{{ if isset .Params "tldr" }}<div class="tldr p-summary"><strong>tl;dr:</strong>{{ .Params.tldr }}</div>{{ end }}
 
 		<section class="body e-content">
-			 <!-- {{ .Content }} -->
+		<!-- {{ .Content }} -->
+
+            <!-- currently -->
+            <h2 id="currently">Currently</h2>
+            <table>
+                <thead>
+                <tr>
+                <th>Title</th>
+                <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{ range where .Pages ".Params.readStatus" "current" }}
+                        <tr>
+                            <td><a href="{{ .RelPermalink }}">{{ .Params.readAuthor }}. {{ .Params.readPublished }}. {{ .Params.readTitle }}</a></td>
+                            <td>{{ .Params.readType }}</td>
+                        </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+            <!-- currently -->
+
+            <!-- to-read -->
+            <h2 id="currently">To-read</h2>
+            <table>
+                <thead>
+                <tr>
+                <th>Title</th>
+                <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{ range where .Pages ".Params.readStatus" "to-read" }}
+                        <tr>
+                            <td><a href="{{ .RelPermalink }}">{{ .Params.readAuthor }}. {{ .Params.readPublished }}. {{ .Params.readTitle }}</a></td>
+                            <td>{{ .Params.readType }}</td>
+                        </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+            <!-- to-read -->
+
            <!-- HISTORY -->
            <h2 id="history">History</h2>
            <hr>
