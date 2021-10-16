@@ -26,24 +26,21 @@
 		<section class="body e-content">
 			{{ .Content }}
           <!--  -->
-          
-          {{ $.Scratch.Add "index" slice }}
+         
+          {{ $json := ""}}
            {{ range (where .Data.Pages "Section" "!=" "").GroupByDate "2006" }}
+                {{ $array := slice .Key}}
                 <h3 id="{{ .Key}}">{{ .Key}}</h3>
                     {{ $year := .Key }}
-                    {{ range .Pages }}
-                    {{ $title:=  print .Params.readTitle }}
-                    {{ $tags :=  dict "status" .Params.readStatus "title" $title "type" .Params.readType "permalink" .RelPermalink }}
-                    {{ $.Scratch.Add "index" $tags }}
-
-                    <!-- {{ $tags | jsonify }}<br><br> -->
-                    
-                    {{ end }}
-                    <br>2 {{ $.Scratch.Get "index"   }}
-                    <br><br><br>
-                    {{ $diz := dict $year ($.Scratch.Get "index")}}
-                    {{  $diz | jsonify}}
+                    {{ range .Pages.GroupByParam "readStatus" }}
+                        {{ range (.Pages)}}
+                            {{ . }}<br>
+                            {{ $array = $array | append (dict "status" .Params.readStatus "type" .Params.readType "permalink" .RelPermalink ) }}
+                        {{end }}
+                    {{end}}
+                    {{  $json = dict "data" $array }}
            {{ end }}
+           {{ $json | jsonify}}
            <!--  -->
 		</section>
 	</article>
