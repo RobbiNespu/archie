@@ -24,24 +24,36 @@
 		{{ if isset .Params "tldr" }}<div class="tldr p-summary"><strong>tl;dr:</strong>{{ .Params.tldr }}</div>{{ end }}
 
 		<section class="body e-content">
-			{{ .Content }}
-          <!--  -->
-         
-          {{ $json := ""}}
+			 <!-- {{ .Content }} -->
+           <!-- HISTORY -->
+           <h2 id="history">History</h2>
+           <hr>
            {{ range (where .Data.Pages "Section" "!=" "").GroupByDate "2006" }}
-                {{ $array := slice .Key}}
-                <h3 id="{{ .Key}}">{{ .Key}}</h3>
-                    {{ $year := .Key }}
+                {{ $year := .Key}}
+                <table>
+                    <thead>
+                    <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <h3 id="history-{{$year}}">{{ $year}}</h3>
                     {{ range .Pages.GroupByParam "readStatus" }}
-                        {{ range (.Pages)}}
-                            {{ . }}<br>
-                            {{ $array = $array | append (dict "status" .Params.readStatus "type" .Params.readType "permalink" .RelPermalink ) }}
+                        {{ range $index, $element := (.Pages)}}
+                            {{ $title := printf "%v. %v. %v" .Params.readAuthor .Params.readPublished .Params.readTitle}}
+                            {{ if eq .Params.readStatus "history"}}
+                                <tr>
+                                    <td><a href="{{ .RelPermalink }}">{{ $title }}</a></td>
+                                    <td>{{ .Params.readType }}</td>
+                                </tr>
+                            {{ end }}
                         {{end }}
                     {{end}}
-                    {{  $json = dict "data" $array }}
+                </tbody>
+                </table>
            {{ end }}
-           {{ $json | jsonify}}
-           <!--  -->
+           <!-- HISTORY -->
 		</section>
 	</article>
 </main>
