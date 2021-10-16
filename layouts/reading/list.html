@@ -24,7 +24,21 @@
 		{{ if isset .Params "tldr" }}<div class="tldr p-summary"><strong>tl;dr:</strong>{{ .Params.tldr }}</div>{{ end }}
 
 		<section class="body e-content">
-		<!-- {{ .Content }} -->
+            <details class="spoiler" id="spoiler-2">
+                <summary>ToC</summary>
+                <aside class="toc" style="float:right">
+                <a class="toc-header">Table of content</a>
+                <nav id="TableOfContents">
+                <ul>
+                <li><a href="#currently">Currently</a></li>
+                <li><a href="#to-read">To reach</a></li>
+                <li><a href="#history">History</a></li>
+                <ul>
+                </ul>
+                </nav>
+                </aside>
+            </details>
+		    {{ .Content }}
 
             <!-- currently -->
             <h2 id="currently">Currently</h2>
@@ -47,7 +61,7 @@
             <!-- currently -->
 
             <!-- to-read -->
-            <h2 id="currently">To-read</h2>
+            <h2 id="to-read">To read</h2>
             <table>
                 <thead>
                 <tr>
