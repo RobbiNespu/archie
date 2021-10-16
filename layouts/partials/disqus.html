@@ -19,10 +19,11 @@
             Have some thoughts, discussion or feedback on this post?<br>
           </div>
           <div class="text-center emailcomments">
-          
-          <a class="btn" href="mailto:{{ .Site.Params.email }}?subject=[robbinespu.gitlab.io] - '{{ .Page.Title  | safeHTML}}'">💬&nbsp;<strong>Send me an email</strong></a>
+
+          <a class="btn" href="mailto:{{ .Site.Params.email }}?subject=[robbinespu.gitlab.io] - '{{ .RelPermalink  | safeHTML}}'">💬&nbsp;<strong>Send me an email</strong></a>
 
         </div>
         <div> {{ partial "related-post.html" . }}</div>
-        <div> {{ partial "webmention.html" . }}</div>
+        <!-- <div> {{ partial "webmention.html" . }}</div> -->
+        <div> {{ partial "indieweb/wm-responses.html" . }}</div>
   </div>

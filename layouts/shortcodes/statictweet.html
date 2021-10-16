@@ -1,0 +1,63 @@
+{{- with .Get 0 -}}
+{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
+
+{{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
+{{ $json := getJSON $urlPre $tweetId }}
+{{ $text := $json.text | safeHTML }}
+{{ if isset $json "entities" }}
+  {{ if isset $json.entities "user_mentions"  }}
+    {{ range $user := $json.entities.user_mentions}}
+      {{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
+    {{ end }}
+  {{ end }}
+
+  {{ if isset $json.entities "media"  }}
+    {{ range $media := $json.entities.media }}
+      {{ $text = replace $text $media.url "" }}
+    {{ end }}
+  {{ end }}
+
+  {{ if isset $json.entities "urls"  }}
+    {{ range $url := $json.entities.urls}}
+        {{ with $url.url }}
+      {{ $text = replace $text $url.url (printf "<a href='%s'>%s</a>" $url.expanded_url $url.display_url) }}
+        {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<blockquote class="static-tweet">
+  <div style="display:flex;margin-bottom:.5em">
+    <img style="min-width:6rem;max-width:6rem;min-height:6rem;max-height:6rem;padding:1em;border-radius: 40%;" src="{{ $json.user.profile_image_url_https | replaceRE "normal" "400x400" }}" style="opacity:100%">
+    <div style="align-self:center"><p>{{  $text | safeHTML }}</p></div>
+  </div>
+  {{ if isset $json "photos" }}
+    {{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
+      <a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
+    {{ else }}
+      {{ range $item := $json.photos }}
+      <a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
+      {{ end }}
+    {{end}}
+  {{ end }}
+  {{ if isset $json "video" }}
+        <div class="videoContainer" >
+          {{ if eq (index $json.video.variants 1 "type") "video/mp4" }}
+          <video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+            <source src="{{ index $json.video.variants 1 "src" | safeURL }}" type="video/mp4"></source>
+          </video>
+          {{ else if eq (index $json.video.variants 2 "type") "video/mp4" }}
+          <video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+            <source src="{{ index $json.video.variants 2 "src" | safeURL }}" type="video/mp4"></source>
+          </video>
+          {{else}}
+          <img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
+              <a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+          {{ end }}
+        </div>
+  {{ end }}
+  <br />
+  <p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+</blockquote>
+
+{{- end -}}

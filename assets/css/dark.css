@@ -84,6 +84,11 @@ a:hover {
   color: black;
 }
 
+a.btn {
+  color: black;
+  border: 1px solid white !important;
+}
+
 .site-description a {
   color: #ddd;
 }
@@ -191,10 +196,26 @@ img:hover{
   color: #b0acac;
 }
 
+/*  table */
+table {
+  background: #272c34;
+}
+table th{
+  background-color: #1c2025;
+}
+table th,
+table td {
+  border-color: #1c2025;
+}
 /* toc - TableOfContent */
 .toc{
   background-color: #212328;
 }
 .toc-header{
   color: var(--darkMaincolor);
+}
+
+/* static tweet */
+blockquote.static-tweet{
+  color: #bbb1b1;
 }

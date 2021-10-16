@@ -7,7 +7,7 @@
 --darkMaincolor: #80CBC4;
 }
 html {
-  color: #232333;
+  /* color: #232333; */
   font-family: 'Roboto Mono', monospace;
   font-size: 15px;
   line-height: 1.5em;
@@ -117,7 +117,7 @@ img[src$='#right'] {
 
 figure {
   box-sizing: border-box;
-  display: inline-block;
+  /* display: inline-block; */
   margin: 0;
   max-width: 100%;
   /* box-shadow: 0 1px 3px rgba(0,0,0,.4);
@@ -183,7 +183,7 @@ pre code {
 
 /* Containers */
 .content {
-  /* margin-bottom: 4em; */
+  margin-bottom: 4em;
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
@@ -423,7 +423,7 @@ color: whitesmoke ;
   background: cyan;
   color: royalblue ;
 } */
-}
+
 .highlight pre code[class*='language-latex']::before,
 .highlight pre code[class*='language-tex']::before{
   content: 'tex';
@@ -443,6 +443,7 @@ table th{
   text-align: left;
   font-family: liberation mono,courier new;
   /* background: #9b93a4; */
+  background: #ededed;
 }
 
 table td{
@@ -889,6 +890,17 @@ h2.archive-title::before {
     content: '';
 }
 
+section details summary::after {
+    content: " (Content hidden, select to reveal)";
+    font-size: 80%;
+    font-style: italic;
+    font-weight: normal;
+}
+
+section details[open] summary::after {
+  content: "";
+}
+
 details.youtube-expander > summary {
     background-color: #eee;
     padding: 1em;
@@ -1000,10 +1012,10 @@ a.footnote-backref{
 }
 
 #webmentions a.reaction img {
-    /* max-height: 1.3em;
+    max-height: 2.5em;
     margin-right: -1ex;
-    border-radius: 25%; */
-    max-height: 0em;
+    border-radius: 25%;
+    opacity: 100%;
 }
 
 #webmentions a.reaction sub {
@@ -1041,7 +1053,7 @@ a.footnote-backref{
   margin-top: 1em;
   margin-bottom: 1em;
   /* box-shadow: 1px 1px .5em black inset;*/
-  border: .1em solid hsl(0, 0%, 33%); 
+  border: .1em solid hsl(0, 0%, 33%);
 }
 
 /* shortcode - activity_cycling */
@@ -1090,3 +1102,64 @@ a.footnote-backref{
   border-bottom: none;
 }
 
+/* static tweet */
+.twitter-tweet,
+.static-tweet{
+  background:rgba(29, 161, 242, 0.1);
+  border: 1px dashed #87cefa;
+  border-left-color: #1DA1F2;
+  border-left-style: solid;
+  border-left-width: 7px;
+}
+blockquote.static-tweet{
+  color: #535151;
+}
+blockquote.twitter-tweet a,
+blockquote.static-tweet a{
+  font-size: .95rem;
+}
+.videoContainer {
+  position: relative;
+}
+.thumb {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  left: 50%;
+  top: 50%;
+  margin-left: -48px; /*half of the width */
+  margin-top: -48px; /*half of the height */
+}
+
+/* mapbox */
+#map {
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:100%;
+}
+.mapboxgl-marker.mapboxgl-marker-anchor-center svg {
+	display: none;
+}
+.mapboxgl-marker {
+  background-image: url('/images/upload/icons8-marker.gif');
+  /* background-size: cover; */
+  background-size: auto 100%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+.mapboxgl-ctrl-attrib-inner,
+.mapboxgl-ctrl-bottom-left {
+  display: none !important;
+}

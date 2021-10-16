@@ -1,0 +1,354 @@
+{{ define "main" }}
+<main>
+	<article class="h-entry">
+		<div class="title">
+			<!-- indieweb: title ON -->
+			{{- if eq .Params.webmentionDelete401 "true" -}}
+				<h1 class="title p-name">🔥 Post deleted</h1>
+			{{- else if .Params.mfbookmark -}}
+				<h1 class="title p-name">⭐️ Bookmarked:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfbookmark }}">{{ .Params.mfbookmark }}</a></h1>
+				<a class="u-bookmark-of" href="{{ .Params.mfbookmark }}" style="display:none;">{{ .Params.mfbookmark }}</a>
+			{{- else if .Params.mfrepostof -}}
+				<h1 class="title p-name">🔄 Repost:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfrepostof }}">{{ .Params.mfrepostof }}</a></h1>
+				<a class="u-repost-of" href="{{ .Params.mfrepostof }}" style="display:none;">reposted {{ .Params.mfrepostof }}</a>
+			{{- else if .Params.mflikeof -}}
+				<h1 class="title p-name">👍 Liked:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mflikeof }}" >{{ .Params.mflikeof }}</a></h1>
+				<a class="u-url u-like-of" href="{{ .Params.mflikeof }}" style="display:none;">{{ .Params.mflikeof }}</a>
+				{{ if .Params.cite }}
+					<blockquote class="e-content" cite="{{ .Params.mflikeof }}"><p>{{ .Params.cite }}</p></blockquote>
+				{{ end }}
+			{{- else if .Params.mfreplyto -}}
+				<h1 class="title p-name">↩️ Reply to:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mfreplyto }}">{{ .Params.mfreplyto }}</a></h1>
+				<a class="u-in-reply-to" rel="in-reply-to" href="{{ .Params.mfreplyto }}" style="display:none;">{{ .Params.mfreplyto }}</a>
+			{{- else if .Params.rsvpValue -}}
+				<h1 class="title p-name">📅 RSVP:<br> {{ .Params.rsvpEventName }}</h1>
+			{{- else if .Params.mfquotationof -}}
+				<h1 class="title">💬 Quote of:<br> {{ .Params.mfquotationof }}</h1>
+			{{- else if .Params.mffollowof -}}
+				<h1 class="title p-name">🐜 Following:<br> <a class="u-bridgy-omit-link" target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.mffollowof }}">{{ .Params.mffollowof }}</a></h1>
+				<a class="u-follow-of" href="{{ .Params.mffollowof }}" style="display:none;">{{ .Params.mffollowof }}</a>
+			{{- else if .Params.webmentionType -}}  <!-- self interaction such as note (status), post, sport etc -->
+				{{ if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
+				<h1 class="title">💼 Status:<br> {{ .Title }}</h1>
+				{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
+				<h1 class="title">🙋‍♂️ Question:<br> {{ .Title }}</h1>
+				{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+				<h1 class="title p-name">🚩 Checked :<br> {{ .Title }}</h1>
+				{{ else }}
+				<h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! <br> {{ .Params.webmentionType }} + {{ .Title }}</h1>
+				{{ end }}
+			{{- else -}}
+		   <h1 class="title p-name">LOLL SOMETHING WRONG..pLz ChECK! {{ .Title }}</h1>
+		   {{- end -}}
+		   <!-- indieweb: title OFF -->
+
+			<div class="meta text-center">Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min</div>
+
+			<div style="display:none;">
+			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+			<time class="dt-updated" datetime="{{ .Page.Lastmod.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+			<a class="u-url" href="{{ .Permalink }}" ></a>
+			<a class="p-category">{{ .Params.webmentionType | default "post" }}</a>
+			</div>
+
+			<div style="display: none;" class="p-author h-card">
+				<a class="p-name u-url" href="{{ .Site.BaseURL }}" >{{ .Params.author | default .Site.Author.name }}</a>
+				<img class="u-photo" src="{{ .Site.BaseURL }}images/upload/Screenshot_20210816_124946.png" alt="Robbi Nespu" />
+				{{ if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+				<a href="https://www.google.com/maps/search/?api=1&query={{ .Params.checkinlat }},{{ .Params.checkinlon }}" class="u-checkin p-location h-card">{{ .Title }}</a>
+				<data class="p-latitude" value="{{.Params.checkinlat}}"></data>
+				<data class="p-longitude" value="{{.Params.checkinlon}}"></data>
+				{{ end }}
+			</div>
+
+		</div>
+
+		<!-- webmention endpoint (auto publish via brid.gy) -->
+		{{ if or (.Params.mfSource) (.Params.mfreplyto) }}
+		{{- $source := .Params.mfSource | lower -}}
+			{{- if eq $source "twitter" -}}
+			<a href="https://brid.gy/publish/twitter"></a>
+			{{- else if eq $source "mastodon" -}}
+			<a href="https://brid.gy/publish/mastodon"></a>
+			{{- else if eq $source "github" -}}
+			<a href="https://brid.gy/publish/github"></a>
+			{{- else -}}
+			<!-- nothing, pls check https://brid.gy/about#webmentions -->
+			{{- end -}}
+		{{- else if and (eq .Params.webmentionType "note") (or (eq .Params.webmentionTypeNoteType "status") (eq .Params.webmentionTypeNoteType "question")) -}}
+			<!-- nothing, let RSS published to twitter, mstdn etc -->
+		{{- end -}}
+
+		{{ if isset .Params "tldr" }}
+		<div class="tldr p-summary">
+			<strong>tl;dr:</strong>
+			{{ .Params.tldr }}
+		</div>{{ end }}
+
+		{{ if .Params.mfreplyto }}
+		{{- $source := .Params.mfSource | lower -}}
+			{{- with .Params.mfreplyto -}}
+				{{- if eq $source "twitter" -}}
+					<h2>Origin:</h2>
+					<!-- get dat from .twimg -->
+						{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
+						{{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
+						{{ $id := $tweetId }}
+						{{ $json := getJSON $urlPre $id }}
+						{{ $text := $json.text | safeHTML }}
+						{{ if isset $json "entities" }}
+						{{ if isset $json.entities "user_mentions"  }}
+							{{ range $user := $json.entities.user_mentions}}
+							{{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
+							{{ end }}
+						{{ end }}
+		
+						{{ if isset $json.entities "media"  }}
+							{{ range $media := $json.entities.media }}
+							{{ $text = replace $text $media.url "" }}
+							{{ end }}
+						{{ end }}
+		
+						{{ if isset $json.entities "urls"  }}
+							{{ range $url := $json.entities.urls}}
+								{{ with $url.url }}
+							{{ $text = replace $text $url.url (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='%s'>%s</a>" $url.expanded_url $url.display_url) }}
+								{{ end }}
+							{{ end }}
+						{{ end }}
+						{{ end }}
+		
+						<blockquote class="static-tweet">
+						<div style="display:flex;margin-bottom:.5em">
+							<img style="min-width:6rem;max-width:6rem;min-height:6rem;max-height:6rem;padding:1em;border-radius: 40%;" src="{{ $json.user.profile_image_url_https | replaceRE "normal" "400x400" }}" style="opacity:100%">
+							<div style="align-self:center"><p>{{  $text | safeHTML }}</p></div>
+						</div>
+						{{ if isset $json "photos" }}
+						
+						{{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
+							<a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
+						{{ else }}
+						{{ range $item := $json.photos }}
+							<a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
+						{{ end }}
+						{{end}}
+		
+						{{ end }}
+						{{ if isset $json "video" }}
+								<div class="videoContainer" >
+									{{ if eq (index $json.video.variants 1 "type") "video/mp4" }}
+								<video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+									<source src="{{ index $json.video.variants 1 "src" | safeURL }}" type="video/mp4"></source>
+								</video>
+								{{ else if eq (index $json.video.variants 2 "type") "video/mp4" }}
+								<video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+									<source src="{{ index $json.video.variants 2 "src" | safeURL }}" type="video/mp4"></source>
+								</video>
+								{{else}}
+								<img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
+									<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+								{{ end }}
+								</div>
+		
+						{{ end }}
+						<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+						</blockquote>
+					<!-- get dat from .twimg -->
+				{{- else if eq $source "mastodon" -}}
+				{{- else if eq $source "github" -}}
+					<h2>Origin:</h2>
+					{{- $ghType := "issue" -}}
+					{{- if in . "issuecomment" -}}
+						{{- $ghType = "comment" -}}
+						<p>New {{ $ghType }} on project <a href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a></p>
+						{{ $json_issuecommentId := replaceRE `^https?:\/\/github.com\/[a-zA-Z0-9_]{1,20}\/[a-zA-Z0-9_]{1,20}\/pull\/[0-9]*#issuecomment-` `$1` . -}}
+						{{ $json_issuecommentUrl := printf "https://api.github.com/repos/athul/archie/issues/comments/%s"  $json_issuecommentId  }}
+						{{ $json_issuecommentResponse := getJSON $json_issuecommentUrl }}
+						<blockquote>{{ $json_issuecommentResponse.body | safeHTML }}
+							<br /><p>&mdash; {{ $json_issuecommentResponse.user.login }} (<a href="{{ $json_issuecommentResponse.url }}">{{ dateFormat "January 2, 2006" $json_issuecommentResponse.updated_at }})</a></p>
+						</blockquote>
+					{{- else -}}
+					<p>New {{ $ghType }} on project <a href="{{ . }}">"{{ $.Params.mfGhProjectName }}"</a></p>
+					{{- end -}}
+				{{- else -}}
+				{{ end }}
+				<h2>My reply:</h2>
+			{{ end }}
+		{{ end }}
+
+		<section class="body">
+			{{ if and (.Params.rsvpEventName) (ne .Params.webmentionDelete401 "true") }}
+				<p class="text-center">RSVP 
+					{{- if .Params.rsvpValue -}}
+						{{ if eq .Params.rsvpValue "yes"}}
+						✅ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
+						{{ else if eq .Params.rsvpValue "no"}}
+						❌ <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
+						{{ else }}
+						👀 <mark><span class="p-rsvp">{{- .Params.rsvpValue -}}
+						{{ end }}
+					{{- end -}}
+				</span></mark> to <a target="_blank" rel="nofollow noopener noreferrer" href="{{ .Params.rsvpUrl }}" class="u-in-reply-to">{{ .Params.rsvpEventName }}</a>
+				</p>
+			{{ end }}
+
+			{{if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+				{{- $options := dict "lng" .Params.checkinlon "lat" .Params.checkinlat "checkin" .Title -}}
+				{{- $id := dict "Content" $options "Scratch" .Page.Scratch | partial "function/random-id.html" -}}
+				<div id='{{ $id }}' style="width: 100%; overflow:hidden; position:relative; height:300px;"></div>
+				<script>
+				mapboxgl.accessToken = 'pk.eyJ1IjoibHVrYXNtYXJ0aW5lbGxpIiwiYSI6ImNpem85dmhwazAyajIyd284dGxhN2VxYnYifQ.HQCmyhEXZUTz3S98FMrVAQ';
+				var map = new mapboxgl.Map({
+					container: '{{ $id }}',
+					style: 'mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true',
+					center: [{{ .Params.checkinlon }}, {{ .Params.checkinlat }}],
+					minZoom: 2,
+					zoom: 17, // starting zoom  1-22
+					pitch: 60, // pitch in degrees
+					bearing: -60 // bearing in degrees
+				});
+
+				var control = new mapboxgl.NavigationControl();
+				map.addControl(control, "top-left");
+
+				new mapboxgl.Marker({ color: "#b40219" })
+					.setLngLat([{{ .Params.checkinlon }}, {{ .Params.checkinlat }}])
+					.addTo(map)
+					.setPopup(new mapboxgl.Popup({ offset: 20 }).setHTML('<a style="color:red">{{ .Title }}</a>'));
+				</script>
+				<p class="text-center">GPS: {{ .Params.checkinlat }}, {{ .Params.checkinlon }} | <a target="_blank" rel="nofollow noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query={{ .Params.checkinlat }},{{ .Params.checkinlon }}">Google map</a></p>
+			{{end}}
+
+			<div class="e-content">
+				{{ if eq .Params.webmentionDelete401 "true" }}
+					<p class="text-center">Sorry. This entry has been deleted.</p>
+					<p class="text-center"><a style="border-bottom:0px;font-size: 130px">🚮</a></p>
+				{{ else }}
+					{{ .Content }}
+					{{ if .Params.mfquotationof }}
+						{{- $source := .Params.mfSource | lower -}}
+						<cite class="u-quotation-of h-cite" style="display:none;">
+							Quoted <a href="{{ .Params.mfquotationof }}">this</a>:
+						</cite>
+							{{- if ne $source "twitter" -}}
+							<blockquote>
+							TEXT TEXT
+							</blockquote>
+							{{ end }}
+						{{ end }}
+					{{ end }}
+			</div>
+			
+			{{ if or (.Params.mfquotationof) (.Params.mfrepostof) (.Params.mfbookmark) (.Params.mflikeof)}}
+			{{- $source := .Params.mfSource | lower -}}
+			{{- if eq $source "twitter" -}}
+				{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` (or (.Params.mfquotationof) (.Params.mfrepostof) (.Params.mfbookmark) (.Params.mflikeof)) -}}
+				{{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
+				{{ $id := $tweetId }}
+				{{ $json := getJSON $urlPre $id }}
+				{{ $text := $json.text | safeHTML }}
+				{{ if isset $json "entities" }}
+				{{ if isset $json.entities "user_mentions"  }}
+					{{ range $user := $json.entities.user_mentions}}
+					{{ $text = replace $text (printf "@%s" $user.screen_name) (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='https://twitter.com/%s'>@%s</a>" $user.screen_name $user.screen_name) }}
+					{{ end }}
+				{{ end }}
+
+				{{ if isset $json.entities "media"  }}
+					{{ range $media := $json.entities.media }}
+					{{ $text = replace $text $media.url "" }}
+					{{ end }}
+				{{ end }}
+
+				{{ if isset $json.entities "urls"  }}
+					{{ range $url := $json.entities.urls}}
+						{{ with $url.url }}
+					{{ $text = replace $text $url.url (printf "<a target=\"_blank\" rel=\"nofollow noopener noreferrer\" href='%s'>%s</a>" $url.expanded_url $url.display_url) }}
+						{{ end }}
+					{{ end }}
+				{{ end }}
+				{{ end }}
+
+				<blockquote class="static-tweet">
+				<div style="display:flex;margin-bottom:.5em">
+					<img style="min-width:6rem;max-width:6rem;min-height:6rem;max-height:6rem;padding:1em;border-radius: 40%;" src="{{ $json.user.profile_image_url_https | replaceRE "normal" "400x400" }}" style="opacity:100%">
+					<div style="align-self:center"><p>{{  $text | safeHTML }}</p></div>
+				</div>
+				{{ if isset $json "photos" }}
+				
+				{{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
+					<a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
+				{{ else }}
+				{{ range $item := $json.photos }}
+					<a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
+				{{ end }}
+				{{end}}
+
+				{{ end }}
+				{{ if isset $json "video" }}
+						<div class="videoContainer" >
+							{{ if eq (index $json.video.variants 1 "type") "video/mp4" }}
+						<video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+							<source src="{{ index $json.video.variants 1 "src" | safeURL }}" type="video/mp4"></source>
+						</video>
+						{{ else if eq (index $json.video.variants 2 "type") "video/mp4" }}
+						<video poster="{{ $json.video.poster | safeURL }}" id="player" playsinline controls>
+							<source src="{{ index $json.video.variants 2 "src" | safeURL }}" type="video/mp4"></source>
+						</video>
+						{{else}}
+						<img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
+							<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+						{{ end }}
+						</div>
+
+				{{ end }}
+				<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+				</blockquote>
+			{{ end }}
+			{{ end }}
+		</section>
+
+		{{ with .Params.syndication }}
+		<br><small class="text-center">🔀 Syndicated to:</small>
+		{{ $syndication_len := len . }}
+		{{ range $i, $syndication_item := . }}
+			{{ if ne . "" }}
+				{{ $domain := replaceRE "^https?://([^/]+).*" "$1" . }}
+					{{- if in $domain "twitter.com" -}}
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer syndication" class="u-syndication" title="{{ $domain }}"><i class="icon" icon-name="twitter"></i></a>
+					{{- else if in $domain "github.com" -}}
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer syndication" class="u-syndication" title="{{ $domain }}"><i class="icon" icon-name="github"></i></a>
+					{{ else }}
+						<a href="{{ $syndication_item }}" target="_blank" rel="nofollow noopener noreferrer syndication" class="u-syndication" title="{{ $domain }}"><i class="icon" icon-name="network"></i></a>
+					{{ end }}
+					{{ if ne (add $i 1) $syndication_len }}<span>/</span>{{ end }}
+			{{ end}}
+		{{ end }}
+		{{ end }}
+
+		<p style="text-align: right; font-size: x-small;">
+			<a href="{{ $.Site.Params.Repository }}blob/master/content/{{.File.Path}}">Edit</a>
+		</p>
+
+		{{ if ne .Type "page" }}
+		{{ if gt .Params.tags 0 }}
+		<div class="post-tags">
+			<nav class="nav tags">
+				<ul class="tags">
+					{{ range .Params.tags }}
+					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+					{{ end }}
+				</ul>
+			</nav>
+		</div>
+		{{ end }}
+		{{ end }}
+		{{- if and ( .Params.comments | default true ) ( .Site.Params.enableComments | default false) -}}
+		<div id="comment">
+			{{ partial "disqus.html" . }}
+		</div>
+		{{ end }}
+		{{ partial "next-prev-post.html" . }}
+	</article>
+</main>
+{{ end }}

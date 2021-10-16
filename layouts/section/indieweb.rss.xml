@@ -1,0 +1,69 @@
+<!-- Source: https://raw.githubusercontent.com/gohugoio/hugo/master/tpl/tplimpl/embedded/templates/_default/rss.xml -->
+{{- $pctx := . -}}
+{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $pages := slice -}}
+{{- if or $.IsHome $.IsSection -}}
+{{- $pages = $pctx.RegularPages -}}
+{{- else -}}
+{{- $pages = $pctx.Pages -}}
+{{- end -}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+{{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}</description>
+
+    {{ with .Site.LanguageCode }}
+    <language>{{.}}</language>{{end}}{{ with .Site.Author.email }}
+    <managingEditor>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}{{ with .Site.Author.email }}
+    <webMaster>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</webMaster>{{end}}{{ with .Site.Copyright }}
+    <copyright>{{.}}</copyright>{{end}}{{ if not .Date.IsZero }}
+    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+    {{- with .OutputFormats.Get "RSS" -}}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{- end -}}
+    {{ range $pages }}
+    {{ if in (string .Permalink) "/indieweb/" }}
+    <item>
+      <!--  -->
+      {{- if eq .Params.webmentionDelete401 "true" -}}
+				  <title>🔥 Post deleted</title>
+      {{ else if .Params.mfbookmark }}
+					<title>⭐️ Bookmarked: {{ .Params.mfbookmark }}</title>
+			{{ else if .Params.mfrepostof }}
+					<title>🔄 Repost: {{ .Params.mfrepostof }}</title>
+			{{ else if .Params.mflikeof }}
+					<title>👍 Liked: {{ .Params.mflikeof }}</title>
+			{{ else if .Params.mfreplyto }}
+					<title>↩️ Reply to: {{ .Params.mfreplyto }}</title>
+			{{ else if .Params.rsvpValue }}
+					<title>📅 RSVP: {{ .Params.rsvpEventName }}</title>
+			{{ else if .Params.mfquotationof }}
+					<title>💬 Quote of: {{ .Params.mfquotationof }}</title>
+			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
+					<title>💼 Status: {{ .Title | truncate 45}}</title>
+			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
+					<title>🙋‍♂️ Question: {{ .Title | truncate 45}}</title>
+			{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+					<title>🚩 Checked: {{ .Title | truncate 45}}</title>
+			{{ else if .Params.mffollowof }}
+					<title>🐜 Following: {{ .Title | truncate 45}}</title>
+			{{ else }}
+				<<title>something wrong!</title>
+			{{ end }}
+      <!--  -->
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ .Content | html }}</description>
+    </item>
+    {{ end }}
+    {{ end }}
+  </channel>
+</rss>

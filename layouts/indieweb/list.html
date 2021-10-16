@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{ if isset .Data "Term" }}
+<h1>Entries tagged - "{{ .Data.Term }}"</h1>
+{{ else }}
+<h1 class="page-title">{{ .Title }}</h1>
+{{ end }}
+{{ if isset .Params "tldr" }}
+<div class="tldr">
+	<strong>tl;dr:</strong>
+	{{ .Params.tldr }}
+</div>{{ end }}
+<ul class="posts h-entry">
+
+	<div style="display: none;" class="p-author h-card">
+		<a class="p-name u-url" href="{{ .Site.BaseURL }}" >{{ .Params.author | default .Site.Author.name }}</a>
+		<img class="u-photo" src="{{ .Site.BaseURL }}images/upload/Screenshot_20210816_124946.png" alt="Robbi Nespu" />
+	</div>
+
+	{{- range .Data.Pages -}}
+		{{- if and (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) (ne .Params.webmentionDelete401 "true") -}}
+		<li class="post">
+			{{ if in .Params.category "Bahasa Melayu"}}	[MS] {{ else }} [EN] {{ end }}
+			{{ if .Params.externalLink}}
+				<a href="{{ .Params.externalLink}}" target="_blank">{{.Title | truncate 45 "..." }}</a>
+			<!-- hack -->
+			{{  else if .Params.mfbookmark }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">⭐️ Bookmarked: {{ .Params.mfbookmark | truncate 45}}</a>
+			{{ else if .Params.mfrepostof }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">🔄 Repost: {{ .Params.mfrepostof | truncate 45}}</a>
+			{{ else if .Params.mflikeof }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">👍 Liked: {{ .Params.mflikeof | truncate 45}}</a>
+			{{ else if .Params.mfreplyto }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">↩️ Reply to: {{ .Params.mfreplyto | truncate 45}}</a>
+			{{ else if .Params.rsvpValue }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">📅 RSVP: {{ .Params.rsvpEventName | truncate 45}}</a>
+			{{ else if .Params.mfquotationof }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">💬 Quote of: {{ .Params.mfquotationof | truncate 45}}</a>
+			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">💼 Status: {{ .Title | truncate 45}}</a>
+			{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">🙋‍♂️ Question: {{ .Title | truncate 45}}</a>
+			{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">🚩 Checked: {{ .Title | truncate 45}}</a>
+			{{ else if .Params.mffollowof }}
+					<a class="u-url p-name" href="{{ .RelPermalink }}">🐜 Following: {{ .Title | truncate 45}}</a>
+			{{ else }}
+				<a href="{{ .RelPermalink }}">something wrong!</a>
+			{{ end }}
+			<time class="dt-published" style="display:none;" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+			<span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+		</li>
+		{{- end -}}
+	{{- end -}}
+</ul>
+{{ end }}

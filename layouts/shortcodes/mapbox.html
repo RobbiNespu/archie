@@ -1,0 +1,43 @@
+{{/*
+    example;
+    {{<mapbox 4.77832 103.42188 "Beli ikang ayer hitam nok buat singgang!" >}}
+    {{<mapbox lat="4.77832" lon="103.42188" checkin="Beli ikang ayer hitam nok buat singgang!" >}}
+
+*/}}
+
+{{- $lat := cond .IsNamedParams (.Get "lat") (.Get 0) -}}
+{{- $lon := cond .IsNamedParams (.Get "lon") (.Get 1) -}}
+
+{{- $checkin := cond .IsNamedParams (.Get "checkin") (.Get 2) | default "Hello everyone, I was here!" -}}
+
+{{- $zoom := .Get "zoom" | default 17 -}}
+{{- $pitch := .Get "pitch" | default 50 -}}
+{{- $bearing := .Get "bearing" | default -60 -}}
+
+{{- $options := dict "lon" $lon "lat" $lat "checkin" $checkin "zoom" $zoom "pitch" $pitch "bearing" $bearing -}}
+
+{{- $id := dict "Content" $options "Scratch" .Page.Scratch | partial "function/random-id.html" -}}
+
+<div id='{{ $id }}' style="width: 100%; overflow:hidden; position:relative; height:300px;"></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibHVrYXNtYXJ0aW5lbGxpIiwiYSI6ImNpem85dmhwazAyajIyd284dGxhN2VxYnYifQ.HQCmyhEXZUTz3S98FMrVAQ';
+var map = new mapboxgl.Map({
+    container: '{{ $id }}',
+    style: 'mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true',
+    center: [{{ $lon }}, {{ $lat }}], //  103.42188, 4.77832 
+    minZoom: 2,
+    zoom: {{ $zoom }}, // starting zoom  1-22
+    pitch: {{ $pitch }}, // pitch in degrees
+    bearing: {{ $bearing }} // bearing in degrees
+});
+//mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js');
+
+var control = new mapboxgl.NavigationControl();
+map.addControl(control, "top-left");
+
+new mapboxgl.Marker({ color: "#b40219" })
+    .setLngLat([{{ $lon }}, {{ $lat }}])
+    .addTo(map)
+    .setPopup(new mapboxgl.Popup({ offset: 20 }).setHTML('<a style="color:red">{{ $checkin }}</a>'));
+</script>
+<p class="text-center">GPS: {{ $lat }}, {{ $lon }} | <a target="_blank" rel="nofollow noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query={{ $lat }},{{ $lon }}">Google map</a></p>

@@ -5,37 +5,80 @@
 		<div class="content">
 			{{ partial "head.html" . }}
 			<main>
-				<article>
+				<article class="h-entry">
+
+					<a style="display:none;" class="p-category p-name">homepage</a>
+					<time style="display:none;" class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+					<a style="display:none;" class="u-url" href="{{ .Permalink }}" ></a>
+					<a style="display:none;" class="p-author h-card" >{{ .Params.author | default .Site.Author.name }}</a>
+
 					{{ with .Site.GetPage "/homepage/index.md" }}{{ if not (eq .Title "") }}
 					<div class="title">
 						<h1 class="title">{{ .Title }}</h1>
 					</div>
 					{{ end }}{{ end }}
 					{{ if isset .Params "tldr" }}
-					<div class="tldr">
+					<div class="tldr p-summary">
 						<strong>tl;dr:</strong>
 						{{ .Params.tldr }}
 					</div>{{ end }}
 
 					<section class="body">
-						{{ with .Site.GetPage "/homepage/index.md" }}{{ .Content }}{{ end }}
+						{{ with .Site.GetPage "/homepage/index.md" }}{{ .Content }}{{ end }}<hr>
 
-						<h1 id="recent-articles">Recent posts 📰</h1>
-						<ul class="posts">
-							{{ range ( where .Site.RegularPages "Type" "posts" | first 5 ) }}
+						<h1 id="recent-articles"><a style="border-bottom:0px" href="/posts">Recent posts 📝</a></h1>
+						<ul class="posts" style="text-align: left;">
+							{{ range ( where .Site.RegularPages "Type" "posts" | first 7 ) }}
 							<li class="post">
-								<a href="{{ .RelPermalink }}">{{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								<a class="u-url p-name" href="{{ .RelPermalink }}">{{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
 							</li>
 							{{end}}
 						</ul>
-						<pre><code>💡 You may check <a href="posts">archives</a> for full list of articles</code></pre>
-
+						<hr>
+						<h1 id="recent-articles" ><a style="border-bottom:0px" href="/indieweb">Recent indieweb 🍄</a></h1>
+						<ul class="posts">
+							{{ range ( where .Site.RegularPages "Type" "indieweb" | first 7 ) }}
+							{{ if ne .Params.webmentionDelete401 "true" }}
+							<li class="post" style="text-align: left;">
+								<!-- WOOOOOOOO -->
+								{{ if .Params.mfbookmark }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">⭐️ Bookmarked: {{ .Params.mfbookmark | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if .Params.mfrepostof }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">🔄 Repost: {{ .Params.mfrepostof | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if .Params.mflikeof }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">👍 Liked: {{ .Params.mflikeof | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if .Params.mfreplyto }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">↩️ Reply to: {{ .Params.mfreplyto | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if .Params.rsvpValue }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">📅 RSVP: {{ .Params.rsvpEventName | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if .Params.mfquotationof }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">💬 Quote of: {{ .Params.mfquotationof | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "status") }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">💼 Status: {{ .Title | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if and (eq .Params.webmentionType "note") (eq .Params.webmentionTypeNoteType "question") }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">🙋‍♂️ Question: {{ .Title | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if and (eq .Params.webmentionType "checkin") ( .Params.checkinlat) ( .Params.checkinlon)}}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">🚩 Checked: {{ .Title | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else if .Params.mffollowof }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">🐜 Following: {{ .Title | truncate 45}}</a><span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ else }}
+									<a class="u-url p-name" href="{{ .RelPermalink }}">OPSSS.. PLZ CHECK {{.Title | truncate 55 "..." }}</a> <span class="meta" style="float: right;">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
+								{{ end }}
+								<!-- WOOOOOOOO -->
+							</li>
+							{{end}}
+							{{end}}
+						</ul>
+						<hr>
 						<h1 id="contact">Contact 💌</h1>
-						<p>You can reach me by sending a message
+						<p class="e-content">You can reach me by sending a message
 							on <a target="_blank" rel="me" href="https://twitter.com/robbinespu">Twitter</a>,
+							<a target="_blank" rel="me" href="https://www.facebook.com/profile.php?id=100071338212047">Facebook</a>,
 							<a target="_blank" rel="me" href="https://mstdn.social/@robbinespu">Mastodon</a>,
 							<a target="_blank" rel="me" href="https://matrix.to/#/@mambang:matrix.org">Matrix</a>
-							or send a (<a href="https://useplaintext.email" target="_blank" rel="nofollow noopener noreferrer">plain text</a>) email to my public<a href="mailto:~robbinespu/mailing-list@lists.sr.ht?subject=[Hello]" target="_blank" rel="nofollow noopener noreferrer"> mailing list</a> or private <a target="_blank" rel="me" href="mailto:robbinespu@gmail.com">Email</a>.
+							or send a (<a href="https://useplaintext.email" target="_blank" rel="nofollow noopener noreferrer">plain text</a>) email to my public
+							<a href="https://lists.sr.ht/~robbinespu/mailing-list" target="_blank" rel="nofollow noopener noreferrer"> mailing list</a> or private
+							<a target="_blank" rel="me" href="mailto:robbinespu@gmail.com">Email</a>.
 							You also can send confidential message to me using
 							<a rel="pgpkey authn" href="/pgp_keys.asc">PGP </a> encryption 🔐
 						</p>
@@ -47,6 +90,9 @@
 							    <div class="admonition-content">I’m open to interesting collaboration and job offers 👍🏽</div>
 							  </div>
 							</div>
+							<!-- webmention on homepage
+							<div><details><summary>Webmention</summary><div> {{ partial "indieweb/wm-responses-homepage.html" . }}</div></details></div>
+							 -->
 					</section>
 
 					{{ if ne .Type "page" }}
