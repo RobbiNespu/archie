@@ -69,7 +69,7 @@
 			{{ .Params.tldr }}
 		</div>{{ end }}
 
-		{{ if .Params.mfreplyto }}
+		{{ if and (.Params.mfreplyto) (ne .Params.webmentionDelete401 "true") }}
 		{{- $source := .Params.mfSource | lower -}}
 			{{- with .Params.mfreplyto -}}
 				{{- if eq $source "twitter" -}}
