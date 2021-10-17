@@ -38,8 +38,9 @@
 	{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 	{{ end -}}
 
-	{{- template "_internal/opengraph.html" . -}}
-	{{- template "_internal/twitter_cards.html" . -}}
+	{{- partial "opengraph.html" . -}}
+	{{- partial "twitter_cards.html" . -}}
+
 	{{ if and (isset .Site.Params "social") (.Site.Params.useCDN | default false) -}}
 		<script src="https://unpkg.com/lucide@latest"></script>
 	{{- else if (isset .Site.Params "social") -}}
