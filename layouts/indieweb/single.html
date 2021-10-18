@@ -73,7 +73,8 @@
 		{{- $source := .Params.mfSource | lower -}}
 			{{- with .Params.mfreplyto -}}
 				{{- if eq $source "twitter" -}}
-					<h2>Origin:</h2>
+				<details class="spoiler">
+					<summary>Origin:</summary>
 					<!-- get dat from .twimg -->
 						{{- $tweetId := replaceRE `https?:\/\/twitter.com\/[a-zA-Z0-9_]{1,20}\/status\/([0-9]*)` `$1` . -}}
 						{{ $urlPre := "https://cdn.syndication.twimg.com/tweet?id="}}
@@ -137,6 +138,7 @@
 						{{ end }}
 						<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 						</blockquote>
+					</details>
 					<!-- get dat from .twimg -->
 				{{- else if eq $source "mastodon" -}}
 				{{- else if eq $source "github" -}}
