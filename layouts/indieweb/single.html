@@ -111,10 +111,10 @@
 						{{ if isset $json "photos" }}
 						
 						{{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
-							<a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
+							<a class="medium-zoom-image" href="{{ (index $json.photos 0).url }}" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
 						{{ else }}
 						{{ range $item := $json.photos }}
-							<a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
+							<a class="medium-zoom-image" href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
 						{{ end }}
 						{{end}}
 		
@@ -279,10 +279,10 @@
 				{{ if isset $json "photos" }}
 				
 				{{if and (not (modBool (len $json.photos) 2)) ( eq (len $json.photos) 1)}}
-					<a href="" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
+					<a class="medium-zoom-image" href="{{ (index $json.photos 0).url }}" style="border-bottom:0px"><img loading="lazy" src="{{ (index $json.photos 0).url }}#center" style="padding: 0.5em;"></a>
 				{{ else }}
 				{{ range $item := $json.photos }}
-					<a href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
+					<a class="medium-zoom-image" href="{{ $item.url | safeURL }}" style="border-bottom:0px"><img loading="lazy" src="{{ $item.url | safeURL }}" style="max-width: 45% !important;padding: 0.5em;"></a>
 				{{ end }}
 				{{end}}
 
