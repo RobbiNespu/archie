@@ -131,12 +131,12 @@
 								</video>
 								{{else}}
 								<img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
-									<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+									<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str | plainify }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
 								{{ end }}
 								</div>
 		
 						{{ end }}
-						<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+						<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str | plainify }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 						</blockquote>
 					</details>
 					<!-- get dat from .twimg -->
@@ -299,12 +299,12 @@
 						</video>
 						{{else}}
 						<img loading="lazy" src="{{ $json.video.poster | safeURL }}#center" style="max-width: 45% !important;padding: 0.5em;">
-							<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
+							<a href="https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str | plainify }}>"><img src="/images/upload/playButton.png" class="thumb"></a>
 						{{ end }}
 						</div>
 
 				{{ end }}
-				<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+				<p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str | plainify }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
 				</blockquote>
 			{{ end }}
 			{{ end }}
