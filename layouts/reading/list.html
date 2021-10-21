@@ -1,0 +1,115 @@
+{{ define "main" }}
+<main>
+	<article class="h-entry">
+		<div class="title">
+			<h1 class="title p-name">{{ .Title }}</h1>
+			<div class="meta text-center">
+				<!-- Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min -->
+				{{- if (not (in (.Site.Params.excludedTypes | default (slice "page" "reading")) .Type)) -}}
+					{{ $ageDays := div (sub now.Unix .Date.Unix) 86400 }}{{ if gt $ageDays 365 }}<strong>⚠️ Warning:</strong> This post is over a year old, the information may be out of date.{{ end }}
+				{{- end -}}
+			</div>
+
+			<div style="display:none;">
+			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+            <time class="dt-updated" datetime="{{ .Page.Lastmod.Format "2006-01-02 15:04:05 +0800" }}" ></time>
+			<a class="u-url" href="{{ .Permalink }}" ></a>
+			<a class="p-category">{{ .Params.webmentionType | default "reading" }}</a>
+			</div>
+
+			<!-- indieweb webmention -->
+			{{ partial "h-card.html" . }}
+
+		</div>
+		{{ if isset .Params "tldr" }}<div class="tldr p-summary"><strong>tl;dr:</strong>{{ .Params.tldr }}</div>{{ end }}
+
+		<section class="body e-content">
+            <details class="spoiler" id="spoiler-2">
+                <summary>ToC</summary>
+                <aside class="toc" style="float:right">
+                <a class="toc-header">Table of content</a>
+                <nav id="TableOfContents">
+                <ul>
+                <li><a href="#currently">Currently</a></li>
+                <li><a href="#to-read">To read</a></li>
+                <li><a href="#history">History</a></li>
+                <ul>
+                </ul>
+                </nav>
+                </aside>
+            </details>
+		    {{ .Content }}
+
+            <!-- currently -->
+            <h2 id="currently">Currently</h2>
+            <table>
+                <thead>
+                <tr>
+                <th>Title</th>
+                <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{ range where .Pages ".Params.readStatus" "current" }}
+                        <tr>
+                            <td><a href="{{ .RelPermalink }}">{{ .Params.readAuthor }}. {{ .Params.readPublished }}. {{ .Params.readTitle }}</a></td>
+                            <td>{{ .Params.readType }}</td>
+                        </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+            <!-- currently -->
+
+            <!-- to-read -->
+            <h2 id="to-read">To read</h2>
+            <table>
+                <thead>
+                <tr>
+                <th>Title</th>
+                <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{ range where .Pages ".Params.readStatus" "to-read" }}
+                        <tr>
+                            <td><a href="{{ .RelPermalink }}">{{ .Params.readAuthor }}. {{ .Params.readPublished }}. {{ .Params.readTitle }}</a></td>
+                            <td>{{ .Params.readType }}</td>
+                        </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+            <!-- to-read -->
+
+           <!-- HISTORY -->
+           <h2 id="history">History</h2>
+           <hr>
+           {{ range (where .Data.Pages "Section" "!=" "").GroupByDate "2006" }}
+                {{ $year := .Key}}
+                <table>
+                    <thead>
+                    <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <h3 id="history-{{$year}}">{{ $year}}</h3>
+                    {{ range .Pages.GroupByParam "readStatus" }}
+                        {{ range $index, $element := (.Pages)}}
+                            {{ $title := printf "%v. %v. %v" .Params.readAuthor .Params.readPublished .Params.readTitle}}
+                            {{ if eq .Params.readStatus "history"}}
+                                <tr>
+                                    <td><a href="{{ .RelPermalink }}">{{ $title }}</a></td>
+                                    <td>{{ .Params.readType }}</td>
+                                </tr>
+                            {{ end }}
+                        {{end }}
+                    {{end}}
+                </tbody>
+                </table>
+           {{ end }}
+           <!-- HISTORY -->
+		</section>
+	</article>
+</main>
+{{ end }}

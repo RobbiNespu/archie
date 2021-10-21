@@ -890,6 +890,7 @@ h2.archive-title::before {
     content: '';
 }
 
+details.spoiler summary::after,
 section details summary::after {
     content: " (Content hidden, select to reveal)";
     font-size: 80%;
@@ -897,6 +898,7 @@ section details summary::after {
     font-weight: normal;
 }
 
+details.spoiler[open] summary::after,
 section details[open] summary::after {
   content: "";
 }
