@@ -115,6 +115,10 @@ img[src$='#right'] {
   margin: .7rem;
 }
 
+.emoji {
+  font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
+}
+
 figure {
   box-sizing: border-box;
   /* display: inline-block; */
