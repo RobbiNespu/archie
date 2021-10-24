@@ -6,9 +6,7 @@
 		{{ with .Site.Menus.main }}
                 {{ $navbar_len := len . }}
                 {{ range $i, $nav_item := . }}
-                    <a class="menu" href="{{ $nav_item.URL }}" title="{{ $nav_item.Name }}">
-                        {{ $nav_item.Pre }}{{ $nav_item.Name }}{{ $nav_item.Post }}
-                    </a>
+                    <a class="menu" href="{{ $nav_item.URL }}" title="{{ $nav_item.Name }}" style="border-bottom:0;">{{ $nav_item.Pre }}{{ $nav_item.Name }}{{ $nav_item.Post }}</a>
                     {{ if ne (add $i 1) $navbar_len }}
                         /
                     {{ end }}
