@@ -1129,6 +1129,11 @@ blockquote.twitter-tweet a,
 blockquote.static-tweet a{
   font-size: .95rem;
 }
+
+blockquote.static-tweet img.avatar{
+  min-width:6rem;max-width:6rem;min-height:6rem;max-height:6rem;padding:1em;border-radius: 40%;
+  box-shadow: 0 0px 0px rgba(0,0,0,.2);
+}
 .videoContainer {
   position: relative;
 }
