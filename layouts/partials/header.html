@@ -9,7 +9,7 @@
 	{{- else if in (string .Permalink) "/indieweb/" -}}
 		<title>Indieweb - {{ .Params.author | default .Site.Author.name }}</title>
 	{{- else -}}
-		<title>{{ $title }} - {{ $siteTitle }}</title>
+		<title>{{ $title | truncate 70  }} - {{ $siteTitle }}</title>
 	{{- end -}}
 
 	{{- if isset .Site.Params "favicon" -}}
