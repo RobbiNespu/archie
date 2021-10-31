@@ -1,7 +1,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+	{{ if in .Params.category "Bahasa Melayu"}}<meta http-equiv='content-language' content='ms-my'>{{ else }}<meta http-equiv='content-language' content='en-gb'>{{ end }}
+	
 	{{- $title := ( .Title ) -}}
 	{{- $siteTitle := ( .Site.Title ) -}}
 	{{- if .IsHome -}}
