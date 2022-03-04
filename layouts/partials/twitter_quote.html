@@ -60,5 +60,7 @@
     {{ with $json.quoted_tweet}}
         {{ partial "twitter_quote.html" (dict "tweetId" $json.quoted_tweet.id_str) }}
     {{ end }}
+    {{ with $json.created_at }}
     <p>&mdash; {{ $json.user.name }} (@{{ $json.user.screen_name }}) | <a target="_blank" rel="nofollow noopener noreferrer" href='https://twitter.com/{{ $json.user.screen_name }}/status/{{ $json.id_str | plainify }}'>{{ dateFormat "January 2, 2006" $json.created_at }}</a></p>
+    {{ end }}
 </blockquote>
