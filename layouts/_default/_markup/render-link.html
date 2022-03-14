@@ -6,7 +6,7 @@
       target="_blank" rel="nofollow noopener noreferrer"
    {{ end }}>
    {{ if .Text }}
-      {{ .Text | markdownify }}
+      {{ .Text }}
    {{ else }}
       {{ string .Destination }}
    {{ end }}
