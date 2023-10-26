@@ -1,24 +1,21 @@
 {{ if or (hasPrefix .Destination "/") (in (string .Destination) "robbinespu.gitlab.io") }}
-<a href="{{ .Destination | safeURL }}"
-   {{ with .Title}} title="{{ . }}"{{ end }}
-   {{ if or (strings.HasPrefix .Destination "/") (in (string .Destination) "robbinespu.gitlab.io") }}
-   {{ else }}
+{{ $safeURL := .Destination | safeURL }}
+{{ $isExternal := not (strings.HasPrefix .Destination "/") }}
+<a href="{{ $safeURL }}"
+   {{ with .Title }}title="{{ . }}"{{ end }}
+   {{ if $isExternal }}
       target="_blank" rel="nofollow noopener noreferrer"
    {{ end }}>
    {{ if .Text }}
-      {{ .Text | markdownify }}
+      {{ if eq $isExternal true }}
+         {{ .Text | replaceRE `^https?://` "$1" | markdownify }}
+      {{ else }}
+         {{ .Text | markdownify }}
+      {{ end }}
    {{ else }}
-      {{ string .Destination }}
-   {{ end }}
-</a>
-{{ else}}
-<a href="{{ .Destination | safeURL }}"
-  {{ with .Title}} title="{{ . }}"{{ end }}
-  {{ if strings.HasPrefix .Destination "http" }}
-      target="_blank" rel="nofollow noopener noreferrer"
-   {{ end }}>
-   {{ if .Text }}
-      {{ .Text | replaceRE `^https?://` "$1" | markdownify }}
+      {{ if eq $isExternal false }}
+         {{ $safeURL }}
+      {{ end }}
    {{ end }}
 </a>
 {{ end }}
