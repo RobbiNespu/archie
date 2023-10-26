@@ -9,6 +9,7 @@
 				{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
 					{{ $ageDays := div (sub now.Unix .Date.Unix) 86400 }}{{ if gt $ageDays 365 }}<strong>⚠️ Warning:</strong> This post is over a year old, the information may be out of date.{{ end }}
 				{{- end -}}
+				<br/> 📢 I’ve moved to a new website. Please visit me at <a href="https://journal.robbi.my">https://journal.robbi.my</a> !
 			</div>
 
 			<div style="display:none;">
@@ -28,6 +29,7 @@
 		</div>{{ end }}
 
 		<section class="body e-content">
+			<br/>
 			{{ if .Params.externalLink }} Within 3 secs, you will be re-direct to: <br/>- <a href="{{ .Params.externalLink }}">{{ .Params.externalLink }}</a> {{ end }}
 			{{ .Content }}
 		</section>
