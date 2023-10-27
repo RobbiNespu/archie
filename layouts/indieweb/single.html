@@ -42,7 +42,10 @@
 		   {{- end -}}
 		   <!-- indieweb: title OFF -->
 
-			<div class="meta text-center">Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min</div>
+			<div class="meta text-center">
+				Posted: {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }} | Reading time: {{.ReadingTime}} min
+				<br/> 📢 I’ve moved to a new website. Please visit me at <a href="https://journal.robbi.my">https://journal.robbi.my</a> !
+			</div>
 
 			<div style="display:none;">
 			<time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 +0800" }}" ></time>
